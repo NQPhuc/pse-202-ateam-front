@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import meowIMG from '../img/meowmeow.png';
 import {Link, Router} from "react-router-dom";
-import {displayPopupComponent} from '../App';
 
 export default class Header extends Component {
 
@@ -17,7 +16,7 @@ constructor(props) {
                 <input className="SearchBar"></input>
                 <button className="ButtonA">Register</button>
                 {/* <Link to='/login'> */}
-                <button className="ButtonA" onClick={() => displayPopupComponent(1)}>Login</button>
+                <button className="ButtonA" onClick={() => this.props.displayPopupCallback(1)}>Login</button>
                 {/* </Link> */}
                 <button className="ButtonA">Mycart</button>
             </header>

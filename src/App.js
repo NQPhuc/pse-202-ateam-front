@@ -19,12 +19,26 @@ const backendAddress = "http://localhost:3030";
 
 function App() {
   const [value1, setValue1] = useState(false);
-  let displayPopupFunction = displayPopupComponent.bind(this);
+  //let displayPopupFunction = displayPopupComponent.bind(this);
   
+  const displayPopupComponent = (type) => {
+    console.log("HERE");
+    if (type === 1){
+      setValue1(true);
+    }
+  }
+
+  const undisplayPopupComponent = (type) => {
+    console.log("HERE");
+    if (type === 1){
+      setValue1(false);
+    }
+  }
+
   return (
     <div className="App">    
-      <HeaderComponent displayPopupCallback={displayPopupFunction}/>
-      <Login displaying={value1}/>
+      <HeaderComponent displayPopupCallback={displayPopupComponent}/>
+      <Login displaying={value1} undisplayPopupCallback={undisplayPopupComponent}/>
       <Router>
         <Switch>
           <Route path="/about">
@@ -49,15 +63,8 @@ function App() {
       <FooterComponent />
     </div>
   );
+  
 }
 
 export default App;
 
-export function displayPopupComponent(type){
-  console.log("HERE");
-  if (type === 1){
-    //reactDom.render(Login, document.getElementById("bodyDIV"));
-    alert(this);
-    this.setValue1(true);
-  }
-}

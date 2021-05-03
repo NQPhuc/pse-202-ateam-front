@@ -26,7 +26,9 @@ export default class LoginPopup extends Component {
                             <button className="ButtonA" style={{ margin: "15px 0px 0px 0px", background: '#FFFFFF', borderRadius: '20px', width: '80%', height: '30px' }}>Login</button>
                         </div>
                         <div>
-                            <button className="ButtonA" style={{ margin: "10px 0px 0px 0px", background: '#FFFFFF', borderRadius: '20px', width: '80%', height: '30px' }}>Close</button>
+                            <button className="ButtonA" style={{ margin: "10px 0px 0px 0px", background: '#FFFFFF', borderRadius: '20px', width: '80%', height: '30px' }} onClick={() => this.props.undisplayPopupCallback(1)}>
+                                Close
+                            </button>
                         </div>
                     </div>
                 </div>
