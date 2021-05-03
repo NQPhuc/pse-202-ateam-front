@@ -1,40 +1,38 @@
-import React, { useState, Component } from 'react';
+import React, { Component } from 'react';
+import nikeLogo from '../img/nike_logo.png'
 
-export default class Login extends Component {
-    setValueTempTextLogin = (newValue) => {
-        /* WHY ARROW FUNCTION?
-        Until arrow functions, every new function defined its own this value [...]. 
-        This proved to be annoying with an object-oriented style of programming.
-
-        Arrow functions capture the this value of the enclosing context [...]
-        */
-
-        this.setState({valueTempTextlogin: newValue});// this will trigger re-render
-        //console.log(this); //this will be undefined if it's not an arrow function
-    }
+export default class LoginPopup extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {valueTempTextlogin: ''};
-        
+        //this.state = {displaying: false};
     }
-    
-    render() {
-        loadLogin(this.setValueTempTextLogin, this.props.backendAddress);
-        return (
-            <p>{this.state.valueTempTextlogin}</p>
-        );
-    }
-}
 
-function loadLogin(setter, backendAddress) {
-    let xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-      if (this.readyState === 4 && this.status === 200) {
-        setter(this.responseText);
-      }
-    };
-    xhttp.open("GET", backendAddress + "/login", true);
-    xhttp.send();
+    render() {
+        if(this.props.displaying){
+            return (
+                <div className="popupOuter">
+                    <div className="loginPopup">
+                        <img src={nikeLogo} className="nikeLogo" alt="nikeLogo" />
+                        <br />
+                        <p className="phucLogo">ATEAM</p>
+
+                        <p className="loginFormLabel">Username</p>
+                        <input className="loginForm" name="username"></input>
+
+                        <p className="loginFormLabel">Password</p>
+                        <input className="loginForm" name="password"></input>
+                        <div>
+                            <button className="ButtonA" style={{ margin: "15px 0px 0px 0px", background: '#FFFFFF', borderRadius: '20px', width: '80%', height: '30px' }}>Login</button>
+                        </div>
+                        <div>
+                            <button className="ButtonA" style={{ margin: "10px 0px 0px 0px", background: '#FFFFFF', borderRadius: '20px', width: '80%', height: '30px' }}>Close</button>
+                        </div>
+                    </div>
+                </div>
+
+            );
+        }
+        return "";
+    }
 }
-  

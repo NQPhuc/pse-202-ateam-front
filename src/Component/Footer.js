@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import footerIMG from '../img/footer.png';
 
-export default class Header extends Component {
+export default class Footer extends Component {
 
     constructor(props) {
         super(props)

@@ -12,17 +12,20 @@ import FooterComponent from './Component/Footer.js';
 
 import HomePage from './Page/HomePage.js';
 import Login from './Component/Login';
-
+import reactDom from 'react-dom';
 
 
 const backendAddress = "http://localhost:3030";
 
 function App() {
+  const [value1, setValue1] = useState(false);
+  let displayPopupFunction = displayPopupComponent.bind(this);
+  
   return (
-    <div className="App">
-       
+    <div className="App">    
+      <HeaderComponent displayPopupCallback={displayPopupFunction}/>
+      <Login displaying={value1}/>
       <Router>
-      <HeaderComponent />
         <Switch>
           <Route path="/about">
             <p>
@@ -38,9 +41,6 @@ function App() {
           <Route path="/home">
             <HomePage />
           </Route>
-          <Route path="/login">
-            <Login backendAddress={backendAddress}/>
-          </Route>
           <Route path="/">
             <HomePage />
           </Route>
@@ -52,3 +52,12 @@ function App() {
 }
 
 export default App;
+
+export function displayPopupComponent(type){
+  console.log("HERE");
+  if (type === 1){
+    //reactDom.render(Login, document.getElementById("bodyDIV"));
+    alert(this);
+    this.setValue1(true);
+  }
+}
