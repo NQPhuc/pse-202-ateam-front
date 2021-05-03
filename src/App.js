@@ -22,14 +22,14 @@ function App() {
   //let displayPopupFunction = displayPopupComponent.bind(this);
   
   const displayPopupComponent = (type) => {
-    console.log("HERE");
+    //console.log("HERE");
     if (type === 1){
       setValue1(true);
     }
   }
 
   const undisplayPopupComponent = (type) => {
-    console.log("HERE");
+    //console.log("HERE");
     if (type === 1){
       setValue1(false);
     }
@@ -38,7 +38,7 @@ function App() {
   return (
     <div className="App">    
       <HeaderComponent displayPopupCallback={displayPopupComponent}/>
-      <Login displaying={value1} undisplayPopupCallback={undisplayPopupComponent}/>
+      <Login displaying={value1} undisplayPopupCallback={undisplayPopupComponent} backendAddress={backendAddress}/>
       <Router>
         <Switch>
           <Route path="/about">
@@ -46,9 +46,8 @@ function App() {
               <div>
                   <p>Candidate: Nguyễn Quang Phúc</p>
                   <p>Github: <a href="https://github.com/NQPhuc/inf-calc-react">https://github.com/NQPhuc/inf-calc-react</a></p>
-                  <p>Deployment website: <a href="https://react-inf-int-calculator.herokuapp.com/">https://react-inf-int-calculator.herokuapp.com/</a>
+                  <p>Deployment website: <a href="https://react-inf-int-calculator.herokuapp.com/">https://react-inf-int-calculator.herokuapp.com/</a></p>
                   <br/>
-              </p>
               </div>
             </p>
           </Route>
