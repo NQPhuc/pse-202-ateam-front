@@ -41,13 +41,10 @@ export default class LoginPopup extends Component {
 }
 
 function loadLogin(backendAddress, usernameValue, passwordValue) {
-    console.log(usernameValue + passwordValue);
-    console.log(backendAddress);
     let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
       if (this.readyState === 4 && this.status === 200) {
-        console.log(this.responseText);  
-        //setter(this.responseText);
+        alert(this.responseText);  
         return;
       }
     };
