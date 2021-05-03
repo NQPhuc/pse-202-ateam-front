@@ -1,5 +1,5 @@
-
 import './App.css';
+import React, { useState } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -17,9 +17,11 @@ import HomePage from './Page/HomePage.js';
 const backendAddress = "http://localhost:3030";
 
 function App() {
+  const [valueTempTextlogin, setValueTempTextLogin] = useState('0');
+
   return (
     <div className="App">
-      
+       
       <Router>
       <HeaderComponent />
         <Switch>
@@ -38,7 +40,8 @@ function App() {
             <HomePage />
           </Route>
           <Route path="/login">
-            <p>{loadLogin()}TEST</p>
+            {loadLogin(setValueTempTextLogin)}
+            <p>{valueTempTextlogin}</p>
           </Route>
           <Route path="/">
             <HomePage />
@@ -50,13 +53,12 @@ function App() {
   );
 }
 
-function loadLogin() {
-  var xhttp = new XMLHttpRequest();
+function loadLogin(setValue) {
+  let xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState === 4 && this.status === 200) {
-      return this.responseText;
+      setValue(this.responseText);
     }
-    else return "FAIL"
   };
   xhttp.open("GET", backendAddress + "/login", true);
   xhttp.send();
