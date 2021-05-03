@@ -11,14 +11,13 @@ import HeaderComponent from './Component/Header.js';
 import FooterComponent from './Component/Footer.js';
 
 import HomePage from './Page/HomePage.js';
+import Login from './Component/Login';
 
 
 
 const backendAddress = "http://localhost:3030";
 
 function App() {
-  const [valueTempTextlogin, setValueTempTextLogin] = useState('0');
-
   return (
     <div className="App">
        
@@ -40,8 +39,7 @@ function App() {
             <HomePage />
           </Route>
           <Route path="/login">
-            {loadLogin(setValueTempTextLogin)}
-            <p>{valueTempTextlogin}</p>
+            <Login backendAddress={backendAddress}/>
           </Route>
           <Route path="/">
             <HomePage />
@@ -51,17 +49,6 @@ function App() {
       <FooterComponent />
     </div>
   );
-}
-
-function loadLogin(setValue) {
-  let xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState === 4 && this.status === 200) {
-      setValue(this.responseText);
-    }
-  };
-  xhttp.open("GET", backendAddress + "/login", true);
-  xhttp.send();
 }
 
 export default App;
