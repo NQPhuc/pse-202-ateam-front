@@ -1,15 +1,20 @@
 
 import './App.css';
-
-import HeaderComponent from './Component/Header.js';
-import FooterComponent from './Component/Footer.js';
-import HomePage from './Page/HomePage.js';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Link
 } from "react-router-dom";
+
+import HeaderComponent from './Component/Header.js';
+import FooterComponent from './Component/Footer.js';
+
+import HomePage from './Page/HomePage.js';
+
+
+
+const backendAddress = "http://localhost:3030";
 
 function App() {
   return (
@@ -33,7 +38,7 @@ function App() {
             <HomePage />
           </Route>
           <Route path="/login">
-            <p>THIS IS THE LOGIN PAGE</p>
+            <p>{loadLogin()}TEST</p>
           </Route>
           <Route path="/">
             <HomePage />
@@ -43,6 +48,18 @@ function App() {
       <FooterComponent />
     </div>
   );
+}
+
+function loadLogin() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState === 4 && this.status === 200) {
+      return this.responseText;
+    }
+    else return "FAIL"
+  };
+  xhttp.open("GET", backendAddress + "/login", true);
+  xhttp.send();
 }
 
 export default App;
