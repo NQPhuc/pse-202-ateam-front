@@ -20,34 +20,34 @@ const backendAddress = "http://localhost:3030";
 function App() {
   const [value1, setValue1] = useState(false);
   //let displayPopupFunction = displayPopupComponent.bind(this);
-  
+
   const displayPopupComponent = (type) => {
     //console.log("HERE");
-    if (type === 1){
+    if (type === 1) {
       setValue1(true);
     }
   }
 
   const undisplayPopupComponent = (type) => {
     //console.log("HERE");
-    if (type === 1){
+    if (type === 1) {
       setValue1(false);
     }
   }
 
   return (
-    <div className="App">    
-      <HeaderComponent displayPopupCallback={displayPopupComponent}/>
-      <Login displaying={value1} undisplayPopupCallback={undisplayPopupComponent} backendAddress={backendAddress}/>
+    <div className="App">
+      <HeaderComponent displayPopupCallback={displayPopupComponent} />
+      <Login displaying={value1} undisplayPopupCallback={undisplayPopupComponent} backendAddress={backendAddress} />
       <Router>
         <Switch>
           <Route path="/about">
             <p>
               <div>
-                  <p>Candidate: Nguyễn Quang Phúc</p>
-                  <p>Github: <a href="https://github.com/NQPhuc/inf-calc-react">https://github.com/NQPhuc/inf-calc-react</a></p>
-                  <p>Deployment website: <a href="https://react-inf-int-calculator.herokuapp.com/">https://react-inf-int-calculator.herokuapp.com/</a></p>
-                  <br/>
+                <p>Candidate: Nguyễn Quang Phúc</p>
+                <p>Github: <a href="https://github.com/NQPhuc/inf-calc-react">https://github.com/NQPhuc/inf-calc-react</a></p>
+                <p>Deployment website: <a href="https://react-inf-int-calculator.herokuapp.com/">https://react-inf-int-calculator.herokuapp.com/</a></p>
+                <br />
               </div>
             </p>
           </Route>
@@ -62,7 +62,7 @@ function App() {
       <FooterComponent />
     </div>
   );
-  
+
 }
 
 export default App;

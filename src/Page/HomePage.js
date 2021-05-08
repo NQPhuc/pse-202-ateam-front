@@ -1,5 +1,10 @@
-export default function HomePage(){
+import ProductViewComponent from '../Component/ProductView.js';
+
+export default function HomePage(props){
     return (
-        <p>THIS IS THE HOME PAGE</p>
+        <div>
+            <ProductViewComponent/>        
+            <p>THIS IS THE HOME PAGE</p> 
+        </div>
     );
 }
