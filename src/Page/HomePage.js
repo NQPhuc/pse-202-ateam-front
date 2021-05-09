@@ -1,9 +1,9 @@
-import ProductViewComponent from '../Component/ProductView.js';
+import React from 'react'
 
 export default function HomePage(props){
     return (
         <div>
-            <ProductViewComponent/>        
+                 
             <p>THIS IS THE HOME PAGE</p> 
         </div>
     );
