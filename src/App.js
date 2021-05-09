@@ -7,7 +7,7 @@ import {
   Link
 } from "react-router-dom";
 
-import HeaderComponent from './Component/Header.js';
+import Header from './Component/Header.js';
 import FooterComponent from './Component/Footer.js';
 
 import HomePage from './Page/HomePage.js';
@@ -23,7 +23,7 @@ function App() {
   //let displayPopupFunction = displayPopupComponent.bind(this);
 
   const displayPopupComponent = (type) => {
-    //console.log("HERE");
+    console.log("HERE");
     if (type === 1) {
       setValue1(true);
     }
@@ -38,7 +38,7 @@ function App() {
 
   return (
     <div className="App">
-      <HeaderComponent displayPopupCallback={displayPopupComponent} />
+      <Header displayPopupCallback={displayPopupComponent} />
       <Login displaying={value1} undisplayPopupCallback={undisplayPopupComponent} backendAddress={backendAddress} />
       <Router>
         <Switch>
