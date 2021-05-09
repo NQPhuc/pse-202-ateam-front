@@ -1,170 +1,54 @@
-.App {
-  text-align: center;
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
 }
 
-.Pageheader {
-  background-color: #FAFAFA;
-  /*min-height: 100vh;*/
-  display: flex;
-  /*flex-direction: column;*/
-  align-items: center;
-  justify-content: center;
-  color: black;
-  border-bottom: 1px solid #eee;
-  padding-bottom: 9px;
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  color: #444;
+  line-height: 1.9;
+  background-color: #f3f3f3;
+} 
+
+.btn {
+  display: inline-block;
+  background-color: var(--color-primary);
+  font-size: 1.6rem;
+  font-family: inherit;
   font-weight: 500;
+  border: none;
+  padding: 1.25rem 4.5rem;
+  border-radius: 10rem;
+  cursor: pointer;
+  transition: all 0.3s;
 }
 
-.CatLogo{
-  height: 10vmin;
-  /*pointer-events: none;*/
+.btn:hover {
+  background-color: var(--color-primary-darker);
 }
 
-.HeaderText {
-  font-family: Inter;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 30px;
-  line-height: 158%;
-  /* or 47px */
-
-  display: flex;
-  align-items: center;
-  text-align: center;
-  letter-spacing: 0.005em;
-
-  /* Gray / 60 */
-
-  color: #5A5B6A;
-
-  transform: rotate(-0.39deg);
-
-  /* Inside Auto Layout */
-
-  flex: none;
-  order: 0;
-  flex-grow: 0;
-  margin: 5px 5px;
+.btn--text {
+  display: inline-block;
+  background: none;
+  font-size: 1.7rem;
+  font-family: inherit;
+  font-weight: 500;
+  color: var(--color-primary);
+  border: none;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 2px;
+  cursor: pointer;
+  transition: all 0.3s;
 }
 
-.ButtonA{
-  width: 75px;
-  height: 30px;
-  margin: 5px 5px;
-  /* Blue / 30 */
-  border: 1px solid #9DC2FF;
-  box-sizing: border-box;
-  border-radius: 4px;
-}
-.ButtonA:hover{
-  width: 75px;
-  height: 30px;
-  margin: 5px 5px;
-  /* Blue / 30 */
-  border: 2px solid #75a7f8;
-  box-sizing: border-box;
-  border-radius: 4px;
-}
-.ButtonA:active{
-  width: 75px;
-  height: 30px;
-  margin: 5px 5px;
-  /* Blue / 30 */
-  border: 3px solid #467ed6;
-  box-sizing: border-box;
-  border-radius: 4px;
+p {
+  color: #666;
 }
 
-
-
-.SearchBar{
-  /* Gray / 5 */
-
-  background: #EDEDF0;
-  border-radius: 99px;
-  margin: 5px 5px;
-}
-
-.Pagefooter {
-  background-color: #FAFAFA;
-  /*min-height: 100vh;*/
-  display: flex;
-  /*flex-direction: column;*/
-  align-items: center;
-  justify-content: center;
-  color: black;
-  border-bottom: 1px solid #eee;
-}
-
-.TempFooterIMG{
-  width: 100%;
-  /*pointer-events: none;*/
-}
-
-div.popupOuter{
-  width: 100%;
-  align-items: center;
-  display: flex;
-  justify-content: center;
-}
-
-div.loginPopup{
-  position: absolute;
-  left: 40%;
-  right: 40%;
-  top: 20%;
-  bottom: 50%;
-
-  width: 280px;
-  height: 400px;
-
-  /*align-items: center;
-  display: flex;
-  justify-content: center;*/
-
-  background: linear-gradient(0deg, #7A7A7A, #7A7A7A);
-  border-radius: 50px;
-}
-
-img.nikeLogo{
-  height: 30px;
-
-  margin-top: 30px;
-
-  border-radius: 90px;
-}
-
-p.phucLogo{
-  /*height: 25px;*/
-  top: 5px;
-
-  font-family: Antic;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 18px;
-  line-height: 21px;
-  text-align: center;
-  text-transform: uppercase;
-
-  color: #FFFFFF;
-
-}
-
-input.loginForm {
-  outline: 0;
-  border-width: 0 0 2px;
-  background: linear-gradient(0deg, #7A7A7A, #7A7A7A);
-  border-color: rgb(0, 0, 0)
-}
-input.loginForm:focus {
-  border-color: rgb(191, 201, 191)
-}
-
-p.loginFormLabel{
-  font-size: 12px;
-  margin-left: 30px;
-
-  text-align: left;
-
-  color: #EEEEEE;
-}
