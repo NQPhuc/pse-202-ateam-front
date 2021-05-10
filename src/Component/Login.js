@@ -21,13 +21,13 @@ export default class LoginPopup extends Component {
               id="logo"
             />
                     <h2 className={styles.modal__header} >Ateam</h2>
-                    <form className={styles.modal__form}>
+                    <div className={styles.modal__form}>
                     <label>Username</label>
                     <input type="text" name="username" value={this.state.inputUserName} onChange={(event) => { this.setState({ inputUserName: event.target.value }) }} />
                     <label>Password</label>
                     <input type="text" name="password" value={this.state.inputPassword} onChange={(event) => { this.setState({ inputPassword: event.target.value }) }}/>
                     <button className={styles.btn} onClick={() => loadLogin(this.props.backendAddress, this.state.inputUserName, this.state.inputPassword)}>Login</button>
-                    </form>
+                    </div>
                 </div>
                 // <div className="popupOuter">
                 //     <div className="loginPopup">
