@@ -50,3 +50,24 @@
     display: block;
     transition: all 0.3s;
   }
+  input[id=header-search] {
+    width: 500px;
+    height: 40px;
+    border-radius: 20px;
+    border: 0px;
+  }
+  
+  input[type=text]:focus {
+    background-color: snow;
+    text-align: justify;
+    padding-left: 10px;
+    font-size: 15px;
+    border-radius: 20px;
+    color: grey;
+    font-weight: bolder;
+  }
+  
+  input[placeholder=Search] {
+    text-align: left;
+    padding: 15px;
+  }
