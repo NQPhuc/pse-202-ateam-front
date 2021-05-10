@@ -12,6 +12,7 @@ export default class LoginPopup extends Component {
     render() {
         if (this.props.displaying) {
             return (
+<<<<<<< Updated upstream
                 <div className="popupOuter">
                     <div className="loginPopup">
                         <img src={nikeLogo} className="nikeLogo" alt="nikeLogo" />
@@ -32,6 +33,24 @@ export default class LoginPopup extends Component {
                             </button>
                         </div>
                     </div>
+=======
+                <div className={styles.modal}>
+                    <button className={styles.btn__closeModal} onClick={() => this.props.undisplayPopupCallback(1)}>&times;</button>
+                    <img
+                        src={nikeLogo}
+                        alt="Meow"
+                        className={styles.modal__logo}
+                        id="logo"
+                    />
+                    <h2 className={styles.modal__header} >Ateam</h2>
+                    <form className={styles.modal__form}>
+                        <label>Username</label>
+                        <input type="text" />
+                        <label>Password</label>
+                        <input type="text" />
+                        <button className={styles.btn}>Login</button>
+                    </form>
+>>>>>>> Stashed changes
                 </div>
 
             );

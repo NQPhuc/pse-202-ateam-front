@@ -12,6 +12,8 @@ import FooterComponent from './Component/Footer.js';
 
 import HomePage from './Page/HomePage.js';
 import Login from './Component/Login';
+import ItemView from './Page/itemsView.js';
+import AdminPage from './Page/AdminPage.js';
 import reactDom from 'react-dom';
 
 
@@ -51,6 +53,15 @@ function App() {
               </div>
             </p>
           </Route>
+<<<<<<< Updated upstream
+=======
+          <Route path="/admin">
+            <AdminPage />
+          </Route>
+          <Route path="/item">
+            <ItemView />
+          </Route>
+>>>>>>> Stashed changes
           <Route path="/home">
             <HomePage />
           </Route>

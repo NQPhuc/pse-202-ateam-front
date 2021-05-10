@@ -1,0 +1,23 @@
+button {
+    cursor: pointer;
+}
+
+li {
+    list-style-type: none;
+}
+
+.admin-view {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.admin-option li {
+    padding-right: 50px;
+    display: inline-block;
+    text-align: center;
+}
+
+.admin-option li button {
+    border: none;
+    position: relative;
+    margin: auto;
+}
