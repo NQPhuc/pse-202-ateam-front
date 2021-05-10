@@ -14,6 +14,7 @@ import HomePage from './Page/HomePage.js';
 import Login from './Component/Login';
 import reactDom from 'react-dom';
 
+import ItemView from './Page/itemsView.js';
 
 const backendAddress = "http://localhost:3030";
 
@@ -50,6 +51,9 @@ function App() {
                 <br />
               </div>
             </p>
+          </Route>
+          <Route path="/item">
+            <ItemView />
           </Route>
           <Route path="/home">
             <HomePage />
