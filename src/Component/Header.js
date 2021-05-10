@@ -24,7 +24,7 @@ export default class Header extends Component {
             <div className="filter-section">
             <form action="/" method="get">
               <label htmlFor="header-search">
-                <AiOutlineSearch className="search-icon" width="50" height="50" />
+                <AiOutlineSearch className="search-icon" size={20} />
               </label>
               <input
                 type="text"

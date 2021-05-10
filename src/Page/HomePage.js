@@ -1,10 +1,11 @@
 import React from 'react'
-
-export default function HomePage(props){
+import Products from '../Component/Products'
+const HomePage = (props) =>{
     return (
         <div>
                  
-            <p>THIS IS THE HOME PAGE</p> 
+            <Products/>
         </div>
     );
 }
+export default HomePage
