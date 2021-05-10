@@ -7,15 +7,14 @@ import {
   Link
 } from "react-router-dom";
 
-import HeaderComponent from './Component/Header.js';
+import Header from './Component/Header.js';
 import FooterComponent from './Component/Footer.js';
 
 import HomePage from './Page/HomePage.js';
 import Login from './Component/Login';
-import ItemView from './Page/itemsView.js';
-import AdminPage from './Page/AdminPage.js';
 import reactDom from 'react-dom';
 
+import ItemView from './Page/itemsView.js';
 
 const backendAddress = "http://localhost:3030";
 
@@ -24,7 +23,7 @@ function App() {
   //let displayPopupFunction = displayPopupComponent.bind(this);
 
   const displayPopupComponent = (type) => {
-    //console.log("HERE");
+    console.log("HERE");
     if (type === 1) {
       setValue1(true);
     }
@@ -39,7 +38,7 @@ function App() {
 
   return (
     <div className="App">
-      <HeaderComponent displayPopupCallback={displayPopupComponent} />
+      <Header displayPopupCallback={displayPopupComponent} />
       <Login displaying={value1} undisplayPopupCallback={undisplayPopupComponent} backendAddress={backendAddress} />
       <Router>
         <Switch>
@@ -53,15 +52,9 @@ function App() {
               </div>
             </p>
           </Route>
-<<<<<<< Updated upstream
-=======
-          <Route path="/admin">
-            <AdminPage />
-          </Route>
           <Route path="/item">
             <ItemView />
           </Route>
->>>>>>> Stashed changes
           <Route path="/home">
             <HomePage />
           </Route>

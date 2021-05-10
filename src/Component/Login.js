@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import nikeLogo from '../img/nike_logo.png'
-
+import styles from './Login.module.css'
 export default class LoginPopup extends Component {
 
     constructor(props) {
@@ -12,46 +12,51 @@ export default class LoginPopup extends Component {
     render() {
         if (this.props.displaying) {
             return (
-<<<<<<< Updated upstream
-                <div className="popupOuter">
-                    <div className="loginPopup">
-                        <img src={nikeLogo} className="nikeLogo" alt="nikeLogo" />
-                        <br />
-                        <p className="phucLogo">ATEAM</p>
-
-                        <p className="loginFormLabel">Username</p>
-                        <input className="loginForm" name="username" value={this.state.inputUserName} onChange={(event) => { this.setState({ inputUserName: event.target.value }) }} />
-
-                        <p className="loginFormLabel">Password</p>
-                        <input className="loginForm" name="password" value={this.state.inputPassword} onChange={(event) => { this.setState({ inputPassword: event.target.value }) }} />
-                        <div>
-                            <button className="ButtonA" style={{ margin: "15px 0px 0px 0px", background: '#FFFFFF', borderRadius: '20px', width: '80%', height: '30px' }} onClick={() => loadLogin(this.props.backendAddress, this.state.inputUserName, this.state.inputPassword)}>Login</button>
-                        </div>
-                        <div>
-                            <button className="ButtonA" style={{ margin: "10px 0px 0px 0px", background: '#FFFFFF', borderRadius: '20px', width: '80%', height: '30px' }} onClick={() => this.props.undisplayPopupCallback(1)}>
-                                Close
-                            </button>
-                        </div>
-                    </div>
-=======
                 <div className={styles.modal}>
                     <button className={styles.btn__closeModal} onClick={() => this.props.undisplayPopupCallback(1)}>&times;</button>
                     <img
-                        src={nikeLogo}
-                        alt="Meow"
-                        className={styles.modal__logo}
-                        id="logo"
-                    />
+              src={nikeLogo}
+              alt="Meow"
+              className={styles.modal__logo}
+              id="logo"
+            />
                     <h2 className={styles.modal__header} >Ateam</h2>
                     <form className={styles.modal__form}>
-                        <label>Username</label>
-                        <input type="text" />
-                        <label>Password</label>
-                        <input type="text" />
-                        <button className={styles.btn}>Login</button>
+                    <label>Username</label>
+
+                    <input type="text" name="username" value={this.state.inputUserName} onChange={(event) => { this.setState({ inputUserName: event.target.value }) }} />
+
+                    <label>Password</label>
+                    <input type="text" name="password" value={this.state.inputPassword} onChange={(event) => { this.setState({ inputPassword: event.target.value }) }}/>
+                    <button className={styles.btn} onClick={() => loadLogin(this.props.backendAddress, this.state.inputUserName, this.state.inputPassword)}>Login</button>
                     </form>
->>>>>>> Stashed changes
                 </div>
+                // <div className="popupOuter">
+                //     <div className="loginPopup">
+                //         <img src={nikeLogo} className="nikeLogo" alt="nikeLogo" />
+                //         <br />
+                //         <p className="phucLogo">ATEAM</p>
+
+                //         <p className="loginFormLabel">Username</p>
+                //         <input className="loginForm" name="username" value={this.state.inputUserName} onChange={(event) => { this.setState({ inputUserName: event.target.value }) }} />
+
+                //         <p className="loginFormLabel">Password</p>
+                //         <input className="loginForm" name="password" value={this.state.inputPassword} onChange={(event) => { this.setState({ inputPassword: event.target.value }) }} />
+                //         <div>
+                //             <button className="ButtonA" style={{ margin: "15px 0px 0px 0px", background: '#FFFFFF', borderRadius: '20px', width: '80%', height: '30px' }} onClick={() => loadLogin(this.props.backendAddress, this.state.inputUserName, this.state.inputPassword)}>Login</button>
+                //         </div>
+                //         <div>
+                //             <button className="ButtonA" style={{ margin: "10px 0px 0px 0px", background: '#FFFFFF', borderRadius: '20px', width: '80%', height: '30px' }} onClick={() => this.props.undisplayPopupCallback(1)}>
+                //                 Close
+                //             </button>
+                //         </div>
+                //     </div>
+                // </div>
+
+
+
+
+
 
             );
         }
