@@ -1,3 +1,5 @@
+ATTENTION: NEVER COMMIT DIRECTLY TO MAIN, ONLY MERGE YOUR WORKING BRANCH INTO MAIN
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
