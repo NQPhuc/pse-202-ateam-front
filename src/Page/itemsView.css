@@ -1,0 +1,193 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,900&display=swap');
+@import url('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/font-awesome.min.css');
+
+:root
+{
+    --primary:#333;
+}
+*
+
+{
+    margin: 0;
+    font-family: 'Poppins',sans-serif;
+    box-sizing: border-box;
+}
+body
+{
+    background-color: #808080
+}
+.section-title
+{
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin-bottom: 40px;
+}
+.section-title h1
+{
+    display: inline-block;
+    font-size: 35px;
+    font-weight: 700px;
+    color: #000;
+    margin: 0 0 5px;
+    position: relative;
+}
+.section-title h1::before
+{
+    content: '';
+    height: 2px;
+    background-color: #ff8c00;
+    position: absolute;
+    bottom: 0;
+    width: 50px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    transition: all .6s ease !important;
+}
+.section-title h1:hover::before
+{
+    width: 100% !important;
+}
+.text-center
+{
+    text-align: center !important;
+}
+
+/* row of the page start here */ 
+.row
+{
+    display: flex;
+    flex-wrap: wrap;
+}
+.container
+{
+    min-height: 100vh;
+    display: flex;
+    justify-content: space-between;
+    max-width: fit-content;
+    margin-left: 8px;
+    padding: 100px;
+    overflow: hidden;
+}
+.content-info
+{
+    width: 100%;
+    background-color: #ffffff;
+    z-index: 0;
+    padding: 50px 100px;
+    padding-top: 8px;
+    box-shadow: 15px 0 35px rgba(0, 0, 0, 0.1) ,
+    15px 0 35px rgba(0, 0, 0, 0.1);
+}
+/* row of the page end here */ 
+
+.shoebrand-name
+{
+    padding: 0 0 10px;
+}
+.shoebrand-name div
+{
+    display: flex;
+    align-items: center;
+}
+.shoebrand-name div .brand
+{
+    font-size: 35px;
+    color: #333;
+    line-height: 1;
+}
+.shoebrand-name .small
+{
+    font-weight: 500;
+    color: #444;
+    margin-top: 3px;
+    text-transform: uppercase;
+}
+.shoebrand-name , .container-details , .colors-fill .size-ofproduct
+{
+    border-bottom: 1px solid #eeeeee;
+}
+.content-details
+{
+    padding: 10px;
+}
+.section-title{
+    color: #444;
+    font-weight: 600;
+    font-size: 15px;
+    text-transform: uppercase;
+}
+.price-shoe
+{
+    color: #555;
+    font-size: 17px;
+}
+.colors-fill
+{
+    padding: 10px 16px;
+}
+.colors
+{
+    padding: 8px 0;
+    display: flex;
+    align-items: center;
+}
+.color
+{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    margin: 0 10px;
+    border: 5px solid;
+    cursor: pointer;
+    transition: .6s;
+}
+.color[color*"black"]
+{
+    background-color: #444;
+    border-color: #444;
+}
+.color[color*"green"]
+{
+    background-color: #29b864;
+    border-color: #29b864;
+}
+.color[color*"orange"]
+{
+    background-color: #ff5521;
+    border-color: #ff5521;
+}
+.color[color*"blue"]
+{
+    background-color: #2175f5;
+    border-color: #2175f5;
+}
+.color[color*"red"]
+{
+    background-color: #f84848;
+    border-color: #f84848;
+}
+.color.active
+{
+    border-color: #fff;
+    box-shadow: 0 0 10px .5px rgba(0, 0, 0, 0.2);
+    transform: scale(1.1);
+}
+.size-ofproduct
+{
+    padding: 10px 16px;
+    margin-bottom: 10px;
+}
+.sizes
+{
+    padding: 8px 0;
+    display: flex;
+    align-items: center;
+}
+.size
+{
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+    background-color: #eeeeee;
+}
