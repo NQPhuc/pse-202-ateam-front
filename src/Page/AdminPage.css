@@ -1,0 +1,61 @@
+button {
+    cursor: pointer;
+}
+
+li {
+    list-style-type: none;
+}
+
+.admin-view {
+    /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
+    font-family: Alata;
+}
+
+.admin-option li {
+    /* display: inline-block; */
+    padding: 10px;
+    font-size: 30px;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.admin-option li button {
+    border: none;
+    position: relative;
+    margin: auto;
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: column;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: 1px solid slategray;
+    border-spacing: 10px;
+    border-radius: 5px;
+    height: 175px;
+}
+
+.product-image {
+    float: left;
+    padding-left: 20px;
+    padding-right: 20px;
+    width: 150;
+    height: 150;
+}
+
+.product-option {
+    float: right;
+}
+
+.under-body {
+    padding-right: 50px;
+    display: inline;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
