@@ -12,6 +12,7 @@ import FooterComponent from './Component/Footer.js';
 
 import HomePage from './Page/HomePage.js';
 import Login from './Component/Login';
+import AdminPage from './Page/AdminPage.js';
 import reactDom from 'react-dom';
 
 import ItemView from './Page/itemsView.js';
@@ -57,6 +58,9 @@ function App() {
           </Route>
           <Route path="/home">
             <HomePage />
+          </Route>
+          <Route path="/admin">
+            <AdminPage/>
           </Route>
           <Route path="/">
             <HomePage />
