@@ -1,9 +1,12 @@
 import React from 'react'
-import {Card, CardMedia, CardContent, CardActions, Typography, IconButton, Icon} from '@material-ui/core';
+import {Card, CardMedia, CardContent, CardActions, Typography, IconButton, Icon, CardActionArea} from '@material-ui/core';
+import styles from './ProductStyles';
 import {AddShoppingCart} from '@material-ui/icons'
 const Product = ({product}) => {
-    return (<Card>
-            <CardMedia/>
+    console.log(product.img);
+    return (
+    <Card className={styles.root}>
+            <CardMedia image={product.img}/>
             <CardContent>
             <div>
                 <Typography variant='h5'>{product.name}</Typography>
@@ -11,11 +14,12 @@ const Product = ({product}) => {
             </div>
             <Typography variant='h2' color='textSecondary'>{product.description}</Typography>
             </CardContent>
-            <CardActions>
-                <IconButton aria-label="Add to cart">
-                    <AddShoppingCart/>
-                </IconButton>
-            </CardActions>
+
+                <CardActions disableSpacing className={styles.CardActions}>
+                    <IconButton aria-label="Add to cart">
+                        <AddShoppingCart/>
+                    </IconButton>
+                </CardActions>
     </Card>);
 }
 export default Product;
