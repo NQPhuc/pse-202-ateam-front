@@ -24,7 +24,7 @@ function App() {
   //let displayPopupFunction = displayPopupComponent.bind(this);
 
   const displayPopupComponent = (type) => {
-    console.log("HERE");
+    //console.log("HERE");
     if (type === 1) {
       setValue1(true);
     }
