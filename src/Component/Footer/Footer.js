@@ -1,4 +1,4 @@
-import "./Footer.less";
+import "./Footer.css";
 import React from 'react';
 import Footer from 'rc-footer';
 import FacebookIcon from '@material-ui/icons/Facebook';
@@ -9,8 +9,8 @@ export default function FooterComponent() {
     return (
         <div>
             <Footer
-                // theme={"light"}
-                // columnLayout={"space-between"}
+                backgroundColor={"#fff"}
+                theme={"light"}
                 columns={[
                     {
                         title: 'Learn More',
@@ -30,7 +30,7 @@ export default function FooterComponent() {
                         ]
                     },
                     {
-                        title: 'Products Brands',
+                        title: 'Product Brands',
                         items: [
                             {
                                 title: 'Gucci',
