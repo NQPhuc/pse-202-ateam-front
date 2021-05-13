@@ -21,13 +21,13 @@ export default class LoginPopup extends Component {
               id="logo"
             />
                     <h2 className={styles.modal__header} >Ateam</h2>
-                    <form className={styles.modal__form}>
+                    <div className={styles.modal__form}>
                     <label>Username</label>
                     <input type="text" name="username" value={this.state.inputUserName} onChange={(event) => { this.setState({ inputUserName: event.target.value }) }} />
                     <label>Password</label>
                     <input type="text" name="password" value={this.state.inputPassword} onChange={(event) => { this.setState({ inputPassword: event.target.value }) }}/>
-                    <button className={styles.btn} onClick={() => loadLogin(this.props.backendAddress, this.state.inputUserName, this.state.inputPassword)}>Login</button>
-                    </form>
+                    <button className={styles.btn} onClick={() => loadLoginFetch(this.props.backendAddress, this.state.inputUserName, this.state.inputPassword)}>Login</button>
+                    </div>
                 </div>
                 // <div className="popupOuter">
                 //     <div className="loginPopup">
@@ -66,17 +66,33 @@ function loadLogin(backendAddress, usernameValue, passwordValue) {
     let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
+            console.log(document.cookie);
             alert(this.responseText);
             return;
         }
     };
     xhttp.open("POST", backendAddress + "/login", true);
     //xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    
+    xhttp.withCredentials = true;
+    xhttp.setRequestHeader("Content-type", "application/json; charset=utf-8");
 
     let params = JSON.stringify({ username: usernameValue, password: passwordValue });
-    xhttp.setRequestHeader("Content-type", "application/json; charset=utf-8");
-    //xhttp.setRequestHeader("Content-length", params.length);
-    //xhttp.setRequestHeader("Connection", "close");
-
     xhttp.send(params);
+}
+
+function loadLoginFetch(backendAddress, usernameValue, passwordValue){
+    fetch(backendAddress + '/login',{
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ username: usernameValue, password: passwordValue }),
+        credentials: 'include'
+    }).then((res) => {
+        if(res.ok){
+           return res.text();  
+        }
+    }).then((data) => {
+        console.log(document.cookie);
+        alert(data);
+    });
 }
