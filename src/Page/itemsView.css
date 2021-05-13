@@ -14,13 +14,13 @@
 }
 body
 {
-    background-color: #808080
+    background-color: #eeeeee
 }
 .section-title
 {
     flex: 0 0 100%;
     max-width: 100%;
-    margin-bottom: 40px;
+    margin-bottom: 40 px;
 }
 .section-title h1
 {
@@ -77,11 +77,11 @@ body
     padding: 50px 100px;
     padding-top: 8px;
     box-shadow: 15px 0 35px rgba(0, 0, 0, 0.1) ,
-    15px 0 35px rgba(0, 0, 0, 0.1);
+    0 -15px 35px rgba(0, 0, 0, 0,1);
 }
 /* row of the page end here */ 
 
-.shoebrand-name
+shoebrand-name
 {
     padding: 0 0 10px;
 }
@@ -103,15 +103,15 @@ body
     margin-top: 3px;
     text-transform: uppercase;
 }
-.shoebrand-name , .container-details , .colors-fill .size-ofproduct
+.shoebrand-name , .content-detail , .colors-fill .size-ofproduct
 {
-    border-bottom: 1px solid #eeeeee;
+    border-bottom: 3px solid #eeeeee;
 }
 .content-details
 {
     padding: 10px;
 }
-.section-title{
+.title{
     color: #444;
     font-weight: 600;
     font-size: 15px;
@@ -126,7 +126,7 @@ body
 {
     padding: 10px 16px;
 }
-.colors
+.Colors
 {
     padding: 8px 0;
     display: flex;
@@ -142,27 +142,27 @@ body
     cursor: pointer;
     transition: .6s;
 }
-.color[color*"black"]
+.color[color="black"]
 {
     background-color: #444;
     border-color: #444;
 }
-.color[color*"green"]
+.color[color="green"]
 {
     background-color: #29b864;
     border-color: #29b864;
 }
-.color[color*"orange"]
+.color[color="orange"]
 {
     background-color: #ff5521;
     border-color: #ff5521;
 }
-.color[color*"blue"]
+.color[color="blue"]
 {
     background-color: #2175f5;
     border-color: #2175f5;
 }
-.color[color*"red"]
+.color[color="red"]
 {
     background-color: #f84848;
     border-color: #f84848;
@@ -190,4 +190,123 @@ body
     height: 40px;
     border-radius: 50px;
     background-color: #eeeeee;
+    margin: 0 10px;
+    text-align: center;
+    line-height: 40px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .3s;
+}
+.size.active
+{
+    background-color: var(--primary);
+    color: #eeeeee;
+    transition: .5s;
+}
+.price-shoe
+{
+    padding: 15px 0 0 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.price-of , .share
+{
+    padding: 10px 8px;
+    background-color: var(--primary);
+    text-decoration: none;
+    color: #eeeeee;
+    justify-content: center;
+    letter-spacing: 1px;
+    font-weight: 500;
+    font-size: 15px;
+}
+.price-of:hover , .share
+{
+    background-color: #000111;
+    color: #f5f5f5;
+}
+.price-of i
+{
+    margin-right: 2px;
+}
+
+.container-cart
+{
+    flex: 0 0 100%;
+    max-width: 100%;
+    display: flexbox;
+    justify-content: center;
+}
+.shoebg
+{
+    position: relative;
+    width: 45%;
+    height: 554px;
+    box-shadow:  -15px 0 35px rgba(0, 0, 0, 0.1);
+}
+.bgcolors , 
+.bgcolor
+{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: -2;
+}
+.first
+{
+    z-index: 0;
+    animation: 1s width ease-out;
+}
+@keyframes width
+{
+    from
+    {
+        width: 100%;
+    }
+    to
+    {
+        width: 100%;
+    }
+}
+.second
+{
+    z-index: -1;
+}
+.bgcolor[color="red"]
+{
+    background-color: #d62926;
+}
+.bgcolor[color="blue"]
+{
+    background-color: #0136af;
+}
+.bg-color[color="green"]
+{
+    background-color: #11998e;
+}
+.bgcolor[color="black"]
+{
+    background-color: #333;
+}
+.bgcolor[color="orange"]
+{
+    background-color: #fc4a1a;
+}
+
+.shoe
+{
+    position: absolute;
+    width: 140%;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    transform: rotate(20deg);
+}
+.shoe.show
+{
+    opacity: 1;
 }

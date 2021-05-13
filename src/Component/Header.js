@@ -45,6 +45,13 @@ export default class Header extends Component {
               <li className="nav__item">
                 <HeaderButtons onClick={() => this.props.displayRegisterPopup(1)}>Register</HeaderButtons>
               </li>
+
+              {/*api testing button*/}
+              <li className="nav__item">
+                <HeaderButtons>Logout</HeaderButtons>
+              </li>
+              {/*end api testing button*/}
+
             </ul>
           </nav>
           </header>
