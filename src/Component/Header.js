@@ -40,10 +40,10 @@ export default class Header extends Component {
               </li>
               <li className="nav__item">
                     {/* <Link to='/login'> */}
-                <HeaderButtons onClick={() => this.props.displayPopupCallback(1)}>Login</HeaderButtons>
+                <HeaderButtons onClick={() => this.props.displayLoginPopUp(1)}>Login</HeaderButtons>
               </li>
               <li className="nav__item">
-                <HeaderButtons>Register</HeaderButtons>
+                <HeaderButtons onClick={() => this.props.displayRegisterPopup(1)}>Register</HeaderButtons>
               </li>
 
               {/*api testing button*/}

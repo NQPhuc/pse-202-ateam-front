@@ -13,7 +13,7 @@ export default class LoginPopup extends Component {
         if (this.props.displaying) {
             return (
                 <div className={styles.modal}>
-                    <button className={styles.btn__closeModal} onClick={() => this.props.undisplayPopupCallback(1)}>&times;</button>
+                    <button className={styles.btn__closeModal} onClick={() => this.props.undisplayLoginPopup(1)}>&times;</button>
                     <img
               src={nikeLogo}
               alt="Meow"
@@ -25,8 +25,8 @@ export default class LoginPopup extends Component {
                     <label>Username</label>
                     <input type="text" name="username" value={this.state.inputUserName} onChange={(event) => { this.setState({ inputUserName: event.target.value }) }} />
                     <label>Password</label>
-                    <input type="text" name="password" value={this.state.inputPassword} onChange={(event) => { this.setState({ inputPassword: event.target.value }) }}/>
-                    <button className={styles.btn} onClick={() => loadLoginFetch(this.props.backendAddress, this.state.inputUserName, this.state.inputPassword)}>Login</button>
+                    <input type="password" name="password" value={this.state.inputPassword} onChange={(event) => { this.setState({ inputPassword: event.target.value }) }}/>
+                    <button className={styles.btn} onClick={() => loadLogin(this.props.backendAddress, this.state.inputUserName, this.state.inputPassword)}>Login</button>
                     </div>
                 </div>
                 // <div className="popupOuter">
@@ -50,12 +50,6 @@ export default class LoginPopup extends Component {
                 //         </div>
                 //     </div>
                 // </div>
-
-
-
-
-
-
             );
         }
         return "";

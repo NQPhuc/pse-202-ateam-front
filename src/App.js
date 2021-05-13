@@ -12,6 +12,7 @@ import FooterComponent from './Component/Footer/Footer.js';
 
 import HomePage from './Page/HomePage.js';
 import Login from './Component/Login';
+import Register from './Component/Register';
 import AdminPage from './Page/AdminPage.js';
 import reactDom from 'react-dom';
 
@@ -21,16 +22,27 @@ const backendAddress = "http://localhost:3030";
 
 function App() {
   const [value1, setValue1] = useState(false);
+  const [isRegisterPress, setRegisterPress] = useState(false);
   //let displayPopupFunction = displayPopupComponent.bind(this);
+  const displayRegisterPopupHandler = (type) =>{
+    if(type===1){
+      setRegisterPress(true);
+    }
+  }
+  const undisplayRegisterPopupHandler = (type) =>{
+    if(type===1){
+      setRegisterPress(false);
+    }
+  }
 
-  const displayPopupComponent = (type) => {
-    //console.log("HERE");
+  const displayLoginPopUpHandler = (type) => {
+    // console.log("HERE");
     if (type === 1) {
       setValue1(true);
     }
   }
 
-  const undisplayPopupComponent = (type) => {
+  const undisplayLoginPopupHandler = (type) => {
     //console.log("HERE");
     if (type === 1) {
       setValue1(false);
@@ -39,8 +51,9 @@ function App() {
 
   return (
     <div className="App">
-      <Header displayPopupCallback={displayPopupComponent} />
-      <Login displaying={value1} undisplayPopupCallback={undisplayPopupComponent} backendAddress={backendAddress} />
+      <Header displayLoginPopUp={displayLoginPopUpHandler} displayRegisterPopup={displayRegisterPopupHandler}/>
+      <Login displaying={value1} undisplayLoginPopup={undisplayLoginPopupHandler} backendAddress={backendAddress} />
+      <Register displaying={isRegisterPress} undisplayRegisterPopup={undisplayRegisterPopupHandler} backendAddress={backendAddress}/>
       <Router>
         <Switch>
           <Route path="/about">
