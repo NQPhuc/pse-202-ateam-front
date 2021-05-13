@@ -15,7 +15,7 @@ import Login from './Component/Login';
 import Register from './Component/Register';
 import AdminPage from './Page/AdminPage.js';
 import reactDom from 'react-dom';
-
+import EditItem from './Component/EditItem.js';
 import ItemView from './Page/itemsView.js';
 
 const backendAddress = "http://localhost:3030";
@@ -23,7 +23,18 @@ const backendAddress = "http://localhost:3030";
 function App() {
   const [value1, setValue1] = useState(false);
   const [isRegisterPress, setRegisterPress] = useState(false);
+  const [editItem, setEditItem] = useState(false);
   //let displayPopupFunction = displayPopupComponent.bind(this);
+  const displayEditPopupHandler = (type) => {
+      if (type === 1) {
+          setEditItem(true);
+      }
+  }
+  const undisplayEditPopupHandler = (type) => {
+      if (type === 1) {
+          setEditItem(false);
+      }
+  }
   const displayRegisterPopupHandler = (type) =>{
     if(type===1){
       setRegisterPress(true);
@@ -73,7 +84,8 @@ function App() {
             <HomePage />
           </Route>
           <Route path="/admin">
-            <AdminPage/>
+            <AdminPage displayEditPopup={displayEditPopupHandler}/>
+            <EditItem displaying={editItem} undisplayEditPopup={undisplayEditPopupHandler} backendAddress={backendAddress} />
           </Route>
           <Route path="/">
             <HomePage />

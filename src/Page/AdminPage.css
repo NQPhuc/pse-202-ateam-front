@@ -10,16 +10,15 @@ li {
     font-family: Alata;
 }
 
-.admin-option Button {
-    display: inline-block;
-    margin: 0 auto;
-    font-size: 16px;
-    border: none;
+.admin-option {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
 }
 
-.product-block {
-    padding-top: 10px;
-    padding-bottom: 10px;
+.admin-option Button {
+    font-size: 16px;
+    border: none;
 }
 
 .product-image {
@@ -29,8 +28,8 @@ li {
 }
 
 .under-body Button{
-    margin: 0 auto;
-    display: block;
     font-size: 16px;
     border: none;
+    margin: 0 auto;
+    display: block;
 }
