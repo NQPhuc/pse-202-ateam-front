@@ -28,7 +28,7 @@ function App() {
   const [addItem, setAddItem] = useState(false);
 
   const [itemViewPID, setitemViewPID] = useState(null);
-
+  
   //let displayPopupFunction = displayPopupComponent.bind(this);
   const displayAddPopupHandler = (type) => {
       if (type === 1) {
