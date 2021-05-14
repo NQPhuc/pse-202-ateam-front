@@ -47,15 +47,19 @@ colors.forEach(c=>c.addEventListener('click',changeColor));
 
 let x=window.matchMedia("(max-width:1000px)");
 
+document.addEventListener('DOMContentLoaded', changeHeight);
 function changeHeight(){
     if(x.matches){
         let shoeHeight=shoes[0].offsetHeight;
         shoebgs.style.height=`${shoeHeight*0.9}px`;
     }
     else{
-        shoebgs.style.height="475px";
+        /*shoebgs.style.height="475px";*/
+		shoebgs.height="475px";
     }
 }
+/*changeHeight();*/
+/*document.addEventListener('DOMContentLoaded', changeHeight);*/
 changeHeight();
 
 window.addEventListener('resize',changeHeight);

@@ -15,72 +15,66 @@ import Login from './Component/Login';
 import Register from './Component/Register';
 import AdminPage from './Page/AdminPage.js';
 import reactDom from 'react-dom';
-
+import AddItem from './Component/AddItem.js';
 import ItemView from './Page/itemsView.js';
+import CartView from './Page/CartView.js';
+import PaymentPopup from "./Component/Payment/Payment";
 
-const backendAddress = "http://localhost:3030";
+//const backendAddress = "http://localhost:3030";
 
 function App() {
   const [value1, setValue1] = useState(false);
   const [isRegisterPress, setRegisterPress] = useState(false);
+  const [addItem, setAddItem] = useState(false);
+
+  const [itemViewPID, setitemViewPID] = useState(null);
+
   //let displayPopupFunction = displayPopupComponent.bind(this);
-  const displayRegisterPopupHandler = (type) =>{
-    if(type===1){
-      setRegisterPress(true);
-    }
+  const displayAddPopupHandler = (type) => {
+      if (type === 1) {
+          setAddItem(true);
+      }
   }
-  const undisplayRegisterPopupHandler = (type) =>{
-    if(type===1){
-      setRegisterPress(false);
-    }
-  }
-
-  const displayLoginPopUpHandler = (type) => {
-    // console.log("HERE");
-    if (type === 1) {
-      setValue1(true);
-    }
-  }
-
-  const undisplayLoginPopupHandler = (type) => {
-    //console.log("HERE");
-    if (type === 1) {
-      setValue1(false);
-    }
+  const undisplayAddPopupHandler = (type) => {
+      if (type === 1) {
+          setAddItem(false);
+      }
   }
 
   return (
     <div className="App">
-      <Header displayLoginPopUp={displayLoginPopUpHandler} displayRegisterPopup={displayRegisterPopupHandler}/>
-      <Login displaying={value1} undisplayLoginPopup={undisplayLoginPopupHandler} backendAddress={backendAddress} />
-      <Register displaying={isRegisterPress} undisplayRegisterPopup={undisplayRegisterPopupHandler} backendAddress={backendAddress}/>
       <Router>
-        <Switch>
-          <Route path="/about">
-            <p>
-              <div>
-                <p>Candidate: Nguyễn Quang Phúc</p>
-                <p>Github: <a href="https://github.com/NQPhuc/inf-calc-react">https://github.com/NQPhuc/inf-calc-react</a></p>
-                <p>Deployment website: <a href="https://react-inf-int-calculator.herokuapp.com/">https://react-inf-int-calculator.herokuapp.com/</a></p>
-                <br />
-              </div>
-            </p>
-          </Route>
-          <Route path="/item">
-            <ItemView />
-          </Route>
-          <Route path="/home">
-            <HomePage />
-          </Route>
-          <Route path="/admin">
-            <AdminPage/>
-          </Route>
-          <Route path="/">
-            <HomePage />
-          </Route>
-        </Switch>
+        <Header loginPopUpDisplayingState_setter={setValue1} registerPopupDisplayingState_setter={setRegisterPress}/>
+        <Login displaying={value1} loginPopUpDisplayingState_setter={setValue1} />
+        <Register displaying={isRegisterPress} registerPopupDisplayingState_setter={setRegisterPress}/>       
+          <Switch>
+            <Route path="/about">
+              <p>
+                <div>
+                  <p>Nothing</p>
+                </div>
+              </p>
+            </Route>
+            <Route path="/item">
+              <ItemView pid={itemViewPID}/>
+            </Route>
+            <Route path="/home">
+              <HomePage setItemViewPID={setitemViewPID}/>
+            </Route>
+            <Route path="/admin">
+              <AdminPage displayAddPopup={displayAddPopupHandler}/>
+              <AddItem displaying={addItem} undisplayAddPopup={undisplayAddPopupHandler}/>
+            </Route>
+            <Route path="/cart">
+              <CartView/>
+            </Route>
+            <Route path="/">
+              <HomePage />
+            </Route>
+          </Switch>
+        <FooterComponent />
+        <PaymentPopup />
       </Router>
-      <FooterComponent />
     </div>
   );
 
