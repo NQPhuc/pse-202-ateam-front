@@ -18,7 +18,7 @@ import reactDom from 'react-dom';
 import AddItem from './Component/AddItem.js';
 import ItemView from './Page/itemsView.js';
 import CartView from './Page/CartView.js';
-import PaymentPopup from "./Component/Payment/Payment";
+//import PaymentPopup from "./Component/Payment/Payment";
 
 //const backendAddress = "http://localhost:3030";
 
@@ -73,7 +73,7 @@ function App() {
             </Route>
           </Switch>
         <FooterComponent />
-        <PaymentPopup />
+        {/*<PaymentPopup />*/}
       </Router>
     </div>
   );
