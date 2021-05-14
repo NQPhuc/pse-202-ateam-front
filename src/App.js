@@ -27,8 +27,8 @@ function App() {
   const [isRegisterPress, setRegisterPress] = useState(false);
   const [addItem, setAddItem] = useState(false);
 
-  const [itemViewPID, setitemViewPID] = useState(null);
-  
+  const [itemViewPID, set_itemViewPID] = useState(null);
+
   //let displayPopupFunction = displayPopupComponent.bind(this);
   const displayAddPopupHandler = (type) => {
       if (type === 1) {
@@ -58,9 +58,6 @@ function App() {
             <Route path="/item">
               <ItemView pid={itemViewPID}/>
             </Route>
-            <Route path="/home">
-              <HomePage setItemViewPID={setitemViewPID}/>
-            </Route>
             <Route path="/admin">
               <AdminPage displayAddPopup={displayAddPopupHandler}/>
               <AddItem displaying={addItem} undisplayAddPopup={undisplayAddPopupHandler}/>
@@ -69,7 +66,7 @@ function App() {
               <CartView/>
             </Route>
             <Route path="/">
-              <HomePage />
+              <HomePage setItemViewPID={(value) => {set_itemViewPID(value); window.location.href = '/item';}}/>
             </Route>
           </Switch>
         <FooterComponent />

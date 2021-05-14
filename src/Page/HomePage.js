@@ -1,12 +1,12 @@
 import React from 'react'
 import Products from '../Component/Products'
 const HomePage = (props) =>{
-    const addToCartHandler = (productID) =>{
-        console.log(productID)
-    }
+
+    console.log(props.setItemViewPID);
     return (
-        <div  style={{ marginBottom: "50px"}}> 
-            <Products onAddToCart={addToCartHandler}/>
+        <div style={{ marginBottom: "50px"}}> 
+            <Products setItemViewPID={props.setItemViewPID}/>
+
         </div>
     );
 }
