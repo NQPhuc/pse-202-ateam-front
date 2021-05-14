@@ -1,86 +1,80 @@
+import { ListItemSecondaryAction } from '@material-ui/core';
 import React from 'react';
-class ItemView extends React.Component {
-    constructor(props) {
-        super(props);
+import './itemsView.css';
+import Colors from './Colors';
+import DetailsThumb from './DetailsThumb';
+
+class ItemView extends React.Component{
+
+  state = {
+    products: [
+      {
+        "_id": "1",
+        "title": "Nike Shoes",
+        "src": [
+            "https://sneakernews.com/wp-content/uploads/2017/06/nike-air-force-1-low-university-red-820266-606-01.jpg?w=780&h=550&crop=1",
+            "https://sneakerbardetroit.com/wp-content/uploads/2020/09/Nike-Air-Force-1-Black-Orange-CT4683-001-Release-Date.jpg",
+            "https://www.sneakerfiles.com/wp-content/uploads/2021/01/nike-air-force-1-low-rose-pink-foam-CU6312-600-release-date-1.jpg",
+            "https://cdn.shopify.com/s/files/1/1622/9929/products/Nike_Air_Force_1_07_LV8_Utility_Moss_Green_Gradeschool_2_1024x1024.jpg?v=1552489066"
+          ],
+        "description": "these are some of the most popular Air Force 1 models in our shop",
+        "content": "Designed by Bruce Kilgore in 1982 with the idea of naming an Air Force 1 presidential transport, Air Force 1 quickly became a revolutionary shoe in the sneaker world, which sold out in a record time. Air Force 1 was the first pair of shoes to be integrated with 'air' technology, an airbag in the heel for cushioning and support.The Air Sole was originally designed to be used in basketball, but currently few people wear it for basketball, which is often used for fashion purposes. Air Force 1 has 3 styles: low-mid-top.",
+        "price": 95.95,
+        "colors":["red","black","crimson","teal"],
+        "count": 1
+      }
+    ],
+    index: 0
+  };
+
+  myRef = React.createRef();
+
+  handleTab = index =>{
+    this.setState({index: index})
+    const images = this.myRef.current.children;
+    for(let i=0; i<images.length; i++){
+      images[i].className = images[i].className.replace("active", "");
     }
-    render() {
-        return (
-            <div>
-                <div class="section-title text-center">
-                    <h1>welcome here</h1>
-                </div>
-                <div class="container">
-                    <div class="row">
-                        <div class="content-info">
-                            <div class="shoebrand-name">
-                                <div>
-                                    <h1 class="brand">NIKE SHOSE</h1>
-                                </div>
-                                <h3 class="small">Men's SPORT Shose</h3>
-                            </div>
-                            <div class="content-detail">
-                                <h3 class="title">Product Information</h3>
-                                <p class="content-in">The Nike Edge 270 take the look of retro basketball and puts it through a
-                        modern lenssssssssssssssssssssssssssssssssssssssssssssssssss</p>
-                            </div>
-                            <div class="colors-fill">
-                                <h3 class="title">Colors</h3>
-                                <div class="Colors">
-                                    <span class="color active" primary="#444" color="black"></span>
-                                    <span class="color" primary="#29b864" color="green"></span>
-                                    <span class="color" primary="#ff5521" color="orange"></span>
-                                    <span class="color" primary="#2175f5" color="blue"></span>
-                                    <span class="color" primary="#f84848" color="red"></span>
-                                </div>
-                            </div>
-                            <div class="size-ofproduct">
-                                <h3 class="title">Size</h3>
-                                <div class="sizes">
-                                    <span class="size active">8</span>
-                                    <span class="size">8.5</span>
-                                    <span class="size">9</span>
-                                    <span class="size">8.5</span>
-                                    <span class="size">10</span>
-                                    <span class="size">10.5</span>
-                                    <span class="size">11</span>
-                                    <span class="size">11.5</span>
-                                    <span class="size">12</span>
-                                    <span class="size">12.5</span>
-                                </div>
-                            </div>
-                            <div class="price-shoe">
-                                <a href="" class="price-of"><i class="fas fa-shopping-cart"></i>Add to cart</a>
-                                <div class="share">
-                                    <span>share</span>
-                                </div>
-                                <div class="price">
-                                    <h1>&dollar;95.97</h1>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="container-cart">
-                        <div class="shoebg">
-                            <div class="bgcolors">
-                                <div class="bgcolor second" color="black"></div>
-                                <div class="bgcolor" color="grean"></div>
-                                <div class="bgcolor" color="orange"></div>
-                                <div class="bgcolor" color="blue"></div>
-                                <div class="bgcolor" color="red"></div>
-                            </div>
+    images[index].className = "active";
+  };
 
-                            <img id="featured" src="./images/black.png" alt="" class="shoe showing" color="black"></img>
-                            <img src="./images/green.png" alt="" class="shoe showing" color="green"></img>
-                            <img src="./images/orange.png" alt="" class="shoe showing" color="orange"></img>
-                            <img src="./images/blue.png" alt="" class="shoe showing" color="blue"></img>
-                            <img src="./images/red.png" alt="" class="shoe showing" color="red"></img>
+  componentDidMount(){
+    const {index} = this.state;
+    this.myRef.current.children[index].className = "active";
+  }
 
-                        </div>
-                    </div>
+
+  render(){
+    const {products, index} = this.state;
+    return(
+      <div className="app">
+        {
+          products.map(item =>(
+            <div className="details" key={item._id}>
+              <div className="big-img">
+                <img src={item.src[index]} alt=""/>
+              </div>
+
+              <div className="box">
+                <div className="row">
+                  <h2>{item.title}</h2>
+                  <span>${item.price}</span>
                 </div>
+                <Colors colors={item.colors} />
+
+                <p>{item.description}</p>
+                <p>{item.content}</p>
+
+                <DetailsThumb images={item.src} tab={this.handleTab} myRef={this.myRef} />
+                <button className="cart">Add to cart</button>
+
+              </div>
             </div>
-        )
-    }
+          ))
+        }
+      </div>
+    );
+  };
 }
-<script src="./product.js"></script>
+
 export default ItemView;

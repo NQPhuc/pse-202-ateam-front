@@ -1,312 +1,94 @@
-@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,900&display=swap');
-@import url('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/font-awesome.min.css');
-
-:root
-{
-    --primary:#333;
-}
-*
-
-{
-    margin: 0;
-    font-family: 'Poppins',sans-serif;
-    box-sizing: border-box;
-}
-body
-{
-    background-color: #eeeeee
-}
-.section-title
-{
-    flex: 0 0 100%;
-    max-width: 100%;
-    margin-bottom: 40 px;
-}
-.section-title h1
-{
-    display: inline-block;
-    font-size: 35px;
-    font-weight: 700px;
-    color: #000;
-    margin: 0 0 5px;
-    position: relative;
-}
-.section-title h1::before
-{
-    content: '';
-    height: 2px;
-    background-color: #ff8c00;
-    position: absolute;
-    bottom: 0;
-    width: 50px;
-    left: 0;
-    right: 0;
-    margin: auto;
-    transition: all .6s ease !important;
-}
-.section-title h1:hover::before
-{
-    width: 100% !important;
-}
-.text-center
-{
-    text-align: center !important;
-}
-
-/* row of the page start here */ 
-.row
-{
-    display: flex;
-    flex-wrap: wrap;
-}
-.container
-{
-    min-height: 100vh;
-    display: flex;
-    justify-content: space-between;
-    max-width: fit-content;
-    margin-left: 8px;
-    padding: 100px;
-    overflow: hidden;
-}
-.content-info
-{
+.app{
+    max-width: 1200px;
     width: 100%;
-    background-color: #ffffff;
-    z-index: 0;
-    padding: 50px 100px;
-    padding-top: 8px;
-    box-shadow: 15px 0 35px rgba(0, 0, 0, 0.1) ,
-    0 -15px 35px rgba(0, 0, 0, 0,1);
-}
-/* row of the page end here */ 
-
-shoebrand-name
-{
-    padding: 0 0 10px;
-}
-.shoebrand-name div
-{
+    margin: 100px auto;
+    box-shadow: 0 0 5px #ccc;
+  }
+  .details{
     display: flex;
-    align-items: center;
-}
-.shoebrand-name div .brand
-{
-    font-size: 35px;
-    color: #333;
-    line-height: 1;
-}
-.shoebrand-name .small
-{
-    font-weight: 500;
-    color: #444;
-    margin-top: 3px;
-    text-transform: uppercase;
-}
-.shoebrand-name , .content-detail , .colors-fill .size-ofproduct
-{
-    border-bottom: 3px solid #eeeeee;
-}
-.content-details
-{
-    padding: 10px;
-}
-.title{
-    color: #444;
-    font-weight: 600;
-    font-size: 15px;
-    text-transform: uppercase;
-}
-.price-shoe
-{
-    color: #555;
-    font-size: 17px;
-}
-.colors-fill
-{
-    padding: 10px 16px;
-}
-.Colors
-{
-    padding: 8px 0;
-    display: flex;
-    align-items: center;
-}
-.color
-{
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    margin: 0 10px;
-    border: 5px solid;
-    cursor: pointer;
-    transition: .6s;
-}
-.color[color="black"]
-{
-    background-color: #444;
-    border-color: #444;
-}
-.color[color="green"]
-{
-    background-color: #29b864;
-    border-color: #29b864;
-}
-.color[color="orange"]
-{
-    background-color: #ff5521;
-    border-color: #ff5521;
-}
-.color[color="blue"]
-{
-    background-color: #2175f5;
-    border-color: #2175f5;
-}
-.color[color="red"]
-{
-    background-color: #f84848;
-    border-color: #f84848;
-}
-.color.active
-{
-    border-color: #fff;
-    box-shadow: 0 0 10px .5px rgba(0, 0, 0, 0.2);
-    transform: scale(1.1);
-}
-.size-ofproduct
-{
-    padding: 10px 16px;
-    margin-bottom: 10px;
-}
-.sizes
-{
-    padding: 8px 0;
-    display: flex;
-    align-items: center;
-}
-.size
-{
-    width: 40px;
-    height: 40px;
-    border-radius: 50px;
-    background-color: #eeeeee;
-    margin: 0 10px;
-    text-align: center;
-    line-height: 40px;
-    font-size: 1.1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: .3s;
-}
-.size.active
-{
-    background-color: var(--primary);
-    color: #eeeeee;
-    transition: .5s;
-}
-.price-shoe
-{
-    padding: 15px 0 0 16px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.price-of , .share
-{
-    padding: 10px 8px;
-    background-color: var(--primary);
-    text-decoration: none;
-    color: #eeeeee;
-    justify-content: center;
-    letter-spacing: 1px;
-    font-weight: 500;
-    font-size: 15px;
-}
-.price-of:hover , .share
-{
-    background-color: #000111;
-    color: #f5f5f5;
-}
-.price-of i
-{
-    margin-right: 2px;
-}
-
-.container-cart
-{
-    flex: 0 0 100%;
-    max-width: 100%;
-    display: flexbox;
-    justify-content: center;
-}
-.shoebg
-{
-    position: relative;
-    width: 45%;
-    height: 554px;
-    box-shadow:  -15px 0 35px rgba(0, 0, 0, 0.1);
-}
-.bgcolors , 
-.bgcolor
-{
-    position: absolute;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 30px 0;
+  }
+  .details .big-img{
+    max-width: 500px;
+    min-width: 290px;
+    overflow: hidden;
+    margin: 25px;
+  }
+  .big-img img{
     width: 100%;
     height: 100%;
-    left: 0;
-    top: 0;
-    z-index: -2;
-}
-.first
-{
-    z-index: 0;
-    animation: 1s width ease-out;
-}
-@keyframes width
-{
-    from
-    {
-        width: 100%;
-    }
-    to
-    {
-        width: 100%;
-    }
-}
-.second
-{
-    z-index: -1;
-}
-.bgcolor[color="red"]
-{
-    background-color: #d62926;
-}
-.bgcolor[color="blue"]
-{
-    background-color: #0136af;
-}
-.bg-color[color="green"]
-{
-    background-color: #11998e;
-}
-.bgcolor[color="black"]
-{
-    background-color: #333;
-}
-.bgcolor[color="orange"]
-{
-    background-color: #fc4a1a;
-}
-
-.shoe
-{
-    position: absolute;
-    width: 140%;
-    opacity: 0;
-    top: 0;
-    left: 0;
-    transform: rotate(20deg);
-}
-.shoe.show
-{
+    max-height: 400px;
+    display: block;
+    object-fit: cover;
+  }
+  
+  .details .box{
+    max-width: 500px;
+    min-width: 290px;
+    margin: 25px;
+  }
+  .box .row{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+  }
+  .box .row h2{
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  .box .row span{
+    color: crimson;
+  }
+  .box .colors button{
+    width: 30px;
+    height: 30px;
+    border: 1px solid #333;
+    outline: none;
+    margin-right: 5px;
+    cursor: pointer;
+  }
+  .box p{
+    line-height: 1.5;
+    margin: 15px 0;
+  }
+  .thumb{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    cursor: pointer;
+    margin: 10px 0;
+  }
+  .thumb img{
+    width: 90px;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    border: 1px solid #ddd;
+    margin-right: 5px;
+    opacity: 0.7;
+    border-radius: 5px;
+  }
+  .thumb img.active{
     opacity: 1;
-}
+    border: 1px solid lightseagreen;
+  }
+  .box .cart{
+    background: #333;
+    color: white;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px 25px;
+    margin-top: 15px;
+  }
+  
+  @media (max-width: 500px){
+    .thumb{
+      height: 50px;
+    }
+    .thumb img{
+      width: 50px;
+    }
+  }
