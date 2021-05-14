@@ -6,28 +6,17 @@ li {
     list-style-type: none;
 }
 
-.admin-view {
+.cart-view {
     font-family: Alata;
 }
 
-.admin-option {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-}
-
-.admin-option Button {
-    font-size: 16px;
-    border: none;
-}
-
-.product-image {
+.cart-image {
     float: left;
     margin-right: 20px;
     margin-left: 20px;
 }
 
-.under-body-admin Button{
+.under-body-cart Button{
     font-size: 16px;
     color: white;
     display: block;

@@ -1,11 +1,9 @@
 import React from 'react'
 import { Card, CardMedia, CardContent, CardActions, Typography, IconButton, Button } from '@material-ui/core';
 import { Delete } from '@material-ui/icons'
-const AdminProduct = (props) => {
+import Counter from '../Counter.js';
+const CartProduct = (props) => {
     const deleteItem = () => {
-        alert("not implemented");
-    }
-    const editItem = () => {
         alert("not implemented");
     }
     return (<Card>
@@ -25,16 +23,15 @@ const AdminProduct = (props) => {
                         <Typography variant="h4">{props.product.name}</Typography>
                         <Typography variant="body1">Color: {props.product.color}</Typography>
                         <Typography variant="body1">Size: {props.product.size}</Typography>
-                        <Typography variant="body1">Stock: {props.product.stock}</Typography>
-                        <Typography variant="h6" style={{ "font-weight": "bold" }}>$ {props.product.price}</Typography>
+                        <Typography variant="h6" style={{ "font-weight": "bold" }}>$ {props.product.price * props.product.quantity}</Typography>
                     </div>
                 </div>
             </div>
         </CardContent>
         <CardActions >
             <IconButton onClick={() => deleteItem()}><Delete /></IconButton>
-            <Button font-size="16px" onClick={() => editItem()}>EDIT PRODUCT</Button>
+            <Counter quantity={props.product.quantity}/>
         </CardActions>
     </Card>);
 }
-export default AdminProduct;
+export default CartProduct;
