@@ -20,7 +20,7 @@ export default class RegisterPopup extends Component {
         if (this.props.displaying) {
             return (
                 <div className={styles.modal}>
-                    <button className={styles.btn__closeModal} onClick={() => this.props.undisplayRegisterPopup(1)}>&times;</button>
+                    <button className={styles.btn__closeModal} onClick={() => this.props.registerPopupDisplayingState_setter(false)}>&times;</button>
                     <img
               src={nikeLogo}
               alt="Meow"

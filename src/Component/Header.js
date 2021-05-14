@@ -73,10 +73,10 @@ export default class Header extends Component {
                         {!this.state.userName ? 
                         [
                         <li className="nav__item">
-                            <HeaderButtons onClick={() => this.props.displayLoginPopUp(1)}>Login</HeaderButtons>
+                            <HeaderButtons onClick={() => this.props.loginPopUpDisplayingState_setter(true)}>Login</HeaderButtons>
                         </li>,
                         <li className="nav__item">
-                            <HeaderButtons onClick={() => this.props.displayRegisterPopup(1)}>Register</HeaderButtons>
+                            <HeaderButtons onClick={() => this.props.registerPopupDisplayingState_setter(true)}>Register</HeaderButtons>
                         </li>
                         ]
                         :

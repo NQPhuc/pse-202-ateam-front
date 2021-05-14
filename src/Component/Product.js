@@ -4,7 +4,7 @@ import useStyles from './ProductStyles';
 import {AddShoppingCart} from '@material-ui/icons'
 const Product = ({product}) => {
     const styles = useStyles();
-    console.log(product.image)
+    //console.log(product.image)
     return (
     <Card className={styles.root}>
             <CardMedia className={styles.media} image={"../img/" + product.image} title={product.Name}/>

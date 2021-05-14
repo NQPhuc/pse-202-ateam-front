@@ -24,6 +24,9 @@ function App() {
   const [value1, setValue1] = useState(false);
   const [isRegisterPress, setRegisterPress] = useState(false);
   const [editItem, setEditItem] = useState(false);
+
+  const [itemViewPID, setitemViewPID] = useState(null);
+
   //let displayPopupFunction = displayPopupComponent.bind(this);
   const displayEditPopupHandler = (type) => {
       if (type === 1) {
@@ -35,61 +38,37 @@ function App() {
           setEditItem(false);
       }
   }
-  const displayRegisterPopupHandler = (type) =>{
-    if(type===1){
-      setRegisterPress(true);
-    }
-  }
-  const undisplayRegisterPopupHandler = (type) =>{
-    if(type===1){
-      setRegisterPress(false);
-    }
-  }
-
-  const displayLoginPopUpHandler = (type) => {
-    // console.log("HERE");
-    if (type === 1) {
-      setValue1(true);
-    }
-  }
-
-  const undisplayLoginPopupHandler = (type) => {
-    //console.log("HERE");
-    if (type === 1) {
-      setValue1(false);
-    }
-  }
 
   return (
     <div className="App">
-      <Header displayLoginPopUp={displayLoginPopUpHandler} displayRegisterPopup={displayRegisterPopupHandler}/>
-      <Login displaying={value1} undisplayLoginPopup={undisplayLoginPopupHandler} />
-      <Register displaying={isRegisterPress} undisplayRegisterPopup={undisplayRegisterPopupHandler}/>
       <Router>
-        <Switch>
-          <Route path="/about">
-            <p>
-              <div>
-                <p>Nothing</p>
-              </div>
-            </p>
-          </Route>
-          <Route path="/item">
-            <ItemView />
-          </Route>
-          <Route path="/home">
-            <HomePage />
-          </Route>
-          <Route path="/admin">
-            <AdminPage displayEditPopup={displayEditPopupHandler}/>
-            <EditItem displaying={editItem} undisplayEditPopup={undisplayEditPopupHandler}/>
-          </Route>
-          <Route path="/">
-            <HomePage />
-          </Route>
-        </Switch>
+        <Header loginPopUpDisplayingState_setter={setValue1} registerPopupDisplayingState_setter={setRegisterPress}/>
+        <Login displaying={value1} loginPopUpDisplayingState_setter={setValue1} />
+        <Register displaying={isRegisterPress} registerPopupDisplayingState_setter={setRegisterPress}/>       
+          <Switch>
+            <Route path="/about">
+              <p>
+                <div>
+                  <p>Nothing</p>
+                </div>
+              </p>
+            </Route>
+            <Route path="/item">
+              <ItemView pid={itemViewPID}/>
+            </Route>
+            <Route path="/home">
+              <HomePage setItemViewPID={setitemViewPID}/>
+            </Route>
+            <Route path="/admin">
+              <AdminPage displayEditPopup={displayEditPopupHandler}/>
+              <EditItem displaying={editItem} undisplayEditPopup={undisplayEditPopupHandler}/>
+            </Route>
+            <Route path="/">
+              <HomePage />
+            </Route>
+          </Switch>
+        <FooterComponent />
       </Router>
-      <FooterComponent />
     </div>
   );
 
