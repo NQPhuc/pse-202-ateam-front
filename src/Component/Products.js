@@ -40,7 +40,7 @@ export default class Products extends React.Component {
                 {
                     this.state.products.map((p) => (
                         <Grid item key={p._id} xs={12} sm={6} md={4} lg={3}>
-                            <Product product={p} />
+                            <Product product={p} setItemViewPID={this.props.setItemViewPID}/>
                         </Grid>
                     ))
                 }
