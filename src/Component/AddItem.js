@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import nikeLogo from '../../img/nike_logo.png';
-import styles from './EditItem.module.css'
+import nikeLogo from '../img/nike_logo.png'
+import styles from './AddItem.module.css'
 
-export default class EditItem extends Component {
+export default class AddItem extends Component {
 
     constructor(props) {
         super(props);
@@ -13,7 +13,7 @@ export default class EditItem extends Component {
         if (this.props.displaying) {
             return (
                 <div className={styles.modal}>
-                    <button className={styles.btn__closeModal} onClick={() => this.props.undisplayEditPopup(1)}>&times;</button>
+                    <button className={styles.btn__closeModal} onClick={() => this.props.undisplayAddPopup(1)}>&times;</button>
                     <img
                         src={nikeLogo}
                         alt="Meow"
