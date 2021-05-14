@@ -2,9 +2,9 @@ import React from 'react'
 import {Card, CardMedia, CardContent, CardActions, Typography, IconButton, Icon, CardActionArea} from '@material-ui/core';
 import useStyles from './ProductStyles';
 import {AddShoppingCart} from '@material-ui/icons'
-const Product = ({product}) => {
+const Product = ({product,onAddToCart}) => {
     const styles = useStyles();
-    //console.log(product.image)
+    const handlerAddtoCart = () => onAddToCart(product.id)
     return (
     <Card className={styles.root}>
             <CardMedia className={styles.media} image={"../img/" + product.image} title={product.Name}/>
@@ -19,7 +19,7 @@ const Product = ({product}) => {
             </CardContent>
 
             <CardActions disableSpacing className={styles.cardActions}>
-                <IconButton aria-label="Add to cart">
+                <IconButton aria-label="Add to cart" onClick={handlerAddtoCart}>
                     <AddShoppingCart/>
                 </IconButton>
             </CardActions>

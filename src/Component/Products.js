@@ -1,6 +1,7 @@
 import React from 'react'
 import Product from './Product'
-import { Grid } from '@material-ui/core'
+import {Grid} from '@material-ui/core'
+
 import giay1 from '../img/giay1.png'
 import giay2 from '../img/giay2.jpg'
 import giay3 from '../img/giay3.png'

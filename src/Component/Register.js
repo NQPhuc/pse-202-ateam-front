@@ -32,9 +32,11 @@ export default class RegisterPopup extends Component {
                     <label>Username</label>
                     <input type="text" name="username" value={this.state.inputUserName} onChange={(event) => { this.setState({ inputUserName: event.target.value }) }} />
                     <label>First Name</label>
-                    <input type="text" name="firstName"/>
+                    <input type="text" name="firstName" value={this.state.inputFirstName} onChange={(event) => { this.setState({ inputFirstName: event.target.value }) }}/>
+                    <label>Last Name</label>
+                    <input type="text" name="lastName" value={this.state.inputLastName} onChange={(event) => { this.setState({ inputLastName: event.target.value }) }}/>
                     <label>Email</label>
-                    <input type="email" name="email"/>
+                    <input type="email" name="email" value={this.state.inputEmail} onChange={(event) => { this.setState({ inputEmail: event.target.value }) }}/>
                     <label>Password</label>
                     <input type="password" name="password" value={this.state.inputPassword} onChange={(event) => { this.setState({ inputPassword: event.target.value }) }}/>
                     <label>Confirm Password</label>
