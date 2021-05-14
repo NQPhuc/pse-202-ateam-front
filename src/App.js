@@ -82,7 +82,7 @@ function App() {
           </Route>
           <Route path="/admin">
             <AdminPage displayEditPopup={displayEditPopupHandler}/>
-            <EditItem displaying={editItem} undisplayEditPopup={undisplayEditPopupHandler} backendAddress={backendAddress} />
+            <EditItem displaying={editItem} undisplayEditPopup={undisplayEditPopupHandler}/>
           </Route>
           <Route path="/">
             <HomePage />
