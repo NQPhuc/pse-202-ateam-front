@@ -8,66 +8,67 @@ import {
 } from "react-router-dom";
 
 import Header from './Component/Header.js';
-import FooterComponent from './Component/Footer.js';
+import FooterComponent from './Component/Footer/Footer.js';
 
 import HomePage from './Page/HomePage.js';
 import Login from './Component/Login';
+import Register from './Component/Register';
 import AdminPage from './Page/AdminPage.js';
 import reactDom from 'react-dom';
-
+import EditItem from './Component/EditItem.js';
 import ItemView from './Page/itemsView.js';
 
-const backendAddress = "http://localhost:3030";
+//const backendAddress = "http://localhost:3030";
 
 function App() {
   const [value1, setValue1] = useState(false);
+  const [isRegisterPress, setRegisterPress] = useState(false);
+  const [editItem, setEditItem] = useState(false);
+
+  const [itemViewPID, setitemViewPID] = useState(null);
+
   //let displayPopupFunction = displayPopupComponent.bind(this);
-
-  const displayPopupComponent = (type) => {
-    console.log("HERE");
-    if (type === 1) {
-      setValue1(true);
-    }
+  const displayEditPopupHandler = (type) => {
+      if (type === 1) {
+          setEditItem(true);
+      }
   }
-
-  const undisplayPopupComponent = (type) => {
-    //console.log("HERE");
-    if (type === 1) {
-      setValue1(false);
-    }
+  const undisplayEditPopupHandler = (type) => {
+      if (type === 1) {
+          setEditItem(false);
+      }
   }
 
   return (
     <div className="App">
-      <Header displayPopupCallback={displayPopupComponent} />
-      <Login displaying={value1} undisplayPopupCallback={undisplayPopupComponent} backendAddress={backendAddress} />
       <Router>
-        <Switch>
-          <Route path="/about">
-            <p>
-              <div>
-                <p>Candidate: Nguyễn Quang Phúc</p>
-                <p>Github: <a href="https://github.com/NQPhuc/inf-calc-react">https://github.com/NQPhuc/inf-calc-react</a></p>
-                <p>Deployment website: <a href="https://react-inf-int-calculator.herokuapp.com/">https://react-inf-int-calculator.herokuapp.com/</a></p>
-                <br />
-              </div>
-            </p>
-          </Route>
-          <Route path="/item">
-            <ItemView />
-          </Route>
-          <Route path="/home">
-            <HomePage />
-          </Route>
-          <Route path="/admin">
-            <AdminPage/>
-          </Route>
-          <Route path="/">
-            <HomePage />
-          </Route>
-        </Switch>
+        <Header loginPopUpDisplayingState_setter={setValue1} registerPopupDisplayingState_setter={setRegisterPress}/>
+        <Login displaying={value1} loginPopUpDisplayingState_setter={setValue1} />
+        <Register displaying={isRegisterPress} registerPopupDisplayingState_setter={setRegisterPress}/>       
+          <Switch>
+            <Route path="/about">
+              <p>
+                <div>
+                  <p>Nothing</p>
+                </div>
+              </p>
+            </Route>
+            <Route path="/item">
+              <ItemView pid={itemViewPID}/>
+            </Route>
+            <Route path="/home">
+              <HomePage setItemViewPID={setitemViewPID}/>
+            </Route>
+            <Route path="/admin">
+              <AdminPage displayEditPopup={displayEditPopupHandler}/>
+              <EditItem displaying={editItem} undisplayEditPopup={undisplayEditPopupHandler}/>
+            </Route>
+            <Route path="/">
+              <HomePage />
+            </Route>
+          </Switch>
+        <FooterComponent />
       </Router>
-      <FooterComponent />
     </div>
   );
 

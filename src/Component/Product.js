@@ -1,17 +1,24 @@
 import React from 'react'
-import {Card, CardMedia, CardContent, CardActions, Typography, IconButton, Icon} from '@material-ui/core';
+import {Card, CardMedia, CardContent, CardActions, Typography, IconButton, Icon, CardActionArea} from '@material-ui/core';
+import useStyles from './ProductStyles';
 import {AddShoppingCart} from '@material-ui/icons'
 const Product = ({product}) => {
-    return (<Card>
-            <CardMedia/>
+    const styles = useStyles();
+    //console.log(product.image)
+    return (
+    <Card className={styles.root}>
+            <CardMedia className={styles.media} image={"../img/" + product.image} title={product.Name}/>
             <CardContent>
-            <div>
-                <Typography variant='h5'>{product.name}</Typography>
-                <Typography variant='h5'>{product.price}</Typography>
+            <div className={styles.cardContent}>
+                <Typography variant='h5'>{product.Name}</Typography>
+                <Typography variant='h5'>{product.Price.$numberDecimal}</Typography>
             </div>
-            <Typography variant='h2' color='textSecondary'>{product.description}</Typography>
+            <Typography variant='body2' color='textSecondary'>Quantity: {product.Quantity}</Typography>
+            <Typography variant='body2' color='textSecondary'>Size: {product.Size}</Typography>
+            <Typography variant='h4'>Color: {product.Color}</Typography>
             </CardContent>
-            <CardActions>
+
+            <CardActions disableSpacing className={styles.cardActions}>
                 <IconButton aria-label="Add to cart">
                     <AddShoppingCart/>
                 </IconButton>

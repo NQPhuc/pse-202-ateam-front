@@ -2,8 +2,7 @@ import React from 'react'
 import Products from '../Component/Products'
 const HomePage = (props) =>{
     return (
-        <div>
-                 
+        <div style={{ marginBottom: "50px"}}> 
             <Products/>
         </div>
     );
