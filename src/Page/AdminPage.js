@@ -1,11 +1,7 @@
-import React, {useState } from 'react';
+import React from 'react';
 import './AdminPage.css';
 import AdminProducts from '../Component/AdminProducts/AdminProducts.js';
-import { Link, Router } from "react-router-dom";
 import { Button } from '@material-ui/core';
-import EditItem from '../Component/EditItem.js';
-
-const backendAddress = "http://localhost:3030";
 
 class AdminPage extends React.Component {
     constructor(props) {
@@ -19,8 +15,8 @@ class AdminPage extends React.Component {
                     <Button>Edit product</Button>
                 </div>
                 <AdminProducts />
-                <div className="under-body" style={{ marginTop: "20px" }}>
-                    <Button onClick={() => this.props.displayEditPopup(1)}>
+                <div className="under-body-admin" style={{ marginTop: "20px" }}>
+                    <Button onClick={() => this.props.displayAddPopup(1)}>
                         Add New Item
                     </Button>
                 </div>

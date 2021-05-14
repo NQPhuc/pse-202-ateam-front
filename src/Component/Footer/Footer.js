@@ -68,7 +68,7 @@ export default function FooterComponent() {
                                     title: "Facebook Page",
                                     icon : (
                                         <img
-                                            src="https://www.flaticon.com/svg/vstatic/svg/20/20673.svg?token=exp=1620894552~hmac=e79cf0ba25e591af60c558916696bd30"
+                                            src="https://d1wl5wkwpkr66u.cloudfront.net/facebook-circular-logo.png"
                                             alt="Facebook"/>),
                                     url: "https://www.facebook.com",
                                     openExternal: true,
@@ -77,7 +77,7 @@ export default function FooterComponent() {
                                     title: "Instagram Page",
                                     icon : (
                                         <img
-                                            src="https://www.flaticon.com/svg/vstatic/svg/1419/1419647.svg?token=exp=1620894703~hmac=feefba724b8423ea3e753744912cf3a9"
+                                            src="https://d1wl5wkwpkr66u.cloudfront.net/instagram.png"
                                             alt="Instagram"
                                         />
                                     ),

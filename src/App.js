@@ -15,27 +15,29 @@ import Login from './Component/Login';
 import Register from './Component/Register';
 import AdminPage from './Page/AdminPage.js';
 import reactDom from 'react-dom';
-import EditItem from './Component/EditItem.js';
+import AddItem from './Component/AddItem.js';
 import ItemView from './Page/itemsView.js';
+import CartView from './Page/CartView.js';
+//import PaymentPopup from "./Component/Payment/Payment";
 
 //const backendAddress = "http://localhost:3030";
 
 function App() {
   const [value1, setValue1] = useState(false);
   const [isRegisterPress, setRegisterPress] = useState(false);
-  const [editItem, setEditItem] = useState(false);
+  const [addItem, setAddItem] = useState(false);
 
   const [itemViewPID, setitemViewPID] = useState(null);
 
   //let displayPopupFunction = displayPopupComponent.bind(this);
-  const displayEditPopupHandler = (type) => {
+  const displayAddPopupHandler = (type) => {
       if (type === 1) {
-          setEditItem(true);
+          setAddItem(true);
       }
   }
-  const undisplayEditPopupHandler = (type) => {
+  const undisplayAddPopupHandler = (type) => {
       if (type === 1) {
-          setEditItem(false);
+          setAddItem(false);
       }
   }
 
@@ -60,14 +62,18 @@ function App() {
               <HomePage setItemViewPID={setitemViewPID}/>
             </Route>
             <Route path="/admin">
-              <AdminPage displayEditPopup={displayEditPopupHandler}/>
-              <EditItem displaying={editItem} undisplayEditPopup={undisplayEditPopupHandler}/>
+              <AdminPage displayAddPopup={displayAddPopupHandler}/>
+              <AddItem displaying={addItem} undisplayAddPopup={undisplayAddPopupHandler}/>
+            </Route>
+            <Route path="/cart">
+              <CartView/>
             </Route>
             <Route path="/">
               <HomePage />
             </Route>
           </Switch>
         <FooterComponent />
+        {/*<PaymentPopup />*/}
       </Router>
     </div>
   );
