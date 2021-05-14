@@ -4,17 +4,18 @@ import useStyles from './ProductStyles';
 import {AddShoppingCart} from '@material-ui/icons'
 const Product = ({product}) => {
     const styles = useStyles();
-    console.log(product.img)
+    console.log(product.image)
     return (
     <Card className={styles.root}>
-            <CardMedia className={styles.media} image={product.img} title={product.name}/>
+            <CardMedia className={styles.media} image={"../img/" + product.image} title={product.Name}/>
             <CardContent>
             <div className={styles.cardContent}>
-                <Typography variant='h5'>{product.name}</Typography>
-                <Typography variant='h5'>{product.price}</Typography>
+                <Typography variant='h5'>{product.Name}</Typography>
+                <Typography variant='h5'>{product.Price.$numberDecimal}</Typography>
             </div>
-            <Typography variant='body2' color='textSecondary'>{product.description}</Typography>
-            <Typography variant='h4'>Kannye West created this shoes</Typography>
+            <Typography variant='body2' color='textSecondary'>Quantity: {product.Quantity}</Typography>
+            <Typography variant='body2' color='textSecondary'>Size: {product.Size}</Typography>
+            <Typography variant='h4'>Color: {product.Color}</Typography>
             </CardContent>
 
             <CardActions disableSpacing className={styles.cardActions}>
