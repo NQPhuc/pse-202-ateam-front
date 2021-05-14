@@ -18,7 +18,7 @@ import reactDom from 'react-dom';
 import EditItem from './Component/EditItem.js';
 import ItemView from './Page/itemsView.js';
 
-const backendAddress = "http://localhost:3030";
+//const backendAddress = "http://localhost:3030";
 
 function App() {
   const [value1, setValue1] = useState(false);
@@ -63,17 +63,14 @@ function App() {
   return (
     <div className="App">
       <Header displayLoginPopUp={displayLoginPopUpHandler} displayRegisterPopup={displayRegisterPopupHandler}/>
-      <Login displaying={value1} undisplayLoginPopup={undisplayLoginPopupHandler} backendAddress={backendAddress} />
-      <Register displaying={isRegisterPress} undisplayRegisterPopup={undisplayRegisterPopupHandler} backendAddress={backendAddress}/>
+      <Login displaying={value1} undisplayLoginPopup={undisplayLoginPopupHandler} />
+      <Register displaying={isRegisterPress} undisplayRegisterPopup={undisplayRegisterPopupHandler}/>
       <Router>
         <Switch>
           <Route path="/about">
             <p>
               <div>
-                <p>Candidate: Nguyễn Quang Phúc</p>
-                <p>Github: <a href="https://github.com/NQPhuc/inf-calc-react">https://github.com/NQPhuc/inf-calc-react</a></p>
-                <p>Deployment website: <a href="https://react-inf-int-calculator.herokuapp.com/">https://react-inf-int-calculator.herokuapp.com/</a></p>
-                <br />
+                <p>Nothing</p>
               </div>
             </p>
           </Route>

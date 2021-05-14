@@ -5,56 +5,93 @@ import HeaderCartButton from './Buttons/HeaderCartButton.js'
 import { Link, Router } from "react-router-dom";
 import HeaderButtons from './Buttons/HeaderButtons.js';
 import { AiOutlineSearch } from 'react-icons/ai';
+
+import * as http from '../services'; //import these to call API
+
 export default class Header extends Component {
+    
 
     constructor(props) {
-        super(props)
+        super(props);
+        this.state = {
+            sid: '',
+            userName: '',
+            userRole: '',
+        };
+    }
+
+    componentDidMount() {
+        this.state.sid = document.cookie.replace(/(?:(?:^|.*;\s*)sessionId\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+        if (this.state.sid) {
+            http.AuthenticateService.getNameAndRoleFromSession().then((value) => {
+                if (value) {
+                    console.log(value);
+                    this.setState({ userName: value.Name, userRole: value.Role });
+                }
+                else {
+                    this.setState({ userName: "", userRole: "" });
+                }
+            });
+        }
+    }
+
+    requestLogout = () => {
+        http.AuthenticateService.logout().then((value) => {
+            console.log(value);
+            this.setState({ userName: "", userRole: "" });
+        })
     }
 
     render() {
         return (
             <header className="header">
-            <nav className="nav">
-            <img
-              src={nikeLogo}
-              alt="Meow"
-              className="nav__logo"
-              id="logo"
-            />
-            <div className="filter-section">
-            <form action="/" method="get">
-              <label htmlFor="header-search">
-                <AiOutlineSearch className="search-icon" size={20} />
-              </label>
-              <input
-                type="text"
-                id="header-search"
-                placeholder="Search"
-                name="search"
-              />
-            </form>
-          </div>
-            <ul className="nav__links">
-              <li className="nav__item">
-                <HeaderCartButton></HeaderCartButton>
-              </li>
-              <li className="nav__item">
-                    {/* <Link to='/login'> */}
-                <HeaderButtons onClick={() => this.props.displayLoginPopUp(1)}>Login</HeaderButtons>
-              </li>
-              <li className="nav__item">
-                <HeaderButtons onClick={() => this.props.displayRegisterPopup(1)}>Register</HeaderButtons>
-              </li>
+                <nav className="nav">
+                    <img
+                        src={nikeLogo}
+                        alt="Meow"
+                        className="nav__logo"
+                        id="logo"
+                    />
+                    <div className="filter-section">
+                        <form action="/" method="get">
+                            <label htmlFor="header-search">
+                                <AiOutlineSearch className="search-icon" size={20} />
+                            </label>
+                            <input
+                                type="text"
+                                id="header-search"
+                                placeholder="Search"
+                                name="search"
+                            />
+                        </form>
+                    </div>
+                    <ul className="nav__links">
+                        <li className="nav__item">
+                            <HeaderCartButton></HeaderCartButton>
+                        </li>
 
-              {/*api testing button*/}
-              <li className="nav__item">
-                <HeaderButtons>Logout</HeaderButtons>
-              </li>
-              {/*end api testing button*/}
+                        {!this.state.userName ? 
+                        [
+                        <li className="nav__item">
+                            <HeaderButtons onClick={() => this.props.displayLoginPopUp(1)}>Login</HeaderButtons>
+                        </li>,
+                        <li className="nav__item">
+                            <HeaderButtons onClick={() => this.props.displayRegisterPopup(1)}>Register</HeaderButtons>
+                        </li>
+                        ]
+                        :
+                        [
+                        <p>Welcome {this.state.userName}</p>,
+                        <li className="nav__item">
+                            <HeaderButtons onClick={() => this.requestLogout()}>Logout</HeaderButtons>
+                        </li>
+                        ]
+                        }
 
-            </ul>
-          </nav>
-          </header>
+                    </ul>
+                </nav>
+            </header>
         );
     }
 }
+
