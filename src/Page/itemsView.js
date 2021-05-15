@@ -24,7 +24,7 @@ class ItemView extends React.Component {
     if (pid) {
       http.ProductService.getProduct(pid).then((value) => {
         if (value) {
-          console.log(value);
+          //console.log(value);
           this.setState({ product: value });
         }
       });

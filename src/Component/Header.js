@@ -25,7 +25,7 @@ export default class Header extends Component {
         if (this.state.sid) {
             http.AuthenticateService.getNameAndRoleFromSession().then((value) => {
                 if (value) {
-                    console.log(value);
+                    //console.log(value);
                     this.setState({ userName: value.Name, userRole: value.Role });
                 }
                 else {
