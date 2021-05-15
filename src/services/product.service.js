@@ -6,10 +6,10 @@ export default class ProductService{
     }
     
     static async getProduct(productId){
-        return (await axiosDefault.get('/product/id'), { params: {pid: productId}}).data;
+        return (await axiosDefault.get('/product/id', { params: {pid: productId} }) ).data;
     }
 
     static async searchProduct(productName){
-        return (await axiosDefault.get('/product/name'), { params: {name: productName}}).data;
+        return (await axiosDefault.get('/product/name', { params: {name: productName}}) ).data;
     }
 }

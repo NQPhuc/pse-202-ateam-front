@@ -4,6 +4,8 @@ import './itemsView.css';
 import Colors from './Colors';
 import DetailsThumb from './DetailsThumb';
 
+import {useParams} from 'react-router-dom';
+
 import * as http from '../services'; //import these to call API
 
 class ItemView extends React.Component {
@@ -14,14 +16,15 @@ class ItemView extends React.Component {
   }
 
   state = {
-    product:[],    
+    product: null,    
   };
 
   componentDidMount() {
-    console.log(this.props.location);
-    if (this.props.pid) {
-      http.ProductService.getProduct(this.props.pid).then((value) => {
+    const pid = this.props.match.params.pid;
+    if (pid) {
+      http.ProductService.getProduct(pid).then((value) => {
         if (value) {
+          console.log(value);
           this.setState({ product: value });
         }
       });
@@ -43,26 +46,31 @@ class ItemView extends React.Component {
 
   render() {
     const product = this.state.product;
-    return (
-      <div className="app">
-        <div className="details" key={product._id}>
-          <div className="big-img">
-            <img src={product.image} alt="" />
-          </div>
-          <div className="box">
-            <div className="row">
-              <h2>{product.Name}</h2>
-              <span>${product.Price}</span>
+    if(product){
+      return (
+        <div className="app">
+          <div className="details" key={product._id}>
+            <div className="big-img">
+              <img src={"../img/" + product.image} alt="" />
             </div>
-            {/* <Colors colors={product.Color} /> */}
-            <p>{product.Size}</p>
-            <p>{product.Color}</p>
-            {/* <DetailsThumb images={item.src} tab={this.handleTab} myRef={this.myRef} /> */}
-            <button className="cart">Add to cart</button>
+            <div className="box">
+              <div className="row">
+                <h2>{product.Name}</h2>
+                <span>${product.Price.$numberDecimal}</span>
+              </div>
+              {/* <Colors colors={product.Color} /> */}
+              <p>{product.Size}</p>
+              <p>{product.Color}</p>
+              {/* <DetailsThumb images={item.src} tab={this.handleTab} myRef={this.myRef} /> */}
+              <button className="cart">Add to cart</button>
+            </div>
           </div>
         </div>
-      </div>
-    );
+      );
+    }
+    else{
+      return <p>No product like that</p>
+    }
   };
 }
 
