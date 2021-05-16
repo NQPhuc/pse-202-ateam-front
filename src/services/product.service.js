@@ -63,7 +63,7 @@ export default class ProductService{
      *  Else: ??? need more test
      */
     static async editProduct(id, name, price, quantity, color, size, image){
-        return (await axiosWithCookies.post('/product', {
+        return (await axiosWithCookies.put('/product', {
             id: id, name: name, price: price, quantity: quantity,
             color: color, size: size, image: image
         })).data;
