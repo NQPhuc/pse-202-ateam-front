@@ -16,17 +16,17 @@ const AdminProduct = (props) => {
                     <Typography
                         variant="body1"
                         style={{ "paddingRight": "10px", "fontWeight": "lighter" }}>
-                        {props.product.id}
+                        {props.product._id}
                     </Typography>
-                    <a href={"/item/" + props.product.id} className="product-image">
-                        <img src={props.product.image} width="150" height="150" />
+                    <a href={"/item/" + props.product._id} className="product-image">
+                        <img src={"../../img/" + props.product.image} width="150" height="150" />
                     </a>
                     <div className="product-detail">
-                        <Typography variant="h4">{props.product.name}</Typography>
-                        <Typography variant="body1">Color: {props.product.color}</Typography>
-                        <Typography variant="body1">Size: {props.product.size}</Typography>
-                        <Typography variant="body1">Stock: {props.product.stock}</Typography>
-                        <Typography variant="h6" style={{ "font-weight": "bold" }}>$ {props.product.price}</Typography>
+                        <Typography variant="h4">{props.product.Name}</Typography>
+                        <Typography variant="body1">Color: {props.product.Color}</Typography>
+                        <Typography variant="body1">Size: {props.product.Size}</Typography>
+                        <Typography variant="body1">Stock: {props.product.Quantity}</Typography>
+                        <Typography variant="h6" style={{ "font-weight": "bold" }}>$ {props.product.Price}</Typography>
                     </div>
                 </div>
             </div>
