@@ -17,7 +17,7 @@ const Product = ({ product, onAddToCart, setItemViewPID }) => {
             <CardContent>
                 <div className={styles.cardContent}>
                     <Typography variant='h5'>{product.Name}</Typography>
-                    <Typography variant='h5'>{product.Price.$numberDecimal}</Typography>
+                    <Typography variant='h5'>{product.Price}</Typography>
                 </div>
                 <Typography variant='body2' color='textSecondary'>Quantity: {product.Quantity}</Typography>
                 <Typography variant='body2' color='textSecondary'>Size: {product.Size}</Typography>

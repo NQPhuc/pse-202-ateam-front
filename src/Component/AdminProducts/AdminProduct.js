@@ -26,7 +26,7 @@ const AdminProduct = (props) => {
                         <Typography variant="body1">Color: {props.product.Color}</Typography>
                         <Typography variant="body1">Size: {props.product.Size}</Typography>
                         <Typography variant="body1">Stock: {props.product.Quantity}</Typography>
-                        <Typography variant="h6" style={{ "font-weight": "bold" }}>$ {props.product.Price.$NumberDecimal}</Typography>
+                        <Typography variant="h6" style={{ "font-weight": "bold" }}>$ {props.product.Price}</Typography>
                     </div>
                 </div>
             </div>

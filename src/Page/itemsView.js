@@ -56,7 +56,7 @@ class ItemView extends React.Component {
             <div className="box">
               <div className="row">
                 <h2>{product.Name}</h2>
-                <span>${product.Price.$numberDecimal}</span>
+                <span>${product.Price}</span>
               </div>
               {/* <Colors colors={product.Color} /> */}
               <p>{product.Size}</p>
