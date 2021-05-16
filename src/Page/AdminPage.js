@@ -28,7 +28,7 @@ class AdminPage extends React.Component {
         }
     }
     render() {
-        if (this.state.userName && this.state.userRole == "Admin") {
+        if (this.state.userName && this.state.userRole === "Admin") {
             return (
                 <div className="admin-view" style={{ marginBottom: "50px" }}>
                     <div className="admin-option">

@@ -46,14 +46,15 @@ export default class Header extends Component {
         return (
             <header className="header">
                 <nav className="nav">
-                    <img
-                        src={nikeLogo}
-                        alt="Meow"
-                        className="nav__logo"
-                        id="logo"
-                    />
+                    <Link to='/'>
+                        <img
+                            src={nikeLogo}
+                            alt="Meow"
+                            className="nav__logo"
+                            id="logo"
+                        />
+                    </Link>
                     <div className="filter-section">
-                        <form action="/" method="get">
                             <label htmlFor="header-search">
                                 <AiOutlineSearch className="search-icon" size={20} />
                             </label>
@@ -62,8 +63,8 @@ export default class Header extends Component {
                                 id="header-search"
                                 placeholder="Search"
                                 name="search"
+
                             />
-                        </form>
                     </div>
                     <ul className="nav__links">
                         <li className="nav__item">
