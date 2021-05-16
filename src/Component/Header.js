@@ -9,7 +9,7 @@ import { AiOutlineSearch } from 'react-icons/ai';
 import * as http from '../services'; //import these to call API
 
 export default class Header extends Component {
-    
+
 
     constructor(props) {
         super(props);
@@ -43,6 +43,35 @@ export default class Header extends Component {
     }
 
     render() {
+        const guestList = ([
+            <li className="nav__item">
+                <HeaderButtons onClick={() => this.props.loginPopUpDisplayingState_setter(true)}>Login</HeaderButtons>
+            </li>,
+            <li className="nav__item">
+                <HeaderButtons onClick={() => this.props.registerPopupDisplayingState_setter(true)}>Register</HeaderButtons>
+            </li>
+        ])
+        const adminAddition = (
+            <li className="nav__item">
+                <Link to="/admin">
+                    <HeaderButtons>Manage Product</HeaderButtons>
+                </Link>
+            </li>
+        );
+
+        const userList = ([
+            <p>Welcome {this.state.userName}</p>,
+            <li className="nav__item">
+                <HeaderButtons onClick={() => this.requestLogout()}>Logout</HeaderButtons>
+            </li>
+        ]);
+
+        var middleSection = guestList;
+        if(this.state.userName){
+            middleSection = userList;
+            if(this.state.userRole === "Admin") middleSection.push(adminAddition);
+        }
+
         return (
             <header className="header">
                 <nav className="nav">
@@ -55,40 +84,22 @@ export default class Header extends Component {
                         />
                     </Link>
                     <div className="filter-section">
-                            <label htmlFor="header-search">
-                                <AiOutlineSearch className="search-icon" size={20} />
-                            </label>
-                            <input
-                                type="text"
-                                id="header-search"
-                                placeholder="Search"
-                                name="search"
+                        <label htmlFor="header-search">
+                            <AiOutlineSearch className="search-icon" size={20} />
+                        </label>
+                        <input
+                            type="text"
+                            id="header-search"
+                            placeholder="Search"
+                            name="search"
 
-                            />
+                        />
                     </div>
                     <ul className="nav__links">
                         <li className="nav__item">
                             <HeaderCartButton></HeaderCartButton>
                         </li>
-
-                        {!this.state.userName ? 
-                        [
-                        <li className="nav__item">
-                            <HeaderButtons onClick={() => this.props.loginPopUpDisplayingState_setter(true)}>Login</HeaderButtons>
-                        </li>,
-                        <li className="nav__item">
-                            <HeaderButtons onClick={() => this.props.registerPopupDisplayingState_setter(true)}>Register</HeaderButtons>
-                        </li>
-                        ]
-                        :
-                        [
-                        <p>Welcome {this.state.userName}</p>,
-                        <li className="nav__item">
-                            <HeaderButtons onClick={() => this.requestLogout()}>Logout</HeaderButtons>
-                        </li>
-                        ]
-                        }
-
+                        {middleSection}
                     </ul>
                 </nav>
             </header>

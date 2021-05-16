@@ -2,6 +2,7 @@ import {axiosDefault, axiosWithCookies} from './axiosInstances';
 
 export default class ProductService{
     /**
+     * NOTE: this only return products that aren't disabled
      * @returns an array [Product]
      * where Product is: {
      *  Name: { type: String, require: true, index: true },
@@ -32,4 +33,39 @@ export default class ProductService{
         return (await axiosDefault.get('/product/name', { params: {name: productName}}) ).data;
     }
 
+    /**
+     * Add a new product document into database
+     * @param {*} name 
+     * @param {*} price 
+     * @param {*} quantity 
+     * @param {*} color 
+     * @param {*} size 
+     * @param {*} image 
+     * @returns "OK" if success; "Failed" if there's an error; "Not Authorized" if user is not login with Admin privilege 
+     */
+    static async addNewProduct(name, price, quantity, color, size, image){
+        return (await axiosWithCookies.post('/product', {
+            name: name, price: price, quantity: quantity,
+            color: color, size: size, image: image
+        })).data;
+    }
+
+    /**
+     * Add a product database with new value
+     * @param {*} id id of the product to be updated
+     * @param {*} name 
+     * @param {*} price 
+     * @param {*} quantity 
+     * @param {*} color 
+     * @param {*} size 
+     * @param {*} image 
+     * @returns "Not Authorized" if user is not login with Admin privilege;
+     *  Else: ??? need more test
+     */
+    static async editProduct(id, name, price, quantity, color, size, image){
+        return (await axiosWithCookies.post('/product', {
+            id: id, name: name, price: price, quantity: quantity,
+            color: color, size: size, image: image
+        })).data;
+    }
 }

@@ -39,12 +39,12 @@
   }
   
   .nav__item {
-    margin-left: 4rem;
+    margin-left: 1rem;
   }
   
   .nav__link:link,
   .nav__link {
-    font-size: 1.7rem;
+    font-size: 1.5rem;
     font-weight: bold;
     color: inherit;
     text-decoration: none;
@@ -52,7 +52,7 @@
     transition: all 0.3s;
   }
   input[id=header-search] {
-    width: 500px;
+    width: 300;
     height: 40px;
     border-radius: 20px;
     border: 0px;
