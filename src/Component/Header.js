@@ -49,6 +49,9 @@ export default class Header extends Component {
             </li>,
             <li className="nav__item">
                 <HeaderButtons onClick={() => this.props.registerPopupDisplayingState_setter(true)}>Register</HeaderButtons>
+            </li>,
+            <li>
+                <HeaderButtons onClick={() => this.props.paymentPopUp_setter(true)}>Payment</HeaderButtons>
             </li>
         ])
         const adminAddition = (
@@ -97,7 +100,7 @@ export default class Header extends Component {
                     </div>
                     <ul className="nav__links">
                         <li className="nav__item">
-                            <HeaderCartButton></HeaderCartButton>
+                            <HeaderCartButton/>
                         </li>
                         {middleSection}
                     </ul>
