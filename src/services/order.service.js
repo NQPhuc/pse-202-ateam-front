@@ -17,4 +17,31 @@ export default class OrderService{
     static async getOrderOfUser(){
         return (await axiosWithCookies.get('/order/user')).data
     }
+
+    /**
+     * Add a new order for the current customer (can either be a registered customer or guest)
+     * @param {*} OrderContent - this is an object with 2 field: a list itemList and a number TotalPrice
+     *          OrderContent: { 
+     *              itemList: [{
+                        ProductId: { type: String },
+                        ProductName: { type: String },
+                        Quantity: { type: Number }
+                    }],
+                    TotalPrice: {type: Number}
+                }; the ProductName field can be left blank, the server will automatically insert the right name for that product
+     * @param {*} CustomerName - If logged in, this field can be left blank because it doesn't matter for registered customer.
+     * @param {*} RecipientName
+     * @param {*} Address 
+     * @param {*} ContactNumber 
+     * @returns 
+     */
+    static async createNewOder(OrderContent, CustomerName, RecipientName, Address, ContactNumber){
+        return (await axiosWithCookies.post('/order',{
+            OrderContent: OrderContent,
+            CustomerName: CustomerName,
+            RecipientName: RecipientName,
+            Address: Address,
+            ContactNumber: ContactNumber
+        })).data;
+    }
 }

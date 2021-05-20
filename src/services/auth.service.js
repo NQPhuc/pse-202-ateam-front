@@ -18,7 +18,7 @@ export default class AuthenticateService{
     }
 
     /**
-     * @returns an object {Name, Role} of the user with sessionId in cookie
+     * @returns an object {Name, Role, CartContent} of the user with sessionId in cookie
      */
     static async getNameAndRoleFromSession(){
         return (await axiosWithCookies.get('/auth')).data;
