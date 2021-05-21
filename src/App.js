@@ -15,7 +15,7 @@ import Register from './Component/Register';
 import AdminPage from './Page/AdminPage.js';
 import ItemView from './Page/itemsView.js';
 import CartView from './Page/CartView.js';
-//import PaymentPopup from "./Component/Payment/Payment";
+import PaymentPopup from "./Component/Payment/Payment";
 
 //const backendAddress = "http://localhost:3030";
 
@@ -23,13 +23,18 @@ function App() {
   const [value1, setValue1] = useState(false);
   const [isRegisterPress, setRegisterPress] = useState(false);
   const [addItem, setAddItem] = useState(false);
+  const [seen, displayPopUp] = useState(false);
 
   return (
     <div className="App">
       <Router>
-        <Header loginPopUpDisplayingState_setter={setValue1} registerPopupDisplayingState_setter={setRegisterPress}/>
+        <Header loginPopUpDisplayingState_setter={setValue1}
+                registerPopupDisplayingState_setter={setRegisterPress}
+                paymentPopUp_setter={displayPopUp}
+        />
         <Login displaying={value1} loginPopUpDisplayingState_setter={setValue1} />
-        <Register displaying={isRegisterPress} registerPopupDisplayingState_setter={setRegisterPress}/>       
+        <Register displaying={isRegisterPress} registerPopupDisplayingState_setter={setRegisterPress}/>
+        <PaymentPopup displaying={seen} toggle={displayPopUp}/>
           <Switch>
             <Route path="/about">
               <p>
@@ -53,7 +58,6 @@ function App() {
             </Route>
           </Switch>
         <FooterComponent />
-        {/*<PaymentPopup />*/}
       </Router>
     </div>
   );
