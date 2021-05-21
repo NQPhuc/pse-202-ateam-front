@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -19,16 +19,21 @@ import AddItem from './Component/AddItem.js';
 import ItemView from './Page/itemsView.js';
 import CartView from './Page/CartView.js';
 import PaymentPopup from "./Component/Payment/Payment";
-
+import * as http from './services';
 //const backendAddress = "http://localhost:3030";
+const Cart = [
+  {id:1, created:"21/5/2021", totalItems: 3},
+  {id:2, created:"21/5/2021", totalItems: 1}
+]
 
 function App() {
   const [value1, setValue1] = useState(false);
   const [isRegisterPress, setRegisterPress] = useState(false);
   const [addItem, setAddItem] = useState(false);
   const [seen, displayPopUp] = useState(false);
-
+  const [totalCartItems, setTotalCartItems] = useState(Cart[0].totalItems)
   //let displayPopupFunction = displayPopupComponent.bind(this);
+
   const displayAddPopupHandler = (type) => {
       if (type === 1) {
           setAddItem(true);
@@ -43,7 +48,8 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Header loginPopUpDisplayingState_setter={setValue1}
+        <Header 
+                loginPopUpDisplayingState_setter={setValue1}
                 registerPopupDisplayingState_setter={setRegisterPress}
                 paymentPopUp_setter={displayPopUp}
         />
@@ -68,7 +74,7 @@ function App() {
               <CartView/>
             </Route>
             <Route path="/">
-              <HomePage/>
+              <HomePage />
             </Route>
           </Switch>
         <FooterComponent />

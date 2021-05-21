@@ -4,11 +4,12 @@ import useStyles from './ProductStyles';
 
 import { Link } from 'react-router-dom';
 
-import { AddShoppingCart } from '@material-ui/icons'
-const Product = ({ product, onAddToCart, setItemViewPID }) => {
+import { AddShoppingCart, PinDropSharp } from '@material-ui/icons'
+const Product = ({ product, onAddToCart}) => {
 
     const styles = useStyles();
-    const handlerAddtoCart = () => onAddToCart(product.id)
+    
+
     return (
         <Card className={styles.root} >
             <Link to={"/item/" + product._id}>
@@ -25,7 +26,7 @@ const Product = ({ product, onAddToCart, setItemViewPID }) => {
             </CardContent>
 
             <CardActions disableSpacing className={styles.cardActions}>
-                <IconButton aria-label="Add to cart" onClick={handlerAddtoCart}>
+                <IconButton aria-label="Add to cart" onClick={()=> onAddToCart(product._id)}>
                     <AddShoppingCart />
                 </IconButton>
             </CardActions>

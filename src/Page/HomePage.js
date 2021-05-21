@@ -4,7 +4,7 @@ const HomePage = (props) =>{
 
     return (
         <div style={{ marginBottom: "50px"}}> 
-            <Products/>
+            <Products totalCartItems={props.totalCartItems} displayTotalCartItems={props.displayTotalCartItems}/>
         </div>
     );
 }
