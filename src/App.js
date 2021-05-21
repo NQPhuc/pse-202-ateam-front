@@ -3,8 +3,7 @@ import React, { useState, useEffect } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 
 import Header from './Component/Header.js';
@@ -14,8 +13,6 @@ import HomePage from './Page/HomePage.js';
 import Login from './Component/Login';
 import Register from './Component/Register';
 import AdminPage from './Page/AdminPage.js';
-import reactDom from 'react-dom';
-import AddItem from './Component/AddItem.js';
 import ItemView from './Page/itemsView.js';
 import CartView from './Page/CartView.js';
 import PaymentPopup from "./Component/Payment/Payment";
@@ -31,6 +28,7 @@ function App() {
   const [isRegisterPress, setRegisterPress] = useState(false);
   const [addItem, setAddItem] = useState(false);
   const [seen, displayPopUp] = useState(false);
+<<<<<<< HEAD
   const [totalCartItems, setTotalCartItems] = useState(Cart[0].totalItems)
   //let displayPopupFunction = displayPopupComponent.bind(this);
 
@@ -44,6 +42,8 @@ function App() {
           setAddItem(false);
       }
   }
+=======
+>>>>>>> main
 
   return (
     <div className="App">
@@ -67,8 +67,9 @@ function App() {
             <Route exact path="/item/:pid" render={(props) => <ItemView {...props}/>}>
             </Route>
             <Route path="/admin">
-              <AdminPage displayAddPopup={displayAddPopupHandler}/>
-              <AddItem displaying={addItem} undisplayAddPopup={undisplayAddPopupHandler}/>
+              {/* <AdminPage displayAddPopup={displayAddPopupHandler}/>
+              <AddItem displaying={addItem} undisplayAddPopup={undisplayAddPopupHandler}/> */}
+              <AdminPage addItemPopUpDisplayingState_setter={setAddItem}/>
             </Route>
             <Route path="/cart">
               <CartView/>
