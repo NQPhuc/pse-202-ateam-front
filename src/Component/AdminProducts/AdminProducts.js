@@ -1,7 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 import AdminProduct from './AdminProduct.js'
 import { Grid } from '@material-ui/core'
-import data from '../../testData/data.js';
 
 import * as http from '../../services'; //import these to call API
 

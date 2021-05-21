@@ -6,7 +6,6 @@ export default class AddItem extends Component {
 
     constructor(props) {
         super(props);
-        //this.state = {displaying: false};
     }
 
     render() {

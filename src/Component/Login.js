@@ -16,6 +16,7 @@ export default class LoginPopup extends Component {
             (res) => {
                 if(res){
                     window.location.href = '/'; //this look like a hack
+                    console.log(res);
                     this.props.undisplayLoginPopup(1)
                 }
                 else{
