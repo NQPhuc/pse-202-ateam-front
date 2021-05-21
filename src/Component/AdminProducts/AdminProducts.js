@@ -15,10 +15,11 @@ export default class AdminProducts extends React.Component {
         http.ProductService.getAllProduct().then((value) => {
             if (value) {
                 console.log(value);
-                this.setState({products: value});
+                this.setState({ products: value });
             }
         })
     }
+    
     render() {
         return (
             <main>
