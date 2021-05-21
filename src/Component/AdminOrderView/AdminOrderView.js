@@ -25,7 +25,6 @@ export default class AdminOrderView extends Component {
                     {this.state.orders.map(order => (
                         <Grid item key={order._id} xs={8} lg={5}>
                             <AdminOrder order={order}/>
-                            <p>Not fetching Orders from database yet</p>
                         </Grid>
                     ))}
                 </Grid>
