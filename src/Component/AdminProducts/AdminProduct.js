@@ -1,6 +1,7 @@
 import React from 'react'
 import { Card, CardMedia, CardContent, CardActions, Typography, IconButton, Button } from '@material-ui/core';
 import { Delete } from '@material-ui/icons'
+import {Link} from 'react-router-dom';
 const AdminProduct = (props) => {
     const deleteItem = () => {
         alert("not implemented");
@@ -18,9 +19,9 @@ const AdminProduct = (props) => {
                         style={{ "paddingRight": "10px", "fontWeight": "lighter" }}>
                         {props.product._id}
                     </Typography>
-                    <a href={"/item/" + props.product._id} className="product-image">
+                    <Link to={"/item/" + props.product._id} className="product-image">
                         <img src={"../../img/" + props.product.image} width="150" height="150" />
-                    </a>
+                    </Link>
                     <div className="product-detail">
                         <Typography variant="h4">{props.product.Name}</Typography>
                         <Typography variant="body1">Color: {props.product.Color}</Typography>

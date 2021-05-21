@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { Card, CardMedia, CardContent, CardActions, Typography, IconButton, Button } from '@material-ui/core';
 import { Delete, ThreeSixtySharp } from '@material-ui/icons'
 import Counter from '../Counter.js';
@@ -28,34 +29,37 @@ class CartProduct extends React.Component {
     }
     render() {
         if (this.state.productInfo) {
+            const { productInfo } = this.state;
             return (
                 <Card>
-                    <CardMedia />
                     <CardContent>
                         <div className="product-block">
                             <div className="product-info">
-                                <Typography
-                                    variant="body1"
-                                    style={{ "paddingRight": "10px", "fontWeight": "lighter" }}>
-                                    Cart ID: {this.props.cart._id}
-                                </Typography>
+                                <Link to={"/item/" + productInfo._id} className="product-image">
+                                    <img src={"../../img/" + productInfo.image} width="150" height="150" />
+                                </Link>
                                 <div className="product-detail">
-                                    {/* <Typography variant="h4">Product ID: {this.props.cart.ProductId}</Typography> */}
-                                    <Typography variant="body1">{this.state.productInfo.Name}</Typography>
-                                    <Typography variant="body1">Quantity: {this.state.quantity}</Typography>
+                                    <Typography variant="h4">{productInfo.Name}</Typography>
+                                    <Typography variant="body1">Color: {productInfo.Color}</Typography>
+                                    <Typography variant="body1">Size: {productInfo.Size}</Typography>
+                                    <Typography variant="body1">Quantity: {this.props.cart.Quantity}</Typography>
                                 </div>
                             </div>
                         </div>
                     </CardContent>
                     <CardActions >
                         <IconButton onClick={() => this.deleteItem()}><Delete /></IconButton>
-                        <Counter quantity={this.state.quantity} />
+                        <Counter quantity={this.props.cart.Quantity} />
                     </CardActions>
                 </Card>
             );
         }
         else {
-            return (<p>no no no</p>);
+            return (
+                <div style={{ textAlign: "center" }}>
+                    <h1 style={{ fontSize: 50 }}>ERROR: PRODUCT NOT FOUND (MIGHT BE DELETED IDK)</h1>
+                </div>
+            );
         }
     }
 }
