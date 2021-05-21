@@ -28,8 +28,8 @@ function App() {
   const [isRegisterPress, setRegisterPress] = useState(false);
   const [addItem, setAddItem] = useState(false);
   const [seen, displayPopUp] = useState(false);
-<<<<<<< HEAD
-  const [totalCartItems, setTotalCartItems] = useState(Cart[0].totalItems)
+
+
   //let displayPopupFunction = displayPopupComponent.bind(this);
 
   const displayAddPopupHandler = (type) => {
@@ -42,8 +42,7 @@ function App() {
           setAddItem(false);
       }
   }
-=======
->>>>>>> main
+
 
   return (
     <div className="App">
