@@ -20,5 +20,29 @@ export default class UserService{
         })).data;
     }
 
+    /**
+     * @returns an object {Name, Role, CartContent} of the user with sessionId in cookie
+     * This function calls the same api as AuthenticateService.getNameAndRoleFromSession, I just add more here to improve visibility.
+     */
+     static async getUserCartContent(){
+        return (await axiosWithCookies.get('/auth')).data;
+    }
 
+    /**
+     * this add a new product to userCart, or increase its quantity by 1 if its already in there
+     * @param {*} productId
+     * @returns "OK" or "Failed" or "Invalid session"
+     */
+    static async addSingleItemToCart(productId){
+        return (await axiosWithCookies.post('/user/cart', {pid: productId})).data;
+    }
+
+    /**
+     * This update the whole user CartContent value to the parameter 'cart'
+     * @param {*} cart - type: CartContent{[ProductId: string, Quantity: number]} //check database or BE core folder to understand
+     * @returns "OK" or "Failed" or "Invalid session" 
+     */
+    static async editCart(cart){
+        return (await axiosWithCookies.put('/user/cart', {cartContent: cart})).data;
+    }
 }
