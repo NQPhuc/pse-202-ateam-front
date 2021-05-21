@@ -38,6 +38,7 @@ export default class Header extends Component {
     requestLogout = () => {
         http.AuthenticateService.logout().then((value) => {
             console.log(value);
+            window.location.href = '/'; //this look like a hack
             this.setState({ userName: "", userRole: "" });
         })
     }
@@ -53,8 +54,8 @@ export default class Header extends Component {
         ])
         const adminAddition = (
             <li className="nav__item">
-                <Link to="/admin">
-                    <HeaderButtons>Manage Product</HeaderButtons>
+                <Link to="/admin/edit">
+                    <HeaderButtons>Manage</HeaderButtons>
                 </Link>
             </li>
         );
