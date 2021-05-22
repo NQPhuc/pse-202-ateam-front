@@ -32,13 +32,13 @@ export default class Products extends React.Component {
  
     
     onAddToCart = (productID) => {
-        http.UserService.getUserCartContent(productID).then((value)=>{
+        http.UserService.addSingleItemToCart(productID).then((value)=>{
             if(value){
-                console.log("Successful");
+                console.log(value);
             }
         })
         
-        console.log(productID)
+        console.log(productID);
         console.log(this.state.cart);
         
     }
