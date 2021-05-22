@@ -54,9 +54,13 @@ export default class UserService{
      * "Failed": if failed;
      * "Invalid session": if session expired;
      * "No product with such pid exist": if productId is wrong;
-     * "Quantity must not be negative": if quantity of product in cart is < 0;
+     * "Quantity must be greater than zero": if quantity of product in cart is < 1;
      */
     static async reduceOneItemFromCart(productId){
         return (await axiosWithCookies.put('/user/cart/quantity/one', {pid: productId})).data;
+    }
+
+    static async removeProductFromCart(productId){
+        return (await axiosWithCookies.delete('/user/cart/product', { params: {pid: productId} })).data;
     }
 }
