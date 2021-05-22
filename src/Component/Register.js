@@ -59,7 +59,7 @@ export default class RegisterPopup extends Component {
                     <input type="password" name="password" value={this.state.inputPassword} onChange={(event) => { this.setState({ inputPassword: event.target.value }) }}/>
                     <label>Confirm Password</label>
                     <input type="password"/>
-                    <button className={styles.btn} onClick={() => this.register(this.state.inputUserName, this.state.inputPassword,this.state.inputFirstName, this.state.inputLastName,this.state.inputEmail )}>Register</button>
+                    <button className={styles.btn} onClick={() => this.register(this.state.inputUserName, this.state.inputPassword,this.state.inputFirstName, this.state.inputLastName,this.state.inputEmail,this.state.inputPhone )}>Register</button>
                     </div>
                 </div>
             );

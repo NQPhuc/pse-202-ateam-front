@@ -58,7 +58,7 @@ export default class Header extends Component {
         ])
         const adminAddition = (
             <li className="nav__item">
-                <Link to="/admin/edit">
+                <Link to="/admin/edit" style={{ textDecoration: 'none' }}>
                     <HeaderButtons>Manage</HeaderButtons>
                 </Link>
             </li>
