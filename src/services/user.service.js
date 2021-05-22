@@ -2,12 +2,12 @@ import {axiosDefault, axiosWithCookies} from './axiosInstances';
 
 export default class UserService{
     /**
-     * @param {*} usernameValue 
-     * @param {*} passwordValue 
-     * @param {*} firstname 
-     * @param {*} lastname 
-     * @param {*} email 
-     * @param {*} phone 
+     * @param {String} usernameValue 
+     * @param {String} passwordValue 
+     * @param {String} firstname 
+     * @param {String} lastname 
+     * @param {String} email 
+     * @param {String} phone 
      * @returns 
      *  if success create new user: "OK"
      *  if fail: "Failed"
@@ -30,8 +30,8 @@ export default class UserService{
 
     /**
      * this add a new product to userCart, or increase its quantity by 1 if its already in there
-     * @param {*} productId
-     * @returns "OK" or "Failed" or "Invalid session"
+     * @param {String} productId
+     * @returns "OK" or "Failed" or "Invalid session" or "No product with such pid exist"
      */
     static async addSingleItemToCart(productId){
         return (await axiosWithCookies.post('/user/cart', {pid: productId})).data;
@@ -39,10 +39,24 @@ export default class UserService{
 
     /**
      * This update the whole user CartContent value to the parameter 'cart'
-     * @param {*} cart - type: CartContent{[ProductId: string, Quantity: number]} //check database or BE core folder to understand
-     * @returns "OK" or "Failed" or "Invalid session" 
+     * @param {[ProductId: string, Quantity: number]} cart -check database or BE model/core folder to understand
+     * @returns "OK" or "Failed" or "Invalid session"
      */
     static async editCart(cart){
         return (await axiosWithCookies.put('/user/cart', {cartContent: cart})).data;
+    }
+
+    /**
+     * This reduce the quantity of the corresponding product in cart by 1
+     * @param {String} productId 
+     * @returns 
+     * "OK": if ok;
+     * "Failed": if failed;
+     * "Invalid session": if session expired;
+     * "No product with such pid exist": if productId is wrong;
+     * "Quantity must not be negative": if quantity of product in cart is < 0;
+     */
+    static async reduceOneItemFromCart(productId){
+        return (await axiosWithCookies.put('/user/cart/quantity/one', {pid: productId})).data;
     }
 }

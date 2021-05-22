@@ -44,4 +44,23 @@ export default class OrderService{
             ContactNumber: ContactNumber
         })).data;
     }
+
+    /**
+     * This set the corresponding order payment's status to true and its info to the paymentInfo if successed 
+     * @param {*} orderId 
+     * @param {*} paymentInfo 
+     * @returns 
+     * "OK": if success;
+     * "Payment rejected": if payment rejected (for testing, there's 20% chance that a rejection will happen);
+     * "Failed": if there's an database save error
+     * "This order is not yours": for testing only;
+     * "No order with such id exist": self-explantory;
+     * "Invalid session": if session expired:
+     */
+    static async setOrderPaymentInfo(orderId, paymentInfo){
+        return (await axiosWithCookies.put('order/user/payment', {
+            orderId: orderId,
+            paymentInfo: paymentInfo
+        })).data;
+    }
 }

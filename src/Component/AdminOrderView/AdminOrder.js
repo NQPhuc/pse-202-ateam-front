@@ -13,7 +13,7 @@ const AdminProduct = (props) => {
                         style={{ "paddingRight": "10px", "fontWeight": "lighter" }}>
                         {props.order._id}
                     </Typography>
-                    <img src="https://unsplash.com/s/photos/random" width="100" height="100" />
+                    {/* <img src="https://unsplash.com/s/photos/random" width="100" height="100" /> */}
                     <div className="product-detail">
                         <div className="delivery-info" style={{ float: 'left' }}>
                             <Typography variant="body1">Order Date: {props.order.OrderDate}</Typography>
