@@ -8,7 +8,7 @@ import { AddShoppingCart, PinDropSharp } from '@material-ui/icons'
 const Product = ({ product, onAddToCart}) => {
 
     const styles = useStyles();
-    
+
 
     return (
         <Card className={styles.root} >

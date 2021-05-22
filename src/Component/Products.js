@@ -11,7 +11,7 @@ export default class Products extends React.Component {
         super(props);
         this.state = {
             products: [],
-            total: this.props.totalCartItems,
+            cart: [],
         }
     }
 
@@ -21,13 +21,26 @@ export default class Products extends React.Component {
                 // console.log(value);
                 this.setState({products: value });
             }
+            http.AuthenticateService.getNameAndRoleFromSession().then((value) => {
+                if (value) {
+                    this.setState({cart: value.CartContent});
+                }
+            });
         })
     }
+   
+ 
     
     onAddToCart = (productID) => {
-        console.log(++this.state.total)
-        this.props.displayTotalCartItems(this.state.total)
+        http.UserService.getUserCartContent(productID).then((value)=>{
+            if(value){
+                console.log("Successful");
+            }
+        })
+        
         console.log(productID)
+        console.log(this.state.cart);
+        
     }
 
     render() {
