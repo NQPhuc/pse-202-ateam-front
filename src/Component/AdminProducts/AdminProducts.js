@@ -9,7 +9,7 @@ export default class AdminProducts extends React.Component {
         super(props);
         this.state = {
             products: [],
-            editItem: 'false',
+            editItem: false,
             currentEditItem: ''
         }
     }

@@ -3,8 +3,6 @@ import { Card, CardMedia, CardContent, CardActions, Typography, IconButton, Butt
 import { Delete } from '@material-ui/icons'
 import { Link } from 'react-router-dom';
 
-
-
 class AdminProduct extends React.Component {
     constructor(props) {
         super(props);

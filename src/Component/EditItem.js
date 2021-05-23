@@ -10,7 +10,7 @@ class SwitchLabels extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            checked: 'false'
+            checked: false
         };
         this.saleEnable = this.saleEnable.bind(this);
     }
@@ -51,10 +51,6 @@ export default class EditItem extends React.Component {
             inputPrice: '',
             inputColor: '',
             inputImage: '',
-            inputStartTime: new Date(),
-            inputEndTime: new Date(),
-            inputSalePercent: '',
-            saleSection: 'false'
         }
         this.saleToggle = this.saleToggle.bind(this);
     }
@@ -68,7 +64,6 @@ export default class EditItem extends React.Component {
         http.ProductService.editProduct(id, name, price, quantity, color, size, image).then((value) => {
             console.log(value);
             if (value) {
-                alert("UPDATE SUCCESS");
                 console.log("UPDATE SUCCESS");
                 this.props.editPopUpDisplayingState_setter(false);
                 window.location.reload();
@@ -108,45 +103,6 @@ export default class EditItem extends React.Component {
                         <label>Image</label>
                         <input type="text" name="color" value={this.state.inputImage} onChange={(e) => this.setState({ inputImage: e.target.value })} />
                         <SwitchLabels saleToggle={this.saleToggle} />
-                        {this.state.saleSection ?
-                            (
-                                <div style={{ display: 'inline-flex', flexDirection: 'column' }}>
-                                    <label>Percent</label>
-                                    <input
-                                        type="number"
-                                        name="percent"
-                                        value={this.state.inputSalePercent}
-                                        style={{ width: "30%" }}
-                                        onChange={(e) => {
-                                            if (e.target.value <= 100 && e.target.value >= 0) {
-                                                this.setState({ inputSalePercent: e.target.value })
-                                            }
-                                        }}
-                                    />
-                                    <label>Sale Date</label>
-                                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                                        <DateTimePicker
-                                            inputVariant="outlined"
-                                            value={this.state.inputStartTime}
-                                            maxDate={this.state.inputEndTime}
-                                            onChange={(e) => {
-                                                this.setState({ inputStartTime: e })
-                                            }}
-                                        />
-                                        <DateTimePicker
-                                            inputVariant="outlined"
-                                            value={this.state.inputEndTime}
-                                            minDate={this.state.inputStartTime}
-                                            onChange={(e) => {
-                                                this.setState({ inputEndTime: e })
-                                            }}
-                                        />
-                                    </MuiPickersUtilsProvider>
-                                </div>
-                            )
-                            :
-                            ""
-                        }
                         <button
                             className={styles.btn}
                             onClick={() => {
