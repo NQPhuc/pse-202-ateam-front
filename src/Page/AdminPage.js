@@ -3,7 +3,6 @@ import './AdminPage.css';
 import { Link } from "react-router-dom";
 import { Button } from '@material-ui/core';
 import AdminProducts from '../Component/AdminProducts/AdminProducts.js';
-import AddItem from '../Component/AddItem.js';
 import AdminOrderView from '../Component/AdminOrderView/AdminOrderView.js';
 
 import * as http from '../services'; //import these to call API

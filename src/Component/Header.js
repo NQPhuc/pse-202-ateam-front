@@ -17,7 +17,7 @@ export default class Header extends Component {
             sid: '',
             userName: '',
             userRole: '',
-            cart:[],
+            cart: [],
         };
     }
 
@@ -27,7 +27,7 @@ export default class Header extends Component {
             http.AuthenticateService.getNameAndRoleFromSession().then((value) => {
                 if (value) {
                     //console.log(value);
-                    this.setState({ userName: value.Name, userRole: value.Role, cart: value.CartContent});
+                    this.setState({ userName: value.Name, userRole: value.Role, cart: value.CartContent });
                 }
                 else {
                     this.setState({ userName: "", userRole: "", cart: [] });
@@ -71,10 +71,21 @@ export default class Header extends Component {
             </li>
         ]);
 
+        const userOrder = ([
+            <li className="nav__item">
+                <Link to="/order">
+                    <HeaderButtons>Order</HeaderButtons>
+                </Link>
+            </li>
+        ]);
+
         var middleSection = guestList;
-        if(this.state.userName){
+        if (this.state.userName) {
             middleSection = userList;
-            if(this.state.userRole === "Admin") middleSection.push(adminAddition);
+            if (this.state.userRole === "Admin") {
+                middleSection.push(adminAddition);
+            }
+            middleSection.push(userOrder);
         }
 
         return (
@@ -102,12 +113,12 @@ export default class Header extends Component {
                     </div>
                     <ul className="nav__links">
                         <Link to='/cart' style={{ textDecoration: 'none' }}>
-                        <li className="nav__item">
-                            <HeaderCartButton total={this.state.cart.length}/>
-                        </li>
+                            <li className="nav__item">
+                                <HeaderCartButton total={this.state.cart.length} />
+                            </li>
                         </Link>
                         {middleSection}
-                        
+
                     </ul>
                 </nav>
             </header>

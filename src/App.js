@@ -17,7 +17,7 @@ import ItemView from './Page/itemsView.js';
 import CartView from './Page/CartView.js';
 import PaymentPopup from "./Component/Payment/Payment";
 import AddItem from './Component/AddItem';
-
+import OrderView from './Component/OrderView/OrderView'
 //const backendAddress = "http://localhost:3030";
 
 function App() {
@@ -58,6 +58,9 @@ function App() {
           </Route>
           <Route path="/cart">
             <CartView />
+          </Route>
+          <Route path="/order">
+            <OrderView />
           </Route>
           <Route path="/">
             <HomePage />
