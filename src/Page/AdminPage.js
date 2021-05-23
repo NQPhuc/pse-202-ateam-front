@@ -14,8 +14,8 @@ export default class AdminPage extends React.Component {
         this.state = {
             userName: '',
             userRole: '',
-            editPage: 'true',
-            addItem: 'false',
+            editPage: true,
+            addItem: false,
         }
     }
     componentDidMount() {
@@ -57,12 +57,12 @@ export default class AdminPage extends React.Component {
                             </Link>
                         </div>
                     </div>
-                    {this.state.editPage === 'true' ? (
+                    {this.state.editPage ? (
                         <div>
                             <AdminProducts />
                             <div className="under-body-admin" style={{ marginTop: "20px" }}>
                                 <Button
-                                    onClick={() => console.log(this.props)}
+                                    onClick={() => this.props.addPopUpDisplayingState_setter(true)}
                                 >
                                     Add New Item
                                 </Button>

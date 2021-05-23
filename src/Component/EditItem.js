@@ -1,44 +1,8 @@
 import React from 'react';
 import nikeLogo from '../img/nike_logo.png';
-import DateFnsUtils from '@date-io/date-fns';
 import styles from './EditItem.module.css'
-import { Switch, FormControlLabel } from '@material-ui/core';
-import { DateTimePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 
 import * as http from '../services';
-class SwitchLabels extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            checked: false
-        };
-        this.saleEnable = this.saleEnable.bind(this);
-    }
-
-    saleEnable = event => {
-        this.setState({ checked: event.target.checked });
-        const { saleToggle } = this.props;
-        const { checked } = this.state;
-        saleToggle(checked);
-    };
-
-    render() {
-        return (
-            <FormControlLabel
-                control={
-                    <Switch
-                        checked={this.state.checked}
-                        onChange={this.saleEnable}
-                        value={this.state.checked}
-                        color="primary"
-                    />
-                }
-                labelPlacement="end"
-                label={<label>On Sale?</label>}
-            />
-        );
-    }
-}
 
 export default class EditItem extends React.Component {
 
@@ -52,12 +16,6 @@ export default class EditItem extends React.Component {
             inputColor: '',
             inputImage: '',
         }
-        this.saleToggle = this.saleToggle.bind(this);
-    }
-
-    saleToggle = e => {
-        this.setState({ saleSection: e });
-        console.log("On switch: ", e);
     }
 
     editProduct = (id, name, price, quantity, color, size, image) => {
@@ -102,13 +60,12 @@ export default class EditItem extends React.Component {
                         <input type="text" name="color" value={this.state.inputColor} onChange={(e) => this.setState({ inputColor: e.target.value })} />
                         <label>Image</label>
                         <input type="text" name="color" value={this.state.inputImage} onChange={(e) => this.setState({ inputImage: e.target.value })} />
-                        <SwitchLabels saleToggle={this.saleToggle} />
                         <button
                             className={styles.btn}
                             onClick={() => {
                                 this.editProduct(
                                     this.props.editId, this.state.inputProductName, this.state.inputPrice,
-                                    this.state.inputQuantity, this.state.inputColor, this.state.inputPrice,
+                                    this.state.inputQuantity, this.state.inputColor, this.state.inputSize,
                                     this.state.inputImage)
                             }
                             }

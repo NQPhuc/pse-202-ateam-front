@@ -16,6 +16,7 @@ import AdminPage from './Page/AdminPage.js';
 import ItemView from './Page/itemsView.js';
 import CartView from './Page/CartView.js';
 import PaymentPopup from "./Component/Payment/Payment";
+import AddItem from './Component/AddItem';
 
 //const backendAddress = "http://localhost:3030";
 
@@ -52,9 +53,8 @@ function App() {
           <Route exact path="/item/:pid" render={(props) => <ItemView {...props} />}>
           </Route>
           <Route path="/admin">
-            {/* <AdminPage displayAddPopup={displayAddPopupHandler}/>
-              <AddItem displaying={addItem} undisplayAddPopup={undisplayAddPopupHandler}/> */}
-            <AdminPage/>
+            <AdminPage addPopUpDisplayingState_setter={setAddItem} />
+            <AddItem displaying={addItem} addPopUpDisplayingState_setter={setAddItem} />
           </Route>
           <Route path="/cart">
             <CartView />
