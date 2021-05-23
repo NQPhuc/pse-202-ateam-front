@@ -28,51 +28,41 @@ function App() {
 
   //let displayPopupFunction = displayPopupComponent.bind(this);
 
-  const displayAddPopupHandler = (type) => {
-      if (type === 1) {
-          setAddItem(true);
-      }
-  }
-  const undisplayAddPopupHandler = (type) => {
-      if (type === 1) {
-          setAddItem(false);
-      }
-  }
 
 
   return (
     <div className="App">
       <Router>
-        <Header 
-                loginPopUpDisplayingState_setter={setValue1}
-                registerPopupDisplayingState_setter={setRegisterPress}
-                paymentPopUp_setter={displayPopUp}
+        <Header
+          loginPopUpDisplayingState_setter={setValue1}
+          registerPopupDisplayingState_setter={setRegisterPress}
+          paymentPopUp_setter={displayPopUp}
         />
         <Login displaying={value1} loginPopUpDisplayingState_setter={setValue1} />
-        <Register displaying={isRegisterPress} registerPopupDisplayingState_setter={setRegisterPress}/>
-        <PaymentPopup displaying={seen} toggle={displayPopUp}/>
-          <Switch>
-            <Route path="/about">
-              <p>
-                <div>
-                  <p>Nothing</p>
-                </div>
-              </p>
-            </Route>
-            <Route exact path="/item/:pid" render={(props) => <ItemView {...props}/>}>
-            </Route>
-            <Route path="/admin">
-              {/* <AdminPage displayAddPopup={displayAddPopupHandler}/>
+        <Register displaying={isRegisterPress} registerPopupDisplayingState_setter={setRegisterPress} />
+        <PaymentPopup displaying={seen} toggle={displayPopUp} />
+        <Switch>
+          <Route path="/about">
+            <p>
+              <div>
+                <p>Nothing</p>
+              </div>
+            </p>
+          </Route>
+          <Route exact path="/item/:pid" render={(props) => <ItemView {...props} />}>
+          </Route>
+          <Route path="/admin">
+            {/* <AdminPage displayAddPopup={displayAddPopupHandler}/>
               <AddItem displaying={addItem} undisplayAddPopup={undisplayAddPopupHandler}/> */}
-              <AdminPage addItemPopUpDisplayingState_setter={setAddItem}/>
-            </Route>
-            <Route path="/cart">
-              <CartView/>
-            </Route>
-            <Route path="/">
-              <HomePage />
-            </Route>
-          </Switch>
+            <AdminPage/>
+          </Route>
+          <Route path="/cart">
+            <CartView />
+          </Route>
+          <Route path="/">
+            <HomePage />
+          </Route>
+        </Switch>
         <FooterComponent />
       </Router>
     </div>

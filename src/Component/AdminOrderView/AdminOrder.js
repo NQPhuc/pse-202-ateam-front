@@ -1,8 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Card, CardMedia, CardContent, CardActions, Typography, IconButton, Button } from '@material-ui/core';
+import { Card, CardMedia, CardContent, Typography, Button } from '@material-ui/core';
 import { Delete } from '@material-ui/icons'
-const AdminProduct = (props) => {
+import AdminOrderView from './AdminOrderView';
+const AdminOrder = (props) => {
     return (<Card>
         <CardMedia />
         <CardContent>
@@ -13,21 +14,17 @@ const AdminProduct = (props) => {
                         style={{ "paddingRight": "10px", "fontWeight": "lighter" }}>
                         {props.order._id}
                     </Typography>
-                    {/* <img src="https://unsplash.com/s/photos/random" width="100" height="100" /> */}
                     <div className="product-detail">
                         <div className="delivery-info" style={{ float: 'left' }}>
                             <Typography variant="body1">Order Date: {props.order.OrderDate}</Typography>
-                            <Typography variant="body1">Order Status: {props.order.OrderStatus}</Typography>
-                            <Typography variant="body1">Recipent Name: {props.order.RecipientName}</Typography>
-                            <Typography variant="body1">Address: {props.order.Address}</Typography>
+                            <Typography variant="body1">Delivery Address: {props.order.Address}</Typography>
+                            <Typography variant="body1">Delivery Status: {props.order.OrderStatus}</Typography>
                         </div>
                         <div className="order-info" style={{ float: 'right' }}>
-                            <Typography variant="h4">{props.order.Name}</Typography>
-                            <Typography variant="body1">Order Date: {props.order.OrderDate}</Typography>
-                            <Typography variant="body1">Order Status: {props.order.OrderStatus}</Typography>
+                            <Typography variant="body1">Recipent Name: {props.order.RecipientName}</Typography>
                             <Typography variant="h6" style={{ "font-weight": "bold" }}></Typography>
                             <Typography variant="body1">Contact Number: {props.order.ContactNumber}</Typography>
-                            <Link to={"/history-cart/" + props.order._id}>
+                            <Link to={"/admin/order/" + props.order._id}>
                                 <Button>View order detail</Button>
                             </Link>
                         </div>
@@ -37,7 +34,7 @@ const AdminProduct = (props) => {
         </CardContent>
     </Card >);
 }
-export default AdminProduct;
+export default AdminOrder;
 
 /*
 {"_id":{"$oid":"60a1b59843103b61ba615cd7"},

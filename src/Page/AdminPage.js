@@ -5,6 +5,7 @@ import { Button } from '@material-ui/core';
 import AdminProducts from '../Component/AdminProducts/AdminProducts.js';
 import AddItem from '../Component/AddItem.js';
 import AdminOrderView from '../Component/AdminOrderView/AdminOrderView.js';
+
 import * as http from '../services'; //import these to call API
 
 export default class AdminPage extends React.Component {
@@ -14,7 +15,7 @@ export default class AdminPage extends React.Component {
             userName: '',
             userRole: '',
             editPage: 'true',
-            addItem: 'false'
+            addItem: 'false',
         }
     }
     componentDidMount() {
@@ -60,8 +61,9 @@ export default class AdminPage extends React.Component {
                         <div>
                             <AdminProducts />
                             <div className="under-body-admin" style={{ marginTop: "20px" }}>
-                                {/* <Button onClick={() => this.props.handleAddItem()}> */}
-                                <Button onClick={() => console.log(this.props)}>
+                                <Button
+                                    onClick={() => console.log(this.props)}
+                                >
                                     Add New Item
                                 </Button>
                             </div>
