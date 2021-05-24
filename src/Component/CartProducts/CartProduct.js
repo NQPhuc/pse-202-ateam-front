@@ -18,8 +18,17 @@ class CartProduct extends React.Component {
     handleChange = (e) => {
         this.setState({ quantity: e });
     }
-    deleteItem() {
-        alert("not implemented")
+    deleteItem = (productId) => {
+        http.UserService.removeProductFromCart(productId).then((value) => {
+            if (value) {
+                console.log("UPDATED");
+                window.location.reload();
+            }
+            else {
+                console.log("NOT UPDATED");
+                alert("PRODUCT NOT FOUND, BRUH");
+            }
+        })
     }
     componentDidMount() {
         http.ProductService.getProduct(this.props.cart.ProductId).then((value) => {
@@ -53,8 +62,8 @@ class CartProduct extends React.Component {
                         </div>
                     </CardContent>
                     <CardActions >
-                        <IconButton onClick={() => this.deleteItem()}><Delete /></IconButton>
-                        <Counter quantity={this.state.quantity} handleChange={this.handleChange} />
+                        <IconButton onClick={() => this.deleteItem(productCartInfo._id)}><Delete /></IconButton>
+                        <Counter quantity={this.state.quantity} handleChange={this.handleChange} id={productCartInfo._id}/>
                     </CardActions>
                 </Card>
             );
