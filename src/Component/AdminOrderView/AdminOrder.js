@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Card, CardMedia, CardContent, Typography, Button } from '@material-ui/core';
 import { Delete } from '@material-ui/icons'
-import AdminOrderView from './AdminOrderView';
 const AdminOrder = (props) => {
     return (<Card>
         <CardMedia />

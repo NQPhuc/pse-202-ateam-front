@@ -85,7 +85,9 @@ export default class Header extends Component {
             if (this.state.userRole === "Admin") {
                 middleSection.push(adminAddition);
             }
-            middleSection.push(userOrder);
+            else {
+                middleSection.push(userOrder);
+            }
         }
 
         return (

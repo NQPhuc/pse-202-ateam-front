@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Card, CardMedia, CardContent, CardActions, Typography, IconButton, Button } from '@material-ui/core';
-import { Delete, ThreeSixtySharp } from '@material-ui/icons'
+import { Card, CardContent, CardActions, Typography, IconButton } from '@material-ui/core';
+import { Delete } from '@material-ui/icons'
 import Counter from '../Counter.js';
 
 import * as http from '../../services';
@@ -11,8 +11,12 @@ class CartProduct extends React.Component {
         super(props);
         this.state = {
             quantity: this.props.cart.Quantity,
-            productInfo: null
+            productCartInfo: null
         }
+        this.handleChange = this.handleChange.bind(this);
+    }
+    handleChange = (e) => {
+        this.setState({ quantity: e });
     }
     deleteItem() {
         alert("not implemented")
@@ -20,36 +24,37 @@ class CartProduct extends React.Component {
     componentDidMount() {
         http.ProductService.getProduct(this.props.cart.ProductId).then((value) => {
             if (value) {
-                this.setState({ productInfo: value });
+                this.setState({ productCartInfo: value });
             }
             else {
-                this.setState({ productInfo: null });
+                this.setState({ productCartInfo: null });
             }
         })
     }
     render() {
-        if (this.state.productInfo) {
-            const { productInfo } = this.state;
+        if (this.state.productCartInfo) {
+            const { productCartInfo } = this.state;
             return (
                 <Card>
                     <CardContent>
                         <div className="product-block">
                             <div className="product-info">
-                                <Link to={"/item/" + productInfo._id} className="product-image">
-                                    <img src={"../../img/" + productInfo.image} width="150" height="150" />
+                                <Link to={"/item/" + productCartInfo._id} className="product-image">
+                                    <img src={"../../img/" + productCartInfo.image} width="150" height="150" />
                                 </Link>
                                 <div className="product-detail">
-                                    <Typography variant="h4">{productInfo.Name}</Typography>
-                                    <Typography variant="body1">Color: {productInfo.Color}</Typography>
-                                    <Typography variant="body1">Size: {productInfo.Size}</Typography>
-                                    <Typography variant="body1">Quantity: {this.props.cart.Quantity}</Typography>
+                                    <Typography variant="h4">{productCartInfo.Name}</Typography>
+                                    <Typography variant="body1">Color: {productCartInfo.Color}</Typography>
+                                    <Typography variant="body1">Size: {productCartInfo.Size}</Typography>
+                                    <Typography variant="body1">Quantity: {this.state.quantity}</Typography>
+                                    <Typography variant="body1">Price: {productCartInfo.Price * this.state.quantity}</Typography>
                                 </div>
                             </div>
                         </div>
                     </CardContent>
                     <CardActions >
                         <IconButton onClick={() => this.deleteItem()}><Delete /></IconButton>
-                        <Counter quantity={this.props.cart.Quantity} />
+                        <Counter quantity={this.state.quantity} handleChange={this.handleChange} />
                     </CardActions>
                 </Card>
             );

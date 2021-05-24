@@ -13,7 +13,7 @@ export default class AdminPage extends React.Component {
         this.state = {
             userName: '',
             userRole: '',
-            editPage: true,
+            editPage: 'true',
             addItem: false,
         }
     }
@@ -56,7 +56,7 @@ export default class AdminPage extends React.Component {
                             </Link>
                         </div>
                     </div>
-                    {this.state.editPage ? (
+                    {this.state.editPage === 'true' ? (
                         <div>
                             <AdminProducts />
                             <div className="under-body-admin" style={{ marginTop: "20px" }}>

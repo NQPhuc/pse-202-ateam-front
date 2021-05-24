@@ -17,19 +17,17 @@ import ItemView from './Page/itemsView.js';
 import CartView from './Page/CartView.js';
 import PaymentPopup from "./Component/Payment/Payment";
 import AddItem from './Component/AddItem';
-import OrderView from './Component/OrderView/OrderView'
-//const backendAddress = "http://localhost:3030";
+import OrderView from './Component/OrderView/OrderView';
+import ConfirmCart from './Component/ConfirmCart';
 
 function App() {
   const [value1, setValue1] = useState(false);
   const [isRegisterPress, setRegisterPress] = useState(false);
   const [addItem, setAddItem] = useState(false);
   const [seen, displayPopUp] = useState(false);
-
+  const [confirmCart, setConfirmCart] = useState(false);
 
   //let displayPopupFunction = displayPopupComponent.bind(this);
-
-
 
   return (
     <div className="App">
@@ -57,7 +55,8 @@ function App() {
             <AddItem displaying={addItem} addPopUpDisplayingState_setter={setAddItem} />
           </Route>
           <Route path="/cart">
-            <CartView />
+            <CartView confirmCartPopUpDisplayingState_setter={setConfirmCart} />
+            <ConfirmCart displaying={confirmCart} confirmCartPopUpDisplayingState_setter={setConfirmCart}/>
           </Route>
           <Route path="/order">
             <OrderView />

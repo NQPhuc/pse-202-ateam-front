@@ -9,7 +9,8 @@ export default class CartProducts extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            cart: []
+            cart: [],
+            totalPrice: 0
         }
     }
     componentDidMount() {
@@ -17,11 +18,9 @@ export default class CartProducts extends React.Component {
         if (sessionId) {
             http.UserService.getUserCartContent().then((value) => {
                 if (value) {
-                    console.log(value);
                     this.setState({ cart: value.CartContent });
                 }
                 else {
-                    console.log(value.CartContent);
                     this.setState({ cart: [] });
                 }
             })
@@ -35,9 +34,9 @@ export default class CartProducts extends React.Component {
             return (
                 <main>
                     <Grid container justify="center" spacing={4}>
-                        {this.state.cart.map(cart => (
-                            <Grid item key={cart._id} xs={8} lg={5}>
-                                <CartProduct cart={cart} />
+                        {this.state.cart.map(item => (
+                            <Grid item key={item._id} xs={8} lg={5}>
+                                <CartProduct cart={item} />
                             </Grid>
                         ))}
                     </Grid>
