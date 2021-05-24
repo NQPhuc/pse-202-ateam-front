@@ -68,4 +68,15 @@ export default class ProductService{
             color: color, size: size, image: image
         })).data;
     }
+
+    /**
+     * Disable a product, effectively 'delete' that product from user's view
+     * @param {*} productId 
+     * @returns "OK" or "Failed"
+     */
+    static async disableProduct(productId){
+        return (await axiosWithCookies.put('/product/disable', {
+            id: productId
+        })).data;
+    }
 }
