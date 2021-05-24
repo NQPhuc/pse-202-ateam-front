@@ -28,7 +28,9 @@ export default class OrderService{
                         Quantity: { type: Number }
                     }],
                     TotalPrice: {type: Number}
-                }; the ProductName field can be left blank, the server will automatically insert the right name for that product
+                }
+                ; the ProductName field can be left blank, the server will automatically insert the right name for that product
+                ; TotalPrice value is not important, because the server will re-calculate the total price of the order for security reason
      * @param {*} CustomerName - If logged in, this field can be left blank because it doesn't matter for registered customer.
      * @param {*} RecipientName
      * @param {*} Address 
