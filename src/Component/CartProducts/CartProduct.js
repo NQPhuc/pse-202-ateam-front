@@ -15,7 +15,7 @@ class CartProduct extends React.Component {
         }
         this.handleChange = this.handleChange.bind(this);
     }
-    handleChange = (e) => {
+    handleChange = (e, sign) => {
         this.setState({ quantity: e });
     }
     deleteItem = (productId) => {
@@ -56,14 +56,14 @@ class CartProduct extends React.Component {
                                     <Typography variant="body1">Color: {productCartInfo.Color}</Typography>
                                     <Typography variant="body1">Size: {productCartInfo.Size}</Typography>
                                     <Typography variant="body1">Quantity: {this.state.quantity}</Typography>
-                                    <Typography variant="body1">Price: {productCartInfo.Price * this.state.quantity}</Typography>
+                                    <Typography variant="body1" style={{ fontWeight: 'bold', fontSize: 15 }}>$ {productCartInfo.Price * this.state.quantity}</Typography>
                                 </div>
                             </div>
                         </div>
                     </CardContent>
                     <CardActions >
                         <IconButton onClick={() => this.deleteItem(productCartInfo._id)}><Delete /></IconButton>
-                        <Counter quantity={this.state.quantity} handleChange={this.handleChange} id={productCartInfo._id}/>
+                        <Counter quantity={this.state.quantity} handleChange={this.handleChange} id={productCartInfo._id} />
                     </CardActions>
                 </Card>
             );

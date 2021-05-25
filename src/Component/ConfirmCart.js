@@ -15,30 +15,38 @@ export default class ConfirmCart extends React.Component {
             inputRecipent: '',
             inputAddress: '',
             inputContact: '',
+            registered: false
         }
+    }
+
+    componentDidMount() {
+        http.AuthenticateService.getNameAndRoleFromSession().then((value) => {
+            if (value) {
+                this.setState({ registered: true });
+            }
+            else {
+                this.setState({ registered: false });
+            }
+        })
     }
 
     makeOrder = (customer, recipent, address, contact) => {
         const sessionId = document.cookie.replace(/(?:(?:^|.*;\s*)sessionId\s*\=\s*([^;]*).*$)|^.*$/, "$1");
         if (sessionId) {
-            console.log(sessionId);
             http.UserService.getUserCartContent().then((cart) => {
                 if (cart) {
-                    this.setState({ orderItem: cart.CartContent }, () => {
+                    this.setState({ orderItem: cart.CartContent, registered: true }, () => {
                         const orderContent = {
                             itemList: this.state.orderItem,
                             ItemPrice: 0
                         };
-                        console.log(this.state.orderContent);
                         http.OrderService.createNewOder(orderContent, customer, recipent, address, contact).then((value) => {
-                            console.log("fetched data: ", value);
                             if (value) {
                                 console.log("ORDER SUCCEEDED");
                                 this.props.confirmCartPopUpDisplayingState_setter(false);
                                 window.location.reload();
                             }
                             else {
-                                console.log("ORDER FAILED");
                                 this.props.confirmCartPopUpDisplayingState_setter(false);
                                 alert("ORDER FAILED");
                             }
@@ -46,16 +54,16 @@ export default class ConfirmCart extends React.Component {
                     })
                 }
                 else {
-                    alert("CAN'T FIND CART");
                     this.props.confirmCartPopUpDisplayingState_setter(false);
-                    this.setState({ orderItem: [] });
+                    this.setState({ orderItem: [], registered: true });
                 }
             })
         }
         else {
-            alert("NO SESSION FOUND");
+            alert("YOU ARE NOT LOGGED IN");
             this.props.confirmCartPopUpDisplayingState_setter(false);
-            this.setState({ orderItem: [] });
+            this.setState({ orderItem: [], registered: false });
+            window.location.href = '/';
         }
     }
 
@@ -72,8 +80,16 @@ export default class ConfirmCart extends React.Component {
                     />
                     <h2 className={styles.modal__header} >Ateam</h2>
                     <div className={styles.modal__form}>
-                        <label>Customer Name</label>
-                        <input type="text" name="customerName" value={this.state.inputCustomer} onChange={(e) => this.setState({ inputCustomer: e.target.value })} />
+                        {!this.state.registered ?
+                            <label>Customer Name</label>
+                            :
+                            ""
+                        }
+                        {!this.state.registered ?
+                            <input type="text" name="customerName" value={this.state.inputCustomer} onChange={(e) => this.setState({ inputCustomer: e.target.value })} />
+                            :
+                            ""
+                        }
                         <label>Recipent Name</label>
                         <input type="text" name="recipentName" value={this.state.inputRecipent} onChange={(e) => this.setState({ inputRecipent: e.target.value })} />
                         <label>Contact Number</label>
@@ -83,8 +99,6 @@ export default class ConfirmCart extends React.Component {
                         <button
                             className={styles.btn}
                             onClick={() => {
-                                console.log("CLICKED");
-                                console.log(this.state);
                                 this.makeOrder
                                     (
                                         this.state.inputCustomer, this.state.inputRecipent,

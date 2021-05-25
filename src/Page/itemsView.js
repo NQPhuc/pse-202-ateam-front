@@ -4,7 +4,7 @@ import './itemsView.css';
 import Colors from './Colors';
 import DetailsThumb from './DetailsThumb';
 
-import {useParams} from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import * as http from '../services'; //import these to call API
 
@@ -16,7 +16,7 @@ class ItemView extends React.Component {
   }
 
   state = {
-    product: null,    
+    product: null,
   };
 
   componentDidMount() {
@@ -33,6 +33,20 @@ class ItemView extends React.Component {
     //this.myRef.current.children[index].className = "active";
   }
 
+  addToCart() {
+    const pid = this.props.match.params.pid;
+    if (pid) {
+      http.UserService.addSingleItemToCart(pid).then((value) => {
+        if (value) {
+          console.log("PRODUCT ADDED TO CART");
+        }
+        else {
+          alert("FAILED TO ADD");
+        }
+      })
+    }
+  }
+
   myRef = React.createRef();
 
   handleTab = index => {
@@ -46,7 +60,7 @@ class ItemView extends React.Component {
 
   render() {
     const product = this.state.product;
-    if(product){
+    if (product) {
       return (
         <div className="app">
           <div className="details" key={product._id}>
@@ -62,13 +76,13 @@ class ItemView extends React.Component {
               <p>{product.Size}</p>
               <p>{product.Color}</p>
               {/* <DetailsThumb images={item.src} tab={this.handleTab} myRef={this.myRef} /> */}
-              <button className="cart">Add to cart</button>
+              <button className="cart" onClick={() => this.addToCart()}>Add to cart</button>
             </div>
           </div>
         </div>
       );
     }
-    else{
+    else {
       return <p>No product like that</p>
     }
   };

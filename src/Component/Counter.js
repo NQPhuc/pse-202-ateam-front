@@ -46,7 +46,7 @@ class Counter extends React.Component {
         return (
             <div style={{ "display": "flex", "justify-content": "center", "alignItems": "center" }}>
                 <Button onClick={() => this.handleDecrement(this.props.id)}>-</Button>
-                <Typography variant="h5">{this.state.count}</Typography>
+                <Typography variant="h4">{this.state.count}</Typography>
                 <Button onClick={(e) => this.handleIncrement(this.props.id)}>+</Button>
             </div >
         );
