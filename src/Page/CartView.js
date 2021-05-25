@@ -6,6 +6,9 @@ import { Button } from '@material-ui/core';
 class CartView extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            totalPrice: 0
+        }
     }
     render() {
         return (

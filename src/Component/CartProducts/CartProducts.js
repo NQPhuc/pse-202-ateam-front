@@ -36,7 +36,7 @@ export default class CartProducts extends React.Component {
                     <Grid container justify="center" spacing={4}>
                         {this.state.cart.map(item => (
                             <Grid item key={item._id} xs={8} lg={5}>
-                                <CartProduct cart={item} />
+                                <CartProduct cart={item}/>
                             </Grid>
                         ))}
                     </Grid>
