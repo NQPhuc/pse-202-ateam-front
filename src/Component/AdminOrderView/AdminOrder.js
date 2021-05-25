@@ -45,7 +45,12 @@ class AdminOrder extends React.Component {
                                     <Button onClick={this.viewOrder}>View order detail</Button>
                                 </div>
                                 {this.state.displaying ?
-                                    <OrderProduct content={this.state.currentOrder} handleClose={() => this.setState({ displaying: !this.state.displaying })} /> : ""
+                                    <OrderProduct content={this.state.currentOrder} handleClose={() => {
+                                        this.setState({ displaying: !this.state.displaying });
+                                        console.log("MODAL CLOSED");
+                                    }} />
+                                    :
+                                    ""
                                 }
                             </div>
                         </div>

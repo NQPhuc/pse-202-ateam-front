@@ -27,7 +27,7 @@ const Product = ({ product, onAddToCart}) => {
 
             <CardActions disableSpacing className={styles.cardActions}>
                 <IconButton aria-label="Add to cart" onClick={()=> onAddToCart(product._id)}>
-                    <AddShoppingCart />
+                    <AddShoppingCart style={{fontSize: "23"}}/>
                 </IconButton>
             </CardActions>
         </Card>

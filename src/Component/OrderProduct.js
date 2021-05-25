@@ -13,7 +13,6 @@ export default class OrderProduct extends React.Component {
         }
     }
     componentDidMount() {
-        console.log(this.props.content);
         this.props.content.map(item => {
             http.ProductService.getProduct(item.ProductId).then(value => {
                 if (value) {
@@ -21,11 +20,11 @@ export default class OrderProduct extends React.Component {
                         { id: item.ProductId }, { image: value.image }, { name: item.ProductName },
                         { quantity: item.Quantity }, { price: value.Price * item.Quantity })
                     this.setState({ productList: this.state.productList.concat(obj) }, () => {
-                        console.log(`Item ${item.ProductId} is displayed: ${this.state.productList}`);
+                        console.log(`Item ${item.ProductId} is displayed`);
                     })
                 }
                 else {
-                    console.log(`Item ${item.ProductId} is unable to be displayed: ${this.state.productList}`);
+                    console.log(`Item ${item.ProductId} is unable to be displayed`);
                 }
             })
         })
@@ -43,10 +42,10 @@ export default class OrderProduct extends React.Component {
             }}>
                 <div className="box" style={{
                     position: "relative",
-                    width: "70%",
+                    width: "50%",
                     margin: "0 auto",
                     height: "auto",
-                    "max-height": "70vh",
+                    "max-height": "100vh",
                     "margin-top": "calc(100vh - 85vh - 20px)",
                     background: "#fff",
                     "border-radius": "4px",
@@ -71,17 +70,17 @@ export default class OrderProduct extends React.Component {
                     }}>x</span>
                     <Grid container justify="center" direction="column" spacing={4}>
                         {this.state.productList.map(item => (
-                            <Grid item key={item._id} xs={8} lg={5}>
+                            <Grid item key={item._id} xs={8} lg={12}>
                                 <Card>
                                     <CardMedia />
                                     <CardContent>
                                         <div className="product-block">
                                             <div className="product-info">
-                                                <Typography
+                                                {/* <Typography
                                                     variant="body1"
                                                     style={{ "paddingRight": "10px", "fontWeight": "lighter" }}>
                                                     {item._id}
-                                                </Typography>
+                                                </Typography> */}
                                                 <Link to={"/item/" + item.id} className="product-image">
                                                     <img src={"../../img/" + item.image} width="150" height="150" />
                                                 </Link>

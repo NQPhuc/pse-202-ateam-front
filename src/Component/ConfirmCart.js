@@ -40,15 +40,38 @@ export default class ConfirmCart extends React.Component {
                             itemList: this.state.orderItem,
                             ItemPrice: 0
                         };
+                        if (!orderContent.itemList.length) {
+                            alert("CART EMPTY, ORDER FAILED");
+                            window.location.href = '/';
+                            return;
+                        }
                         http.OrderService.createNewOder(orderContent, customer, recipent, address, contact).then((value) => {
                             if (value) {
-                                console.log("ORDER SUCCEEDED");
                                 this.props.confirmCartPopUpDisplayingState_setter(false);
+                                orderContent.itemList.map(ele => {
+                                    ele['Quantity'] = 0
+                                })
+                                http.UserService.editCart(orderContent.itemList).then((res) => {
+                                    if (!res) {
+                                        alert("DELETE FAILED");
+                                    }
+                                })
+                                // orderContent.itemList.map(ele => {
+                                //     http.UserService.removeProductFromCart(ele['ProductId']).then(res => {
+                                //         if (res) {
+                                //             console.log(`Item ${ele['ProductId']} is deleted`);
+                                //         }
+                                //         else {
+                                //             console.log(`Nigga ${ele['ProductId']}`);
+                                //         }
+                                //     })
+                                // })
                                 window.location.reload();
                             }
                             else {
                                 this.props.confirmCartPopUpDisplayingState_setter(false);
                                 alert("ORDER FAILED");
+                                window.location.href = '/';
                             }
                         })
                     })

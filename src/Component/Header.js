@@ -26,7 +26,6 @@ export default class Header extends Component {
         if (this.state.sid) {
             http.AuthenticateService.getNameAndRoleFromSession().then((value) => {
                 if (value) {
-                    //console.log(value);
                     this.setState({ userName: value.Name, userRole: value.Role, cart: value.CartContent });
                 }
                 else {
@@ -38,7 +37,6 @@ export default class Header extends Component {
 
     requestLogout = () => {
         http.AuthenticateService.logout().then((value) => {
-            console.log(value);
             window.location.href = '/'; //this look like a hack
             this.setState({ userName: "", userRole: "" });
         })

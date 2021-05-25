@@ -40,6 +40,11 @@ class CartProduct extends React.Component {
             }
         })
     }
+    componentDidUpdate() {
+        if (this.state.quantity === 0) {
+            this.deleteItem(this.props.cart.ProductId);
+        }
+    }
     render() {
         if (this.state.productCartInfo) {
             const { productCartInfo } = this.state;
