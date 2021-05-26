@@ -9,23 +9,38 @@ export default class CartProducts extends React.Component {
         super(props);
         this.state = {
             cart: [],
+            totalPrice: 0
         }
+        this.updateTotal = this.updateTotal.bind(this);
     }
     componentDidMount() {
         const sessionId = document.cookie.replace(/(?:(?:^|.*;\s*)sessionId\s*\=\s*([^;]*).*$)|^.*$/, "$1");
         if (sessionId) {
             http.UserService.getUserCartContent().then((value) => {
                 if (value) {
-                    this.setState({ cart: value.CartContent });
+                    this.setState({ cart: value.CartContent }, () => {
+                        this.updateTotal();
+                    });
                 }
                 else {
-                    this.setState({ cart: [] });
+                    this.setState({ cart: [], totalPrice: 0 });
                 }
             })
         }
         else {
-            this.setState({ cart: [] });
+            this.setState({ cart: [], totalPrice: 0 });
         }
+    }
+    updateTotal() {
+        http.UserService.getCartTotalPrice().then((price) => {
+            if (price) {
+                this.setState({ totalPrice: price });
+            }
+            else if (price === "Invalid Session") {
+                alert("NOT LOGGED IN");
+                window.location.href = "/";
+            }
+        })
     }
     render() {
         if (this.state.cart.length) {
@@ -34,10 +49,11 @@ export default class CartProducts extends React.Component {
                     <Grid container justify="center" spacing={4}>
                         {this.state.cart.map(item => (
                             <Grid item key={item._id} xs={8} lg={5}>
-                                <CartProduct cart={item} />
+                                <CartProduct cart={item} updateTotal={this.updateTotal} />
                             </Grid>
                         ))}
                     </Grid>
+                    <Typography variant="h5" style={{ textAlign: "center", paddingTop: 20 }}>Total Price: $ {this.state.totalPrice}</Typography>
                 </main>
             );
         }

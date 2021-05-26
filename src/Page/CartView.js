@@ -2,13 +2,10 @@ import React from 'react';
 import './CartView.css';
 import CartProducts from '../Component/CartProducts/CartProducts.js';
 import { Button } from '@material-ui/core';
-
+import * as http from '../services';
 class CartView extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            totalPrice: 0
-        }
     }
     render() {
         return (

@@ -26,9 +26,12 @@ export default class ConfirmCart extends React.Component {
             }
             else {
                 this.setState({ registered: false });
+                alert("NOT LOGGED IN");
+                window.location.href = "/";
             }
         })
     }
+
 
     makeOrder = (customer, recipent, address, contact) => {
         const sessionId = document.cookie.replace(/(?:(?:^|.*;\s*)sessionId\s*\=\s*([^;]*).*$)|^.*$/, "$1");
@@ -49,13 +52,8 @@ export default class ConfirmCart extends React.Component {
                             if (value) {
                                 this.props.confirmCartPopUpDisplayingState_setter(false);
                                 http.UserService.editCart([]).then((res) => {
-                                    if (res) {
-                                        alert("CART FLUSHED");
-                                    }
-                                    else {
-                                        if (!res) {
-                                            alert("DELETE FAILED");
-                                        }
+                                    if (!res) {
+                                        alert("DELETE FAILED");
                                     }
                                 })
                                 // orderContent.itemList.map(ele => {

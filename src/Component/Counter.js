@@ -12,35 +12,27 @@ class Counter extends React.Component {
     }
     handleIncrement = (productId) => {
         const { handleChange } = this.props;
-        handleChange(this.state.count + 1);
-        this.setState({
-            count: this.state.count + 1
+        this.setState({ count: this.state.count + 1 }, () => {
+            http.UserService.addSingleItemToCart(productId).then((value) => {
+                if (!value) {
+                    console.log("failed");
+                    alert("increment failed");
+                }
+                handleChange(this.state.count);
+            })
         });
-        http.UserService.addSingleItemToCart(productId).then((value) => {
-            if (value) {
-                console.log("incremented");
-            }
-            else {
-                console.log("failed");
-                alert("increment failed");
-            }
-        })
     };
     handleDecrement = (productId) => {
         const { handleChange } = this.props;
-        handleChange(this.state.count > 0 ? this.state.count - 1 : 0);
-        this.setState({
-            count: this.state.count > 0 ? this.state.count - 1 : 0
+        this.setState({ count: this.state.count > 0 ? this.state.count - 1 : 0 }, () => {
+            http.UserService.reduceOneItemFromCart(productId).then((value) => {
+                if (!value) {
+                    console.log("failed");
+                    alert("decrement failed");
+                }
+                handleChange(this.state.count);
+            })
         });
-        http.UserService.reduceOneItemFromCart(productId).then((value) => {
-            if (value) {
-                console.log("decremented");
-            }
-            else {
-                console.log("failed");
-                alert("decrement failed");
-            }
-        })
     };
     render() {
         return (

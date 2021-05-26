@@ -45,7 +45,7 @@
     padding: 8px 10px;
 }
 
-.modal div input[type=submit] {
+.modal div input[type=button] {
     width: 100%;
     font-family: 'Poppins', sans-serif;
     font-size: 1.6rem;

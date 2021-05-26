@@ -47,9 +47,6 @@ export default class Header extends Component {
             </li>,
             <li className="nav__item">
                 <HeaderButtons onClick={() => this.props.registerPopupDisplayingState_setter(true)}>Register</HeaderButtons>
-            </li>,
-            <li>
-                <HeaderButtons onClick={() => this.props.paymentPopUp_setter(true)}>Payment</HeaderButtons>
             </li>
         ])
         const adminAddition = (

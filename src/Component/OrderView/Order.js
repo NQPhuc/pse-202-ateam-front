@@ -14,7 +14,7 @@ class Order extends React.Component {
             currentOrder: [],
             currentPayment: '',
             displayProducts: false,
-            displayPayment: false
+            displayPayment: false,
         }
     }
     viewOrder = () => {
@@ -36,26 +36,22 @@ class Order extends React.Component {
                     <div className="product-block">
                         <div className="product-info">
                             <Typography
-                                variant="body1"
-                                style={{ "paddingRight": "10px", "fontWeight": "lighter" }}>
+                                variant="h5"
+                                style={{ "paddingRight": "10px", "fontWeight": "bold" }}>
                                 {order._id}
                             </Typography>
                             <div className="product-detail">
                                 <div className="delivery-info" style={{ float: 'left' }}>
                                     <Typography variant="body1">Order Date: {order.OrderDate}</Typography>
+                                    <Typography variant="body1">Recipent Name: {order.RecipientName}</Typography>
+                                    <Typography variant="body1">Contact Number: {order.ContactNumber}</Typography>
                                     <Typography variant="body1">Delivery Address: {order.Address}</Typography>
-                                    <Typography variant="body1">Delivery Status: {order.OrderStatus}</Typography>
                                 </div>
                                 <div className="order-info" style={{ float: 'right' }}>
-                                    <Typography variant="body1">Customer Name: {order.CustomerName}</Typography>
-                                    <Typography variant="body1">Recipent Name: {order.RecipientName}</Typography>
-                                    <Typography variant="h6" style={{ "font-weight": "bold" }}></Typography>
-                                    <Typography variant="body1">Contact Number: {order.ContactNumber}</Typography>
                                     <Typography variant="body1">Price: $ {order.OrderContent['TotalPrice']}</Typography>
                                     <Typography variant="body1">Payment info: {order.PaymentInfo.info}</Typography>
                                     <Typography variant="body1">Payment status: {order.PaymentInfo.status ? "success" : "none"}</Typography>
-                                    <Button onClick={this.viewOrder}>View order detail</Button>
-                                    <Button onClick={this.makePayment}>Make payment</Button>
+                                    <Typography variant="body1">Delivery Status: {order.OrderStatus}</Typography>
                                 </div>
                                 {this.state.displayProducts ?
                                     <OrderProduct
@@ -63,13 +59,27 @@ class Order extends React.Component {
                                         handleCloseProducts={() => this.setState({ displayProducts: !this.state.displayProducts })}
                                     /> : ""
                                 }
+                                { }
                                 <Payment
                                     orderId={this.state.currentPayment}
                                     displaying={this.state.displayPayment}
-                                    handleClosePayment={() => this.setState({ displayPayment: !this.state.displayPayment }, () => console.log(`MODAL: ${this.state.displayPayment}`))}
+                                    handleClosePayment={() => this.setState({ displayPayment: !this.state.displayPayment })}
                                 />
                             </div>
                         </div>
+                    </div>
+                    <div>
+                        {!order.PaymentInfo.status ?
+                            <Button onClick={this.viewOrder} style={{ width: "50%" }}>View order detail</Button>
+                            :
+                            <Button onClick={this.viewOrder} style={{ width: "100%" }}>View order detail</Button>
+                        }
+                        {
+                            !order.PaymentInfo.status ?
+                                <Button onClick={this.makePayment} style={{ width: "50%" }}>Make payment</Button>
+                                :
+                                ""
+                        }
                     </div>
                 </CardContent>
             </Card >

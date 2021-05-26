@@ -3,12 +3,12 @@ import React from 'react';
 
 export default function FooterComponent() {
     return (
-            <footer className="rc-footer rc-footer-light">
+            <footer className="rc-footer rc-footer-light" style={{marginTop: 10}}>
                 <section className="rc-footer-container">
                     <section className="rc-footer-columns">
                         <iframe className="rc-footer-column-iframe"
                                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.4946681007837!2d106.65843061488522!3d10.773374292323636!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752ec3c161a3fb%3A0xef77cd47a1cc691e!2sHo%20Chi%20Minh%20City%20University%20of%20Technology!5e0!3m2!1sen!2s!4v1622024536551!5m2!1sen!2s"
-                                width="300" height="300"  allowFullScreen="" loading="lazy"/>
+                                width="200" height="200"  allowFullScreen="" loading="lazy"/>
                         <div className="rc-footer-column">
                             <h2>Learn More</h2>
                             <div className="rc-footer-item"><a href="#">About Us</a></div>

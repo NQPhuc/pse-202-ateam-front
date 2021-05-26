@@ -77,7 +77,7 @@ export default class AdminPage extends React.Component {
             return (
                 <div style={{ textAlign: "center" }}>
                     <h1 style={{ fontSize: 50 }}>ERROR: 404 NOT FOUND</h1>
-                    <Link to="/">
+                    <Link to="/" onClick={() => { window.location.href = "/" }}>
                         <h3 style={{ fontSize: 25 }}>Return to Homepage</h3>
                     </Link>
                 </div>

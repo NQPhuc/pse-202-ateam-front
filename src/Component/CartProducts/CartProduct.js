@@ -15,17 +15,21 @@ class CartProduct extends React.Component {
         }
         this.handleChange = this.handleChange.bind(this);
     }
-    handleChange = (e, sign) => {
-        this.setState({ quantity: e });
+    handleChange = (e) => {
+        const { updateTotal } = this.props;
+        updateTotal();
+        this.setState({ quantity: e }, () => {
+            if (this.state.quantity === 0) {
+                this.deleteItem(this.props.cart.ProductId);
+            }
+        });
     }
     deleteItem = (productId) => {
         http.UserService.removeProductFromCart(productId).then((value) => {
             if (value) {
-                console.log("UPDATED");
                 window.location.reload();
             }
             else {
-                console.log("NOT UPDATED");
                 alert("PRODUCT NOT FOUND, BRUH");
             }
         })
@@ -40,11 +44,11 @@ class CartProduct extends React.Component {
             }
         })
     }
-    componentDidUpdate() {
-        if (this.state.quantity === 0) {
-            this.deleteItem(this.props.cart.ProductId);
-        }
-    }
+    // componentDidUpdate() {
+    //     if (this.state.quantity === 0) {
+    //         this.deleteItem(this.props.cart.ProductId);
+    //     }
+    // }
     render() {
         if (this.state.productCartInfo) {
             const { productCartInfo } = this.state;

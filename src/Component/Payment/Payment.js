@@ -25,9 +25,9 @@ class PaymentPopup extends Component {
     handleSubmit = (name, address, phone, method) => {
         var paymentInfo = '';
         paymentInfo = paymentInfo.concat(
-            name ? `${name} ` : '',
-            address ? `${address} ` : '',
-            phone ? `${phone} ` : '',
+            name ? `${name}/` : '',
+            address ? `${address}/` : '',
+            phone ? `${phone}/` : '',
             method ? `${method} ` : '',
         )
         console.log(paymentInfo);
@@ -38,6 +38,7 @@ class PaymentPopup extends Component {
             }
             else if (value === "Invalid session") {
                 alert("PLEASE LOGIN");
+                window.location.href = "/";
             }
             else if (value === "Payment failed") {
                 alert("PAYMENT FAILED");
@@ -82,7 +83,7 @@ class PaymentPopup extends Component {
                         <input type="radio" name="payment_method" value="MoMo" />
                         <input type="radio" name="payment_method" value="COD" />
                         <input type="radio" name="payment_method" value="VietComBank" />
-                    </div>  
+                    </div>
                     <div className={styles.payment_methods}>
                         <img
                             src="https://d1wl5wkwpkr66u.cloudfront.net/logo-momo.png"

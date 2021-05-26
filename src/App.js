@@ -24,7 +24,6 @@ function App() {
   const [value1, setValue1] = useState(false);
   const [isRegisterPress, setRegisterPress] = useState(false);
   const [addItem, setAddItem] = useState(false);
-  const [seen, displayPopUp] = useState(false);
   const [confirmCart, setConfirmCart] = useState(false);
 
   //let displayPopupFunction = displayPopupComponent.bind(this);
@@ -35,11 +34,9 @@ function App() {
         <Header
           loginPopUpDisplayingState_setter={setValue1}
           registerPopupDisplayingState_setter={setRegisterPress}
-          paymentPopUp_setter={displayPopUp}
         />
         <Login displaying={value1} loginPopUpDisplayingState_setter={setValue1} />
         <Register displaying={isRegisterPress} registerPopupDisplayingState_setter={setRegisterPress} />
-        <PaymentPopup displaying={seen} toggle={displayPopUp} />
         <Switch>
           <Route path="/about">
             <p>
@@ -56,7 +53,7 @@ function App() {
           </Route>
           <Route path="/cart">
             <CartView confirmCartPopUpDisplayingState_setter={setConfirmCart} />
-            <ConfirmCart displaying={confirmCart} confirmCartPopUpDisplayingState_setter={setConfirmCart}/>
+            <ConfirmCart displaying={confirmCart} confirmCartPopUpDisplayingState_setter={setConfirmCart} />
           </Route>
           <Route path="/order">
             <OrderView />
