@@ -17,7 +17,7 @@ export default class EditItem extends React.Component {
             inputImage: '',
         }
     }
-
+    
     editProduct = (id, name, price, quantity, color, size, image) => {
         http.ProductService.editProduct(id, name, price, quantity, color, size, image).then((value) => {
             console.log(value);

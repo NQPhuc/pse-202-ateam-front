@@ -48,23 +48,23 @@ export default class ConfirmCart extends React.Component {
                         http.OrderService.createNewOder(orderContent, customer, recipent, address, contact).then((value) => {
                             if (value) {
                                 this.props.confirmCartPopUpDisplayingState_setter(false);
-                                orderContent.itemList.map(ele => {
-                                    ele['Quantity'] = 0
-                                })
-                                http.UserService.editCart(orderContent.itemList).then((res) => {
-                                    if (!res) {
-                                        alert("DELETE FAILED");
+                                http.UserService.editCart([]).then((res) => {
+                                    if (res) {
+                                        alert("CART FLUSHED");
+                                    }
+                                    else {
+                                        if (!res) {
+                                            alert("DELETE FAILED");
+                                        }
                                     }
                                 })
                                 // orderContent.itemList.map(ele => {
-                                //     http.UserService.removeProductFromCart(ele['ProductId']).then(res => {
-                                //         if (res) {
-                                //             console.log(`Item ${ele['ProductId']} is deleted`);
-                                //         }
-                                //         else {
-                                //             console.log(`Nigga ${ele['ProductId']}`);
-                                //         }
-                                //     })
+                                //     ele['Quantity'] = 0
+                                // })
+                                // http.UserService.editCart(orderContent.itemList).then((res) => {
+                                //     if (!res) {
+                                //         alert("DELETE FAILED");
+                                //     }
                                 // })
                                 window.location.reload();
                             }
