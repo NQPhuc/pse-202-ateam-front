@@ -31,13 +31,13 @@
     font-size: 2rem;
 }
 
-.modal form {
+.modal div {
     flex-direction: row;
     align-items: center;
     font-size: 1.7rem;
 }
 
-.modal form input[type=text] {
+.modal div input[type=text] {
     width: 100%;
     box-sizing: border-box;
     border: 2px solid #ccc;
@@ -45,7 +45,7 @@
     padding: 8px 10px;
 }
 
-.modal form input[type=submit] {
+.modal div input[type=submit] {
     width: 100%;
     font-family: 'Poppins', sans-serif;
     font-size: 1.6rem;
