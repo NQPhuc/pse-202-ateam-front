@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Card, CardMedia, CardContent, Typography, Button } from '@material-ui/core';
 import OrderProduct from '../OrderProduct';
+import Payment from '../Payment/Payment';
 
 import * as http from '../../services';
 
@@ -11,12 +12,20 @@ class Order extends React.Component {
         this.viewOrder = this.viewOrder.bind(this);
         this.state = {
             currentOrder: [],
-            displaying: false
+            currentPayment: [],
+            displayProducts: false,
+            displayPayment: false
         }
     }
     viewOrder = () => {
         const { order } = this.props;
-        this.setState({ currentOrder: order.OrderContent['itemList'], displaying: !this.state.displaying });
+        this.setState({ currentOrder: order.OrderContent['itemList'], displayProducts: !this.state.displayProducts });
+    }
+    makePayment = () => {
+        const { order } = this.props;
+        this.setState({ currentPayment: order._id, displayPayment: !this.state.displayPayment }, () => {
+            console.log(`Making payment for order ${this.state.currentPayment}: ${this.state.displayPayment}`);
+        });
     }
     render() {
         const { order } = this.props;
@@ -42,10 +51,22 @@ class Order extends React.Component {
                                     <Typography variant="h6" style={{ "font-weight": "bold" }}></Typography>
                                     <Typography variant="body1">Contact Number: {order.ContactNumber}</Typography>
                                     <Typography variant="body1">Price: $ {order.OrderContent['TotalPrice']}</Typography>
+                                    <Typography variant="body1">Payment info: {order.PaymentInfo.info}</Typography>
+                                    <Typography variant="body1">Payment status: {order.PaymentInfo.status ? "success" : "none"}</Typography>
                                     <Button onClick={this.viewOrder}>View order detail</Button>
+                                    <Button onClick={this.makePayment}>Make payment</Button>
                                 </div>
-                                {this.state.displaying ?
-                                    <OrderProduct content={this.state.currentOrder} handleClose={() => this.setState({ displaying: !this.state.displaying })} /> : ""
+                                {this.state.displayProducts ?
+                                    <OrderProduct
+                                        content={this.state.currentOrder}
+                                        handleCloseProducts={() => this.setState({ displayProducts: !this.state.displayProducts })}
+                                    /> : ""
+                                }
+                                {this.state.displayPayment ?
+                                    <Payment
+                                        orderId={this.state.currentPayment}
+                                        handleClosePayment={() => this.setState({ displayPayment: !this.state.displayPayment })}
+                                    /> : ""
                                 }
                             </div>
                         </div>

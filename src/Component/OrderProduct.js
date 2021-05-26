@@ -53,7 +53,7 @@ export default class OrderProduct extends React.Component {
                     border: "1px solid #999",
                     overflow: "auto"
                 }}>
-                    <span className="close-icon" onClick={this.props.handleClose} style={{
+                    <span className="close-icon" onClick={this.props.handleCloseProducts} style={{
                         content: 'x',
                         cursor: "pointer",
                         position: "fixed",

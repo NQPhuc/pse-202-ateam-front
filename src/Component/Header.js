@@ -9,8 +9,6 @@ import { AiOutlineSearch } from 'react-icons/ai';
 import * as http from '../services'; //import these to call API
 
 export default class Header extends Component {
-
-
     constructor(props) {
         super(props);
         this.state = {
@@ -37,7 +35,7 @@ export default class Header extends Component {
 
     requestLogout = () => {
         http.AuthenticateService.logout().then((value) => {
-            window.location.href = '/'; //this look like a hack
+            window.location.href = '/';
             this.setState({ userName: "", userRole: "" });
         })
     }
@@ -83,9 +81,7 @@ export default class Header extends Component {
             if (this.state.userRole === "Admin") {
                 middleSection.push(adminAddition);
             }
-            else {
-                middleSection.push(userOrder);
-            }
+            middleSection.push(userOrder);
         }
 
         return (
@@ -118,7 +114,6 @@ export default class Header extends Component {
                             </li>
                         </Link>
                         {middleSection}
-
                     </ul>
                 </nav>
             </header>
