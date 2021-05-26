@@ -54,15 +54,33 @@ export default class OrderService{
      * @returns 
      * "OK": if success;
      * "Payment rejected": if payment rejected (for testing, there's 20% chance that a rejection will happen);
-     * "Failed": if there's an database save error
+     * "Failed": if there's an database save error;
      * "This order is not yours": for testing only;
      * "No order with such id exist": self-explantory;
-     * "Invalid session": if session expired:
+     * "Invalid session": if session expired;
      */
     static async setOrderPaymentInfo(orderId, paymentInfo){
         return (await axiosWithCookies.put('order/user/payment', {
             orderId: orderId,
             paymentInfo: paymentInfo
+        })).data;
+    }
+
+    /**
+     * Set an order's OrderStatus to a value from an enum - required an administrator session
+     * @param {String} orderId 
+     * @param {Number} status an integer from 0-3 for OrderStatus in this enum ["Processing", "Packaging", "Delivering", "Complete"]
+     * @returns
+     * "OK": if success;
+     * "Failed": if there's an database save error
+     * "Status must be an integer from 0-3": see parameter 'status' description
+     * "No order with such id exist": self-explantory;
+     * "Invalid session": if session expired;
+     */
+    static async setOrderStatus(orderId, status){
+        return (await axiosWithCookies.put('order/admin/status', {
+            orderId: orderId,
+            status: status
         })).data;
     }
 }

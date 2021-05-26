@@ -60,7 +60,26 @@ export default class UserService{
         return (await axiosWithCookies.put('/user/cart/quantity/one', {pid: productId})).data;
     }
 
+    /**
+     * Remove a productFromCart
+     * @param {*} productId 
+     * @returns 
+     * "OK": if ok;
+     * "Failed": if failed;
+     * "Invalid session": if session expired;
+     * "No product with such pid exist": if that product is no longer in the cart;
+     */
     static async removeProductFromCart(productId){
         return (await axiosWithCookies.delete('/user/cart/product', { params: {pid: productId} })).data;
+    }
+
+    /**
+     * Ask the server to calculate the total price all items in cart for you
+     * @returns 
+     * "Invalid session": if session expired;
+     * TotalPrice: integer, if success;
+     */
+    static async getCartTotalPrice(){
+        return (await axiosWithCookies.get('/user/cart/totalprice')).data;
     }
 }
