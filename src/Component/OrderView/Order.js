@@ -12,7 +12,7 @@ class Order extends React.Component {
         this.viewOrder = this.viewOrder.bind(this);
         this.state = {
             currentOrder: [],
-            currentPayment: [],
+            currentPayment: '',
             displayProducts: false,
             displayPayment: false
         }
@@ -47,6 +47,7 @@ class Order extends React.Component {
                                     <Typography variant="body1">Delivery Status: {order.OrderStatus}</Typography>
                                 </div>
                                 <div className="order-info" style={{ float: 'right' }}>
+                                    <Typography variant="body1">Customer Name: {order.CustomerName}</Typography>
                                     <Typography variant="body1">Recipent Name: {order.RecipientName}</Typography>
                                     <Typography variant="h6" style={{ "font-weight": "bold" }}></Typography>
                                     <Typography variant="body1">Contact Number: {order.ContactNumber}</Typography>
@@ -62,12 +63,11 @@ class Order extends React.Component {
                                         handleCloseProducts={() => this.setState({ displayProducts: !this.state.displayProducts })}
                                     /> : ""
                                 }
-                                {this.state.displayPayment ?
-                                    <Payment
-                                        orderId={this.state.currentPayment}
-                                        handleClosePayment={() => this.setState({ displayPayment: !this.state.displayPayment })}
-                                    /> : ""
-                                }
+                                <Payment
+                                    orderId={this.state.currentPayment}
+                                    displaying={this.state.displayPayment}
+                                    handleClosePayment={() => this.setState({ displayPayment: !this.state.displayPayment }, () => console.log(`MODAL: ${this.state.displayPayment}`))}
+                                />
                             </div>
                         </div>
                     </div>

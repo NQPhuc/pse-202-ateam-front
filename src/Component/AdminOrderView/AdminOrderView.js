@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Card, CardMedia, CardContent, CardActions, Typography, IconButton, Button, Grid } from '@material-ui/core';
-import { Delete } from '@material-ui/icons'
-import * as http from '../../services';
+import { Grid } from '@material-ui/core';
 import AdminOrder from './AdminOrder.js';
+
+import * as http from '../../services';
+
 export default class AdminOrderView extends Component {
     constructor(props) {
         super(props);

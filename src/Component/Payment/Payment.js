@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styles from './payment.module.css';
-
+import { Button } from '@material-ui/core';
 import * as http from '../../services';
 
 class PaymentPopup extends Component {
@@ -12,7 +12,6 @@ class PaymentPopup extends Component {
             phone_number: '',
             payment_method: ''
         }
-
         this.handleSubmit = this.handleSubmit.bind(this);
         this.onValueChange = this.onValueChange.bind(this);
     }
@@ -24,23 +23,30 @@ class PaymentPopup extends Component {
     }
 
     handleSubmit = (name, address, phone, method) => {
-        const paymentInfo = '';
+        var paymentInfo = '';
         paymentInfo = paymentInfo.concat(
-            "NAME: ", name,
-            "ADDRESS: ", address,
-            "PHONE: ", phone,
-            "METHOD: ", method
+            name ? `${name} ` : '',
+            address ? `${address} ` : '',
+            phone ? `${phone} ` : '',
+            method ? `${method} ` : '',
         )
+        console.log(paymentInfo);
         http.OrderService.setOrderPaymentInfo(this.props.orderId, paymentInfo).then((value) => {
-            if (value) {
+            const { handleClosePayment } = this.props;
+            if (value === "OK") {
                 console.log("PAYMENT SUCCESS");
-                this.props.handleClosePayment();
-                window.location.reload();
+            }
+            else if (value === "Invalid session") {
+                alert("PLEASE LOGIN");
+            }
+            else if (value === "Payment failed") {
+                alert("PAYMENT FAILED");
             }
             else {
-                alert("CANNOT EXECUTE");
-                window.location.reload();
+                alert(`ERROR: ${value}`);
             }
+            handleClosePayment();
+            window.location.reload();
         })
     }
 
@@ -58,25 +64,25 @@ class PaymentPopup extends Component {
                     />
                     <h2>A Team</h2>
                 </div>
-                <form>
+                <div>
                     <li>
                         <label><strong> Full Name:</strong> </label>
-                        <input type="text" name="Full Name" onChange={(e) => this.setState({ name: e.target.value })} />
+                        <input type="text" name="Full Name" value={this.state.name} onChange={(e) => this.setState({ name: e.target.value })} />
                     </li>
                     <li>
                         <label><strong>Address</strong></label>
-                        <input type="text" name="address" onChange={(e) => this.setState({ address: e.target.value })} />
+                        <input type="text" name="address" value={this.state.address} onChange={(e) => this.setState({ address: e.target.value })} />
                     </li>
                     <li>
                         <label><strong>Contact Number</strong></label>
-                        <input type="text" name="phone" onChange={(e) => this.setState({ phone_number: e.target.value })} />
+                        <input type="text" name="phone" value={this.state.phone_number} onChange={(e) => this.setState({ phone_number: e.target.value })} />
                     </li>
                     <h2> Payment Method</h2>
                     <div className={styles.payment_methods}>
                         <input type="radio" name="payment_method" value="MoMo" />
                         <input type="radio" name="payment_method" value="COD" />
                         <input type="radio" name="payment_method" value="VietComBank" />
-                    </div>
+                    </div>  
                     <div className={styles.payment_methods}>
                         <img
                             src="https://d1wl5wkwpkr66u.cloudfront.net/logo-momo.png"
@@ -88,12 +94,12 @@ class PaymentPopup extends Component {
                             src="https://d1wl5wkwpkr66u.cloudfront.net/VIETCOMBANK-LOGO.jpg"
                             alt="VietComBank" />
                     </div>
-                    <input type="submit" value="Submit" onClick={this.handleSubmit
+                    <input type="button" value="SUBMIT" style={{ cursor: "pointer" }} onClick={() => this.handleSubmit
                         (
                             this.state.name, this.state.address,
                             this.state.phone_number, this.state.payment_method
                         )} />
-                </form>
+                </div>
             </div> : null;
     }
 }
