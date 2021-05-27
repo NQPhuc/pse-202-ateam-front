@@ -26,7 +26,9 @@ export default class AdminProducts extends React.Component {
         http.ProductService.getProduct(id).then(value => {
             if (value) {
                 console.log(`FOUND ${id}`);
-                this.setState({ currentDefaultValue: value }, () => { console.log(this.state.currentDefaultValue) });
+                this.setState({ currentDefaultValue: value }, () => {
+
+                });
             }
             else {
                 console.log(`NOT FOUND ${id}`);
@@ -42,12 +44,21 @@ export default class AdminProducts extends React.Component {
                             <AdminProduct
                                 product={product}
                                 editPopUpDisplayingState_setter={(e) => {
-                                    this.setState({
-                                        editItem: e,
-                                        currentEditItem: product._id
-                                    }, () => {
-                                        this.inputHelper(this.state.currentEditItem);
-                                    });
+                                    this.setState({ currentEditItem: product._id }, () => {
+                                        http.ProductService.getProduct(this.state.currentEditItem).then(value => {
+                                            if (value) {
+                                                console.log(`Found ${this.state.currentEditItem}`);
+                                                this.setState({ currentDefaultValue: value }, () => {
+                                                    console.log(`Setting value of product named ${this.state.currentDefaultValue.Name}`);
+                                                    this.setState({ editItem: e }, () => {
+                                                        console.log("CURRENT STATE OF MODAL: ", this.state.editItem);
+                                                        console.log("OPENING . . . ");
+                                                        console.log("OPEN MODAL");
+                                                    });
+                                                });
+                                            }
+                                        })
+                                    })
                                 }}
                             />
                         </Grid>
@@ -55,12 +66,12 @@ export default class AdminProducts extends React.Component {
                     <EditItem
                         displaying={this.state.editItem}
                         editId={this.state.currentEditItem}
-                        default={this.state.currentDefaultValue}
                         editPopUpDisplayingState_setter={(e) => {
+                            console.log("CHANGING MODAL STATE . . . ");
                             this.setState({
                                 editItem: e,
                             }, () => {
-                                console.log("CLOSE");
+                                console.log("CLOSE MODAL");
                             });
                         }}
                     />

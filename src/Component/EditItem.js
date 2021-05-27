@@ -9,12 +9,13 @@ export default class EditItem extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            inputProductName: this.props.default.Name,
-            inputSize: this.props.default.Size,
-            inputQuantity: this.props.default.Quantity,
-            inputPrice: this.props.default.Price,
-            inputColor: this.props.default.Color,
-            inputImage: this.props.default.image,
+            inputProductName: '',
+            inputSize: '',
+            inputQuantity: '',
+            inputPrice: '',
+            inputColor: '',
+            inputImage: '',
+            setEmpty: false
         }
     }
 
@@ -27,15 +28,48 @@ export default class EditItem extends React.Component {
             }
             else {
                 alert("UPDATE FAILED");
-                console.log("FAILED");
             }
         }
         )
     }
 
+    setDefault = () => {
+        if (!this.state.setEmpty) {
+            http.ProductService.getProduct(this.props.editId).then(value => {
+                if (value) {
+                    this.setState({
+                        inputProductName: value.Name,
+                        inputSize: value.Size,
+                        inputQuantity: value.Quantity,
+                        inputPrice: value.Price,
+                        inputColor: value.Color,
+                        inputImage: value.image,
+                        setEmpty: !this.state.setEmpty
+                    })
+                    console.log("SETUP COMPLETE")
+                }
+                else {
+                    alert("CAN'T SET VALUE TO DEFAULT");
+                }
+            })
+        }
+        else {
+            this.setState({
+                inputProductName: '',
+                inputSize: '',
+                inputQuantity: '',
+                inputPrice: '',
+                inputColor: '',
+                inputImage: '',
+                setEmpty: !this.state.setEmpty
+            })
+            console.log("RESETTED");
+        }
+    }
+
     render() {
+        console.log("DEFAULT IN POPUP: ", this.props.default, "DISPLAYING: ", this.props.displaying);
         if (this.props.displaying) {
-            console.log(this.props.default.Name);
             return (
                 <div className={styles.modal}>
                     <button className={styles.btn__closeModal} onClick={() => this.props.editPopUpDisplayingState_setter(false)}>&times;</button>
@@ -47,6 +81,13 @@ export default class EditItem extends React.Component {
                     />
                     <h2 className={styles.modal__header} >Ateam</h2>
                     <label style={{ fontSize: 14 }}>Product ID: {this.props.editId}</label>
+                    <button
+                        className={styles.btn}
+                        style={{ fontSize: 13, padding: 9 }}
+                        onClick={() => this.setDefault()}
+                    >
+                        {this.state.setEmpty ? "Set Empty" : "Set Default"}
+                    </button>
                     <div className={styles.modal__form}>
                         <label>Product Name</label>
                         <input type="text" name="name" value={this.state.inputProductName} onChange={(e) => this.setState({ inputProductName: e.target.value })} />
