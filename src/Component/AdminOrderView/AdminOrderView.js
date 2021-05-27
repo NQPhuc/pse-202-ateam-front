@@ -17,6 +17,11 @@ export default class AdminOrderView extends Component {
                 console.log(value);
                 this.setState({ orders: value });
             }
+            else {
+                this.setState({ orders: [] });
+                alert("YOU ARE NOT LOGGED IN");
+                window.location.href = '/';
+            }
         })
     }
     render() {
@@ -25,7 +30,7 @@ export default class AdminOrderView extends Component {
                 <Grid container justify="center" spacing={4}>
                     {this.state.orders.map(order => (
                         <Grid item key={order._id} xs={8} lg={5}>
-                            <AdminOrder order={order}/>
+                            <AdminOrder order={order} />
                         </Grid>
                     ))}
                 </Grid>

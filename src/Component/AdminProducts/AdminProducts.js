@@ -10,14 +10,26 @@ export default class AdminProducts extends React.Component {
         this.state = {
             products: [],
             editItem: false,
-            currentEditItem: ''
+            currentEditItem: '',
+            currentDefaultValue: ''
         }
+        this.inputHelper = this.inputHelper.bind(this);
     }
     componentDidMount() {
         http.ProductService.getAllProduct().then((value) => {
             if (value) {
-                console.log(value);
                 this.setState({ products: value });
+            }
+        })
+    }
+    inputHelper = (id) => {
+        http.ProductService.getProduct(id).then(value => {
+            if (value) {
+                console.log(`FOUND ${id}`);
+                this.setState({ currentDefaultValue: value }, () => { console.log(this.state.currentDefaultValue) });
+            }
+            else {
+                console.log(`NOT FOUND ${id}`);
             }
         })
     }
@@ -33,6 +45,8 @@ export default class AdminProducts extends React.Component {
                                     this.setState({
                                         editItem: e,
                                         currentEditItem: product._id
+                                    }, () => {
+                                        this.inputHelper(this.state.currentEditItem);
                                     });
                                 }}
                             />
@@ -41,9 +55,12 @@ export default class AdminProducts extends React.Component {
                     <EditItem
                         displaying={this.state.editItem}
                         editId={this.state.currentEditItem}
+                        default={this.state.currentDefaultValue}
                         editPopUpDisplayingState_setter={(e) => {
                             this.setState({
-                                editItem: e
+                                editItem: e,
+                            }, () => {
+                                console.log("CLOSE");
                             });
                         }}
                     />

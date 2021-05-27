@@ -9,18 +9,17 @@ export default class EditItem extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            inputProductName: '',
-            inputSize: '',
-            inputQuantity: '',
-            inputPrice: '',
-            inputColor: '',
-            inputImage: '',
+            inputProductName: this.props.default.Name,
+            inputSize: this.props.default.Size,
+            inputQuantity: this.props.default.Quantity,
+            inputPrice: this.props.default.Price,
+            inputColor: this.props.default.Color,
+            inputImage: this.props.default.image,
         }
     }
-    
+
     editProduct = (id, name, price, quantity, color, size, image) => {
         http.ProductService.editProduct(id, name, price, quantity, color, size, image).then((value) => {
-            console.log(value);
             if (value) {
                 console.log("UPDATE SUCCESS");
                 this.props.editPopUpDisplayingState_setter(false);
@@ -36,6 +35,7 @@ export default class EditItem extends React.Component {
 
     render() {
         if (this.props.displaying) {
+            console.log(this.props.default.Name);
             return (
                 <div className={styles.modal}>
                     <button className={styles.btn__closeModal} onClick={() => this.props.editPopUpDisplayingState_setter(false)}>&times;</button>
