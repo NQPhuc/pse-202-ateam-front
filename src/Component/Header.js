@@ -16,6 +16,7 @@ export default class Header extends Component {
             userName: '',
             userRole: '',
             cart: [],
+            search: ''
         };
     }
 
@@ -30,6 +31,13 @@ export default class Header extends Component {
                     this.setState({ userName: "", userRole: "", cart: [] });
                 }
             });
+        }
+    }
+
+    handleSearch(e) {
+        if (e.key === 'Enter') {
+            console.log("ENTER KEY PRESSED, CURRENT VALUE: ", this.state.search);
+            window.location.href = '/search/' + this.state.search;
         }
     }
 
@@ -101,7 +109,9 @@ export default class Header extends Component {
                             id="header-search"
                             placeholder="Search"
                             name="search"
-
+                            value={this.state.search}
+                            onChange={(e) => this.setState({ search: e.target.value })}
+                            onKeyDown={(e) => this.handleSearch(e)}
                         />
                     </div>
                     <ul className="nav__links">

@@ -68,7 +68,7 @@ export default class EditItem extends React.Component {
     }
 
     render() {
-        console.log("DEFAULT IN POPUP: ", this.props.default, "DISPLAYING: ", this.props.displaying);
+        console.log("DEFAULT IN POPUP: ", this.state, "DISPLAYING: ", this.props.displaying);
         if (this.props.displaying) {
             return (
                 <div className={styles.modal}>

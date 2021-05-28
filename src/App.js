@@ -15,7 +15,7 @@ import Register from './Component/Register';
 import AdminPage from './Page/AdminPage.js';
 import ItemView from './Page/itemsView.js';
 import CartView from './Page/CartView.js';
-import PaymentPopup from "./Component/Payment/Payment";
+import SearchPage from './Page/SearchPage';
 import AddItem from './Component/AddItem';
 import OrderView from './Component/OrderView/OrderView';
 import ConfirmCart from './Component/ConfirmCart';
@@ -46,6 +46,8 @@ function App() {
             </p>
           </Route>
           <Route exact path="/item/:pid" render={(props) => <ItemView {...props} />}>
+          </Route>
+          <Route exact path="/search/:pname" render={(props) => <SearchPage {...props} />}>
           </Route>
           <Route path="/admin">
             <AdminPage addPopUpDisplayingState_setter={setAddItem} />

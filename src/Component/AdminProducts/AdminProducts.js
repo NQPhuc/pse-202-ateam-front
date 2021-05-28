@@ -66,6 +66,7 @@ export default class AdminProducts extends React.Component {
                     <EditItem
                         displaying={this.state.editItem}
                         editId={this.state.currentEditItem}
+                        key={this.state.currentEditItem}
                         editPopUpDisplayingState_setter={(e) => {
                             console.log("CHANGING MODAL STATE . . . ");
                             this.setState({
