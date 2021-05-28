@@ -15,7 +15,7 @@ export default class Header extends Component {
             sid: '',
             userName: '',
             userRole: '',
-            cart: [],
+            totalCartItems: this.props.totalCartItems,
         };
     }
 
@@ -24,7 +24,7 @@ export default class Header extends Component {
         if (this.state.sid) {
             http.AuthenticateService.getNameAndRoleFromSession().then((value) => {
                 if (value) {
-                    this.setState({ userName: value.Name, userRole: value.Role, cart: value.CartContent });
+                    this.setState({ userName: value.Name, userRole: value.Role});
                 }
                 else {
                     this.setState({ userName: "", userRole: "", cart: [] });
@@ -39,6 +39,7 @@ export default class Header extends Component {
             this.setState({ userName: "", userRole: "" });
         })
     }
+    display
 
     render() {
         const guestList = ([
@@ -58,7 +59,7 @@ export default class Header extends Component {
         );
 
         const userList = ([
-            <p>Welcome {this.state.userName}</p>,
+            <p className="nav__item" style={{ fontWeight: 400 }}>Welcome {this.state.userName}</p>,
             <li className="nav__item">
                 <HeaderButtons onClick={() => this.requestLogout()}>Logout</HeaderButtons>
             </li>
@@ -66,7 +67,7 @@ export default class Header extends Component {
 
         const userOrder = ([
             <li className="nav__item">
-                <Link to="/order">
+                <Link to="/order" style={{ textDecoration: 'none' }}>
                     <HeaderButtons>Order</HeaderButtons>
                 </Link>
             </li>
@@ -107,7 +108,7 @@ export default class Header extends Component {
                     <ul className="nav__links">
                         <Link to='/cart' style={{ textDecoration: 'none' }}>
                             <li className="nav__item">
-                                <HeaderCartButton total={this.state.cart.length} />
+                                <HeaderCartButton total={this.state.totalCartItems} />
                             </li>
                         </Link>
                         {middleSection}

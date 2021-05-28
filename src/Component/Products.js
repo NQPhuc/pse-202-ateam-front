@@ -23,7 +23,7 @@ export default class Products extends React.Component {
             }
             http.AuthenticateService.getNameAndRoleFromSession().then((value) => {
                 if (value) {
-                    this.setState({ cart: value.CartContent });
+                    this.setState({ cart: value.CartContent});
                 }
             });
         })
@@ -31,15 +31,19 @@ export default class Products extends React.Component {
 
 
 
-    onAddToCart = (productID) => {
-        http.UserService.addSingleItemToCart(productID).then((value) => {
+    onAddToCart = async (productID) => {
+        await http.UserService.addSingleItemToCart(productID).then((value) => {
             if (value) {
                 console.log(value);
             }
         })
-
-        console.log(productID);
-        console.log(this.state.cart);
+        await http.UserService.getUserCartContent().then((value) => {
+            if (value) {
+                this.props.totalItems(value.CartContent.length);
+            }
+        })
+        
+   
 
     }
 

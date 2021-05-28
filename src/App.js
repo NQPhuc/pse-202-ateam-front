@@ -25,13 +25,25 @@ function App() {
   const [isRegisterPress, setRegisterPress] = useState(false);
   const [addItem, setAddItem] = useState(false);
   const [confirmCart, setConfirmCart] = useState(false);
+  const [totalItems,setTotalItems] = useState('');
 
+  const componentDidMount = () => {
+        http.AuthenticateService.getNameAndRoleFromSession().then((value) => {
+            if (value) {
+                this.setState({ totalItems: value.CartContent.length});
+            }
+        });
+  }
   //let displayPopupFunction = displayPopupComponent.bind(this);
-
+  const handlerTotalItems = (value) => {
+    console.log(value);
+    setTotalItems(value);
+  }
   return (
     <div className="App">
       <Router>
         <Header
+          totalItems={totalItems}
           loginPopUpDisplayingState_setter={setValue1}
           registerPopupDisplayingState_setter={setRegisterPress}
         />
@@ -59,7 +71,7 @@ function App() {
             <OrderView />
           </Route>
           <Route path="/">
-            <HomePage />
+            <HomePage totalItems={handlerTotalItems}/>
           </Route>
         </Switch>
         <FooterComponent />
