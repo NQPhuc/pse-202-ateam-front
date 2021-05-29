@@ -15,7 +15,6 @@ export default class Header extends Component {
             sid: '',
             userName: '',
             userRole: '',
-            totalCartItems: this.props.totalCartItems,
         };
     }
 
@@ -108,7 +107,7 @@ export default class Header extends Component {
                     <ul className="nav__links">
                         <Link to='/cart' style={{ textDecoration: 'none' }}>
                             <li className="nav__item">
-                                <HeaderCartButton total={this.state.totalCartItems} />
+                                <HeaderCartButton total={this.props.totalItems} />
                             </li>
                         </Link>
                         {middleSection}

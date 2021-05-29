@@ -19,7 +19,8 @@ import PaymentPopup from "./Component/Payment/Payment";
 import AddItem from './Component/AddItem';
 import OrderView from './Component/OrderView/OrderView';
 import ConfirmCart from './Component/ConfirmCart';
-
+import * as http from './services';
+import { SettingsInputAntenna } from '@material-ui/icons';
 function App() {
   const [value1, setValue1] = useState(false);
   const [isRegisterPress, setRegisterPress] = useState(false);
@@ -27,13 +28,14 @@ function App() {
   const [confirmCart, setConfirmCart] = useState(false);
   const [totalItems,setTotalItems] = useState('');
 
-  const componentDidMount = () => {
-        http.AuthenticateService.getNameAndRoleFromSession().then((value) => {
-            if (value) {
-                this.setState({ totalItems: value.CartContent.length});
-            }
-        });
-  }
+  
+    http.UserService.getUserCartContent().then((value) => {
+      if (value) {
+          setTotalItems(value.CartContent.length);
+      }
+  });
+
+
   //let displayPopupFunction = displayPopupComponent.bind(this);
   const handlerTotalItems = (value) => {
     console.log(value);
