@@ -19,19 +19,33 @@ import SearchPage from './Page/SearchPage';
 import AddItem from './Component/AddItem';
 import OrderView from './Component/OrderView/OrderView';
 import ConfirmCart from './Component/ConfirmCart';
-
+import * as http from './services';
+import { SettingsInputAntenna } from '@material-ui/icons';
 function App() {
   const [value1, setValue1] = useState(false);
   const [isRegisterPress, setRegisterPress] = useState(false);
   const [addItem, setAddItem] = useState(false);
   const [confirmCart, setConfirmCart] = useState(false);
+  const [totalItems,setTotalItems] = useState('');
+
+  
+    http.UserService.getUserCartContent().then((value) => {
+      if (value) {
+          setTotalItems(value.CartContent.length);
+      }
+  });
+
 
   //let displayPopupFunction = displayPopupComponent.bind(this);
-
+  const handlerTotalItems = (value) => {
+    console.log(value);
+    setTotalItems(value);
+  }
   return (
     <div className="App">
       <Router>
         <Header
+          totalItems={totalItems}
           loginPopUpDisplayingState_setter={setValue1}
           registerPopupDisplayingState_setter={setRegisterPress}
         />
@@ -61,7 +75,7 @@ function App() {
             <OrderView />
           </Route>
           <Route path="/">
-            <HomePage />
+            <HomePage totalItems={handlerTotalItems}/>
           </Route>
         </Switch>
         <FooterComponent />
