@@ -17,12 +17,12 @@ const Product = ({ product, onAddToCart}) => {
             </Link>
             <CardContent>
                 <div className={styles.cardContent}>
-                    <Typography variant='h5'>{product.Name}</Typography>
-                    <Typography variant='h5'>{product.Price}</Typography>
+                    <Typography variant='h4'>{product.Name}</Typography>
+                    <Typography variant='h5' className={styles.price}>${product.Price}</Typography>
                 </div>
-                <Typography variant='body2' color='textSecondary'>Quantity: {product.Quantity}</Typography>
-                <Typography variant='body2' color='textSecondary'>Size: {product.Size}</Typography>
-                <Typography variant='h4'>Color: {product.Color}</Typography>
+                <Typography variant='h5' color='textSecondary'>Quantity: {product.Quantity}</Typography>
+                <Typography variant='h5' color='textSecondary'>Size: {product.Size}</Typography>
+                <Typography variant='h5'>Color: {product.Color}</Typography>
             </CardContent>
 
             <CardActions disableSpacing className={styles.cardActions}>
