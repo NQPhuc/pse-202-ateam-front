@@ -107,7 +107,7 @@ export default class Header extends Component {
                             id="header-search"
                             placeholder="Search"
                             name="search"
-                            value={this.state.search}
+                            value={this.state.search}   
                             onChange={(e) => this.setState({ search: e.target.value })}
                             onKeyDown={(e) => this.handleSearch(e)}
                         />

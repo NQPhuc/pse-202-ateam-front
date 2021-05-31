@@ -29,6 +29,7 @@ export default class OrderProduct extends React.Component {
             })
         })
     }
+
     render() {
         return (
             <div className="popup-box" style={{
@@ -42,16 +43,16 @@ export default class OrderProduct extends React.Component {
             }}>
                 <div className="box" style={{
                     position: "relative",
-                    width: "50%",
+                    width: "60%",
                     margin: "0 auto",
                     height: "auto",
-                    "max-height": "100vh",
+                    "max-height": "80%",
                     "margin-top": "calc(100vh - 85vh - 20px)",
                     background: "#fff",
                     "border-radius": "4px",
                     padding: "20px",
-                    border: "1px solid #999",
-                    overflow: "auto"
+                    border: "0px solid #999",
+                    overflow: "scroll"
                 }}>
                     <span className="close-icon" onClick={this.props.handleCloseProducts} style={{
                         content: 'x',
@@ -71,7 +72,7 @@ export default class OrderProduct extends React.Component {
                     <Typography variant="h4">ORDER DETAIL</Typography>
                     <Grid container justify="center" direction="row" spacing={2}>
                         {this.state.productList.map(item => (
-                            <Grid item key={item._id} xs={8} lg={8  }>
+                            <Grid item key={item._id} xs={8} lg={12}>
                                 <div className="product-block">
                                     <div className="product-info">
                                         <Typography

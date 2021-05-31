@@ -25,6 +25,7 @@ export default class AdminPage extends React.Component {
             }
             else {
                 this.setState({ userName: "", userRole: "" });
+                window.location.href = "/";
             }
         })
     }

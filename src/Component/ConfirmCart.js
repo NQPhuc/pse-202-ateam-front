@@ -49,8 +49,10 @@ export default class ConfirmCart extends React.Component {
                     http.OrderService.createNewOder(orderContent, customer, recipent, address, contact).then((value) => {
                         if (value) {
                             this.props.confirmCartPopUpDisplayingState_setter(false);
+                            console.log("ORDER SUCCESS");
+                            alert("ORDER SUCCESS");
                             http.UserService.editCart([]).then((res) => {
-                                if (!res) {
+                                if (res !== "OK") {
                                     alert("DELETE FAILED");
                                 }
                             })
@@ -62,7 +64,7 @@ export default class ConfirmCart extends React.Component {
                                     alert("DELETE FAILED");
                                 }
                             }) */
-                            window.location.reload();
+                            window.location.href = "/";
                         }
                         else {
                             this.props.confirmCartPopUpDisplayingState_setter(false);
