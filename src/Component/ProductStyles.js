@@ -18,4 +18,7 @@ export default makeStyles(() => ({
     justifyContent: 'space-between',
     paddingBottom:0,
   },
+  price:{
+    fontWeight: 600,
+  }
 }));

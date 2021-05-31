@@ -69,12 +69,12 @@ class ItemView extends React.Component {
             </div>
             <div className="box">
               <div className="row">
-                <h2>{product.Name}</h2>
-                <span>${product.Price}</span>
+                <h2 className="productName">{product.Name}</h2>
+                <span className="productPrice">${product.Price}</span>
               </div>
               {/* <Colors colors={product.Color} /> */}
-              <p>{product.Size}</p>
-              <p>{product.Color}</p>
+              <p className="size">Size: {product.Size}</p>
+              <p className="size">Color: {product.Color}</p>
               {/* <DetailsThumb images={item.src} tab={this.handleTab} myRef={this.myRef} /> */}
               <button className="cart" onClick={() => this.addToCart()}>Add to cart</button>
             </div>
