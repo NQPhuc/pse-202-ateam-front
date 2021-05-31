@@ -68,31 +68,27 @@ export default class OrderProduct extends React.Component {
                         border: "1px solid #999",
                         "font-size": "20px",
                     }}>x</span>
-                    <Grid container justify="center" direction="column" spacing={4}>
+                    <Typography variant="h4">ORDER DETAIL</Typography>
+                    <Grid container justify="center" direction="row" spacing={2}>
                         {this.state.productList.map(item => (
                             <Grid item key={item._id} xs={8} lg={12}>
-                                <Card>
-                                    <CardMedia />
-                                    <CardContent>
-                                        <div className="product-block">
-                                            <div className="product-info">
-                                                {/* <Typography
-                                                    variant="body1"
-                                                    style={{ "paddingRight": "10px", "fontWeight": "lighter" }}>
-                                                    {item._id}
-                                                </Typography> */}
-                                                <Link to={"/item/" + item.id} className="product-image">
-                                                    <img src={"../../img/" + item.image} width="150" height="150" />
-                                                </Link>
-                                                <div className="product-detail">
-                                                    <Typography variant="h4">{item.name}</Typography>
-                                                    <Typography variant="body1">Quantity: {item.quantity}</Typography>
-                                                    <Typography variant="h6" style={{ "font-weight": "bold" }}>$ {item.price}</Typography>
-                                                </div>
-                                            </div>
+                                <div className="product-block">
+                                    <div className="product-info">
+                                        <Typography
+                                            variant="body1"
+                                            style={{ "paddingRight": "10px", "fontWeight": "lighter" }}>
+                                            {item._id}
+                                        </Typography>
+                                        <Link to={"/item/" + item.id} className="product-image">
+                                            <img src={"../../img/" + item.image} width="120" height="120" />
+                                        </Link>
+                                        <div className="product-detail">
+                                            <Typography variant="h4">{item.name}</Typography>
+                                            <Typography variant="body1">Quantity: {item.quantity}</Typography>
+                                            <Typography variant="h6" style={{ "font-weight": "bold" }}>$ {item.price}</Typography>
                                         </div>
-                                    </CardContent>
-                                </Card>
+                                    </div>
+                                </div>
                             </Grid>
                         ))}
                     </Grid>

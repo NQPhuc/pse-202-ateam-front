@@ -26,11 +26,15 @@ class CartProduct extends React.Component {
     }
     deleteItem = (productId) => {
         http.UserService.removeProductFromCart(productId).then((value) => {
-            if (value) {
+            if (value === "OK") {
                 window.location.reload();
             }
+            else if (value === "Invalid session") {
+                alert("PLEASE LOGIN AGAIN");
+                window.location.href = "/";
+            }
             else {
-                alert("PRODUCT NOT FOUND, BRUH");
+                alert("PRODUCT NOT EXIST");
             }
         })
     }

@@ -26,13 +26,16 @@ class AdminOrder extends React.Component {
     changeStatus = (e) => {
         const { order } = this.props;
         http.OrderService.setOrderStatus(order._id, e).then((value) => {
-            if (value) {
+            if (value === "OK") {
                 console.log("ORDER UPDATED");
-                window.location.reload();
+            }
+            else if (value === "Invalid session") {
+                alert("PLEASE LOGIN AGAIN");
+                window.location.href = "/";
             }
             else {
-                alert("UPDATE FAILED");
-                window.location.href = "/";
+                alert("CHANGE FAILED");
+                window.location.reload();
             }
         })
     }
@@ -53,6 +56,7 @@ class AdminOrder extends React.Component {
                             <div className="product-detail">
                                 <div className="delivery-info" style={{ float: 'left' }}>
                                     <Typography variant="body1">Order Date: {order.OrderDate}</Typography>
+                                    <Typography variant="body1">Customer Name: {order.CustomerName}</Typography>
                                     <Typography variant="body1">Recipent Name: {order.RecipientName}</Typography>
                                     <Typography variant="body1">Contact Number: {order.ContactNumber}</Typography>
                                     <Typography variant="body1">Delivery Address: {order.Address}</Typography>
@@ -91,7 +95,7 @@ class AdminOrder extends React.Component {
                             </div>
                         </div>
                     </div>
-                    <Button onClick={this.viewOrder} style={{ width: "100%", marginTop: 10 }}>View order detail</Button>
+                    <Button onClick={this.viewOrder} style={{ width: "100%", marginTop: 10, height: 30 }}>View order detail</Button>
                 </CardContent>
             </Card >
         );

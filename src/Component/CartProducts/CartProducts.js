@@ -14,22 +14,16 @@ export default class CartProducts extends React.Component {
         this.updateTotal = this.updateTotal.bind(this);
     }
     componentDidMount() {
-        const sessionId = document.cookie.replace(/(?:(?:^|.*;\s*)sessionId\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-        if (sessionId) {
-            http.UserService.getUserCartContent().then((value) => {
-                if (value) {
-                    this.setState({ cart: value.CartContent }, () => {
-                        this.updateTotal();
-                    });
-                }
-                else {
-                    this.setState({ cart: [], totalPrice: 0 });
-                }
-            })
-        }
-        else {
-            this.setState({ cart: [], totalPrice: 0 });
-        }
+        http.UserService.getUserCartContent().then((value) => {
+            if (value) {
+                this.setState({ cart: value.CartContent }, () => {
+                    this.updateTotal();
+                });
+            }
+            else {
+                this.setState({ cart: [], totalPrice: 0 });
+            }
+        })
     }
     updateTotal() {
         http.UserService.getCartTotalPrice().then((price) => {

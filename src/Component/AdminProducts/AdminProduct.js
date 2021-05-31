@@ -11,7 +11,7 @@ class AdminProduct extends React.Component {
     }
     disableProduct = (productId) => {
         http.ProductService.disableProduct(productId).then((value) => {
-            if (value) {
+            if (value === "OK") {
                 console.log("DISABLED");
                 window.location.reload();
             }

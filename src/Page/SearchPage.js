@@ -54,44 +54,56 @@ export default class SearchPage extends React.Component {
     }
 
     render() {
-        return (
-            <Grid container justify="center" spacing={4}>
-                {
-                    this.state.matchProduct.map((item) => (
-                        <Grid item key={item._id} xs={12} sm={6} md={4} lg={3}>
-                            <Card>
-                                <CardMedia />
-                                <CardContent>
-                                    <div className="item-block">
-                                        <div className="item-info">
-                                            <Typography
-                                                variant="body1"
-                                                style={{ "paddingRight": "10px", "fontWeight": "lighter" }}>
-                                                {item._id}
-                                            </Typography>
-                                            <Link to={"/item/" + item._id} className="item-image">
-                                                <img src={"../../img/" + item.image} width="150" height="150" />
-                                            </Link>
-                                            <div className="item-detail">
-                                                <Typography variant="h4">{item.Name}</Typography>
-                                                <Typography variant="body1">Color: {item.Color}</Typography>
-                                                <Typography variant="body1">Size: {item.Size}</Typography>
-                                                <Typography variant="body1">Stock: {item.Quantity}</Typography>
-                                                <Typography variant="h6" style={{ "font-weight": "bold" }}>$ {item.Price}</Typography>
+        if (this.state.matchProduct.length) {
+            return (
+                <Grid container justify="center" spacing={4}>
+                    {
+                        this.state.matchProduct.map((item) => (
+                            <Grid item key={item._id} xs={12} sm={6} md={4} lg={3}>
+                                <Card>
+                                    <CardMedia />
+                                    <CardContent>
+                                        <div className="item-block">
+                                            <div className="item-info">
+                                                <Typography
+                                                    variant="body1"
+                                                    style={{ "paddingRight": "10px", "fontWeight": "lighter" }}>
+                                                    {item._id}
+                                                </Typography>
+                                                <Link to={"/item/" + item._id} className="item-image">
+                                                    <img src={"../../img/" + item.image} width="150" height="150" />
+                                                </Link>
+                                                <div className="item-detail">
+                                                    <Typography variant="h4">{item.Name}</Typography>
+                                                    <Typography variant="body1">Color: {item.Color}</Typography>
+                                                    <Typography variant="body1">Size: {item.Size}</Typography>
+                                                    <Typography variant="body1">Stock: {item.Quantity}</Typography>
+                                                    <Typography variant="h6" style={{ "font-weight": "bold" }}>$ {item.Price}</Typography>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </CardContent>
-                                <CardActions disableSpacing>
-                                    <IconButton aria-label="Add to cart" onClick={() => this.addToCart(item._id)}>
-                                        <AddShoppingCart style={{ fontSize: "23" }} />
-                                    </IconButton>
-                                </CardActions>
-                            </Card>
-                        </Grid>
-                    ))
-                }
-            </Grid>
-        );
+                                    </CardContent>
+                                    <CardActions disableSpacing>
+                                        <IconButton aria-label="Add to cart" onClick={() => this.addToCart(item._id)}>
+                                            <AddShoppingCart style={{ fontSize: "23" }} />
+                                        </IconButton>
+                                    </CardActions>
+                                </Card>
+                            </Grid>
+                        ))
+                    }
+                </Grid>
+            );
+        }
+        else {
+            return (
+                <div style={{ textAlign: "center" }}>
+                    <h1 style={{ fontSize: 50 }}>NO RESULT</h1>
+                    <Link to="/" onClick={() => { window.location.href = "/" }}>
+                        <h3 style={{ fontSize: 25 }}>Return to Homepage</h3>
+                    </Link>
+                </div>
+            )
+        }
     }
 }

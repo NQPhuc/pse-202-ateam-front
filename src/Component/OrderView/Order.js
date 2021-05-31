@@ -70,13 +70,13 @@ class Order extends React.Component {
                     </div>
                     <div>
                         {!order.PaymentInfo.status ?
-                            <Button onClick={this.viewOrder} style={{ width: "50%" }}>View order detail</Button>
+                            <Button onClick={this.viewOrder} style={{ width: "50%", height: 30 }}>View order detail</Button>
                             :
-                            <Button onClick={this.viewOrder} style={{ width: "100%" }}>View order detail</Button>
+                            <Button onClick={this.viewOrder} style={{ width: "100%", height: 30 }}>View order detail</Button>
                         }
                         {
                             !order.PaymentInfo.status ?
-                                <Button onClick={this.makePayment} style={{ width: "50%" }}>Make payment</Button>
+                                <Button onClick={this.makePayment} style={{ width: "50%", height: 30 }}>Make payment</Button>
                                 :
                                 ""
                         }

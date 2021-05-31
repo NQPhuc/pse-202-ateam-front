@@ -34,58 +34,49 @@ export default class ConfirmCart extends React.Component {
 
 
     makeOrder = (customer, recipent, address, contact) => {
-        const sessionId = document.cookie.replace(/(?:(?:^|.*;\s*)sessionId\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-        if (sessionId) {
-            http.UserService.getUserCartContent().then((cart) => {
-                if (cart) {
-                    this.setState({ orderItem: cart.CartContent, registered: true }, () => {
-                        const orderContent = {
-                            itemList: this.state.orderItem,
-                            ItemPrice: 0
-                        };
-                        if (!orderContent.itemList.length) {
-                            alert("CART EMPTY, ORDER FAILED");
-                            window.location.href = '/';
-                            return;
+        http.UserService.getUserCartContent().then((cart) => {
+            if (cart) {
+                this.setState({ orderItem: cart.CartContent, registered: true }, () => {
+                    const orderContent = {
+                        itemList: this.state.orderItem,
+                        ItemPrice: 0
+                    };
+                    if (!orderContent.itemList.length) {
+                        alert("CART EMPTY, ORDER FAILED");
+                        window.location.href = '/';
+                        return;
+                    }
+                    http.OrderService.createNewOder(orderContent, customer, recipent, address, contact).then((value) => {
+                        if (value) {
+                            this.props.confirmCartPopUpDisplayingState_setter(false);
+                            http.UserService.editCart([]).then((res) => {
+                                if (!res) {
+                                    alert("DELETE FAILED");
+                                }
+                            })
+                            /* orderContent.itemList.map(ele => {
+                                ele['Quantity'] = 0
+                            })
+                            http.UserService.editCart(orderContent.itemList).then((res) => {
+                                if (!res) {
+                                    alert("DELETE FAILED");
+                                }
+                            }) */
+                            window.location.reload();
                         }
-                        http.OrderService.createNewOder(orderContent, customer, recipent, address, contact).then((value) => {
-                            if (value) {
-                                this.props.confirmCartPopUpDisplayingState_setter(false);
-                                http.UserService.editCart([]).then((res) => {
-                                    if (!res) {
-                                        alert("DELETE FAILED");
-                                    }
-                                })
-                                // orderContent.itemList.map(ele => {
-                                //     ele['Quantity'] = 0
-                                // })
-                                // http.UserService.editCart(orderContent.itemList).then((res) => {
-                                //     if (!res) {
-                                //         alert("DELETE FAILED");
-                                //     }
-                                // })
-                                window.location.reload();
-                            }
-                            else {
-                                this.props.confirmCartPopUpDisplayingState_setter(false);
-                                alert("ORDER FAILED");
-                                window.location.href = '/';
-                            }
-                        })
+                        else {
+                            this.props.confirmCartPopUpDisplayingState_setter(false);
+                            alert("ORDER FAILED");
+                            window.location.href = '/';
+                        }
                     })
-                }
-                else {
-                    this.props.confirmCartPopUpDisplayingState_setter(false);
-                    this.setState({ orderItem: [], registered: true });
-                }
-            })
-        }
-        else {
-            alert("YOU ARE NOT LOGGED IN");
-            this.props.confirmCartPopUpDisplayingState_setter(false);
-            this.setState({ orderItem: [], registered: false });
-            window.location.href = '/';
-        }
+                })
+            }
+            else {
+                this.props.confirmCartPopUpDisplayingState_setter(false);
+                this.setState({ orderItem: [], registered: true });
+            }
+        })
     }
 
     render() {

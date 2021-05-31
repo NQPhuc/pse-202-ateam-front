@@ -18,18 +18,15 @@ export default class AdminPage extends React.Component {
         }
     }
     componentDidMount() {
-        const sessionId = document.cookie.replace(/(?:(?:^|.*;\s*)sessionId\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-        if (sessionId) {
-            http.AuthenticateService.getNameAndRoleFromSession().then((value) => {
-                if (value) {
-                    console.log(value);
-                    this.setState({ userName: value.Name, userRole: value.Role });
-                }
-                else {
-                    this.setState({ userName: "", userRole: "" });
-                }
-            })
-        }
+        http.AuthenticateService.getNameAndRoleFromSession().then((value) => {
+            if (value) {
+                console.log(value);
+                this.setState({ userName: value.Name, userRole: value.Role });
+            }
+            else {
+                this.setState({ userName: "", userRole: "" });
+            }
+        })
     }
     render() {
         if (this.state.userName && this.state.userRole === "Admin") {

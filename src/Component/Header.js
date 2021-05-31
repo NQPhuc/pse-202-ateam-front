@@ -21,17 +21,14 @@ export default class Header extends Component {
     }
 
     componentDidMount() {
-        this.state.sid = document.cookie.replace(/(?:(?:^|.*;\s*)sessionId\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-        if (this.state.sid) {
-            http.AuthenticateService.getNameAndRoleFromSession().then((value) => {
-                if (value) {
-                    this.setState({ userName: value.Name, userRole: value.Role});
-                }
-                else {
-                    this.setState({ userName: "", userRole: "", cart: [] });
-                }
-            });
-        }
+        http.AuthenticateService.getNameAndRoleFromSession().then((value) => {
+            if (value) {
+                this.setState({ userName: value.Name, userRole: value.Role });
+            }
+            else {
+                this.setState({ userName: "", userRole: "", cart: [] });
+            }
+        });
     }
 
     handleSearch(e) {

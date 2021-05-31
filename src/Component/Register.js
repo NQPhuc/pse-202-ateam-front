@@ -21,11 +21,11 @@ export default class RegisterPopup extends Component {
     register = (usernameValue, passwordValue, firstname, lastname, email, phone) => {
         http.UserService.registerNewUser(usernameValue, passwordValue, firstname, lastname, email, phone).then(
             (res) => {
-                if(res){
+                if(res === "OK"){
                     window.location.href = '/'; //this look like a hack
                     this.props.registerPopupDisplayingState_setter(false)
                 }
-                else{
+                else {
                     alert("Failed");
                 }
             } 
