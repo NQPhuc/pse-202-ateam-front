@@ -102,18 +102,3 @@ class AdminOrder extends React.Component {
     }
 }
 export default AdminOrder;
-
-/*
-{"_id":{"$oid":"60a1b59843103b61ba615cd7"},
-    "OrderContent":{"itemList":[{"ProductId":"6090084e84f99e948808c64f","ProductName":"sneaker1","Quantity":1}],
-    "TotalPrice":500},
-    "ClientId":"60902e0584f99e948808c657",
-    "CustomerName":"MrA",
-    "RecipientName":"MsB",
-    "Address":"Moon North Pole",
-    "ContactNumber":"010101",
-    "OrderDate":{"$date":"2021-05-18T00:00:00.000Z"},
-    "OrderStatus":"Processing",
-    "PaymentInfo":{"status":true,"info":"VISA 1111-2222-3333-4444"}}
-    "__v: 0"
-*/

@@ -71,7 +71,7 @@ export default class OrderProduct extends React.Component {
                     <Typography variant="h4">ORDER DETAIL</Typography>
                     <Grid container justify="center" direction="row" spacing={2}>
                         {this.state.productList.map(item => (
-                            <Grid item key={item._id} xs={8} lg={12}>
+                            <Grid item key={item._id} xs={8} lg={8  }>
                                 <div className="product-block">
                                     <div className="product-info">
                                         <Typography

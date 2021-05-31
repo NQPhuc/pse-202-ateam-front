@@ -44,7 +44,7 @@ class CartProduct extends React.Component {
                 this.setState({ productCartInfo: value });
             }
             else {
-                this.setState({ productCartInfo: null });
+                this.deleteItem(this.props.cart.ProductId);
             }
         })
     }
@@ -83,9 +83,11 @@ class CartProduct extends React.Component {
         }
         else {
             return (
-                <div style={{ textAlign: "center" }}>
-                    <h1 style={{ fontSize: 50 }}>ERROR: PRODUCT NOT FOUND (MIGHT BE DELETED IDK)</h1>
-                </div>
+                <div></div>
+                // <div style={{ textAlign: "center" }}>
+                //     <h1 style={{ fontSize: 20 }}>ERROR: PRODUCT NOT FOUND</h1>
+                //     <IconButton onClick={() => console.log("OK")}><Delete /></IconButton>
+                // </div>
             );
         }
     }
