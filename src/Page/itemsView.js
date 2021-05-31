@@ -33,10 +33,10 @@ class ItemView extends React.Component {
     //this.myRef.current.children[index].className = "active";
   }
 
-  addToCart() {
+  async addToCart() {
     const pid = this.props.match.params.pid;
     if (pid) {
-      http.UserService.addSingleItemToCart(pid).then((value) => {
+      await http.UserService.addSingleItemToCart(pid).then((value) => {
         if (value) {
           console.log("PRODUCT ADDED TO CART");
         }
@@ -44,6 +44,11 @@ class ItemView extends React.Component {
           alert("FAILED TO ADD");
         }
       })
+      await http.UserService.getUserCartContent().then((value) => {
+        if (value) {
+            this.props.totalItems(value.CartContent.length);
+        }
+    })
     }
   }
 

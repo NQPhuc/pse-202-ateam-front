@@ -59,7 +59,7 @@ function App() {
               </div>
             </p>
           </Route>
-          <Route exact path="/item/:pid" render={(props) => <ItemView {...props} />}>
+          <Route exact path="/item/:pid" render={(props) => <ItemView {...props} totalItems={handlerTotalItems}/>}>
           </Route>
           <Route exact path="/search/:pname" render={(props) => <SearchPage {...props} />}>
           </Route>
